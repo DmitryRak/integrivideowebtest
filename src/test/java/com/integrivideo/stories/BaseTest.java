@@ -1,29 +1,38 @@
 package com.integrivideo.stories;
 
+import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.webdriver.SerenityWebdriverManager;
+import net.thucydides.core.webdriver.WebDriverFacade;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
+
 public class BaseTest {
-    WebDriver driver;
+
+    @Managed(driver="chrome", uniqueSession = true)
+    public WebDriver driver;
 
     //http://stackoverflow.com/questions/38751525/firefox-browser-is-not-opening-with-selenium-webbrowser-code
-    @BeforeMethod
-    private void setUp(){
+    @Before
+    public void setUp(){
+        SerenityWebdriverManager.inThisTestThread()
+                .registerDriverCalled(
+                        ((WebDriverFacade) driver).getDriverName()
+                ).forDriver(driver);
         setDriver();
-        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
-    @AfterMethod
-    private void tearDown(){
+    @After
+    public void tearDown(){
         driver.quit();
     }
 

@@ -3,13 +3,19 @@ package com.integrivideo.stories;
 import com.integrivideo.Data;
 import com.integrivideo.Utils;
 import com.integrivideo.steps.ChatSteps;
-import org.testng.annotations.Test;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Steps;
+import net.thucydides.core.annotations.Story;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
+@Story(BasicChatStoryTest.class)
+@RunWith(SerenityRunner.class)
 public class BasicChatStoryTest extends BaseTest{
-
+    @Steps
     private ChatSteps chatSteps;
 
     @Test

@@ -4,7 +4,6 @@ import com.integrivideo.Message;
 import com.integrivideo.elements.WebElementHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Reporter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
-public class Chat {
+public class Chat{
     private By textInputBy = By.xpath("//integri-div[contains(@class, 'integri-chat-input')]//textarea");
     private By ownMessagesBy = By.xpath("//integri-div[contains(@class, 'integri-chat-message-own')]");
     private By sendButtonBy = By.xpath("//integri-span[contains(@class,'iv-icon iv-icon-paper-plane')]");
@@ -55,7 +54,7 @@ public class Chat {
             }
             ownMessages.add(message);
         }
-        Reporter.log(driver.getPageSource(),false);
+        System.out.println(driver.getPageSource());
         return ownMessages;
     }
 
