@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
+
 public class BasicChatStoryTest extends BaseTest{
 
     private ChatSteps chatSteps;
