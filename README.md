@@ -7,4 +7,8 @@ PREREQUISITES:
 
 TO RUN TESTS:
 
-mvn clean install
+* mvn clean install
+
+TO VIEW RESULTS:
+
+* See /target/surefire-reports/emailable-report.html
