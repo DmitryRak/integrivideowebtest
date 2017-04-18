@@ -30,7 +30,7 @@ public abstract class BaseTest {
 
     private static void setDriver() {
         System.out.println("OS: " + System.getProperty("os.name"));
-        if (System.getProperty("os.name").contains("MAC"))
+        if (System.getProperty("os.name").contains("Mac"))
             System.setProperty("webdriver.chrome.driver", "target"+ File.separator+"classes"+File.separator+"chromedriver");
 //        else if (System.getProperty("os.name").contains("Linux"))
 //            System.setProperty("webdriver.chrome.driver", "chromedriver");
