@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -29,11 +30,11 @@ public abstract class BaseTest {
 
     private static void setDriver() {
         System.out.println("OS: " + System.getProperty("os.name"));
-        if (System.getProperty("os.name").contains("OS X"))
-            System.setProperty("webdriver.chrome.driver", "target\\classes\\chromedriver");
+        if (System.getProperty("os.name").contains("MAC"))
+            System.setProperty("webdriver.chrome.driver", "target"+ File.separator+"classes"+File.separator+"chromedriver");
 //        else if (System.getProperty("os.name").contains("Linux"))
 //            System.setProperty("webdriver.chrome.driver", "chromedriver");
         else
-            System.setProperty("webdriver.chrome.driver", "target\\classes\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "target"+File.separator+"classes"+File.separator+"chromedriver.exe");
     }
 }
