@@ -14,13 +14,13 @@ public class ChatSteps {
 
     public void sendWithButton(String text) throws InterruptedException {
         chat.inputText(text);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         chat.clickSendButton();
     }
 
     public void sendWithEnter(String text) throws InterruptedException {
         chat.inputText(text);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         chat.pressEnter();
     }
 
@@ -30,14 +30,14 @@ public class ChatSteps {
             chat.pressShiftEnter();
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         chat.pressEnter();
     }
 
     public void ownMessageShouldBeVisible(final String text, String dateTime){
         Reporter.log("Expected: " + text, true);
         //Reporter.log(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().getText(), true);
-        assertTrue(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().isPresent());
+        assertTrue(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).anyMatch(mess -> mess.getDate().equals(dateTime)));
    }
     public void ownMessageShouldBeShownAsEdited(final String text, String dateTime){
         Reporter.log("Expected: " + text, true);
