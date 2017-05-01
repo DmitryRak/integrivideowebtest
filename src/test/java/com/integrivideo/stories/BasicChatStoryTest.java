@@ -61,4 +61,16 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.ownMessageShouldBeShownAsRemoved(chatSteps.removeMessage(Data.TEST_MGS1));
     }
+    @Test
+    public void uploadFile(){
+        driver.get("https://www.integrivideo.com/demo/chat/new");
+        chatSteps = new ChatSteps(driver);
+        chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
+        //chatSteps.ownMessageShouldBeVisible(Data.IMAGE_FILE_PATH.getName(), Utils.getCurrentTime());
+        //TODO
+        //1. Open link on click
+        //2. CHeck fileSize
+        //3. Check remove
+        //4. Check no edit
+    }
 }

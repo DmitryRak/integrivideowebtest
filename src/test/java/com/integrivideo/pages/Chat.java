@@ -15,10 +15,13 @@ import java.util.List;
 public class Chat {
     private By textInputBy = By.xpath("//integri-div[contains(@class, 'integri-chat-input')]//textarea");
     private By ownMessagesBy = By.xpath("//integri-div[contains(@class, 'integri-chat-message-own')]");
-    private By sendButtonBy = By.xpath("//integri-span[contains(@class,'iv-icon iv-icon-paper-plane')]");
+    private By sendButtonBy = By.xpath("//integri-button[contains(@class,'integri-chat-send-message')]");
+    private By fileUploadButtonBy = By.xpath("//integri-button[contains(@class,'integri-chat-upload-file')]");
+
     private WebDriver driver;
     private WebElement textInput;
     private WebElement sendButton;
+    private WebElement fileUploadButton;
     private List<WebElement> ownMessagesElements = new ArrayList<>();
     private List <Message> ownMessages;
 
@@ -78,9 +81,13 @@ public class Chat {
         Thread.sleep(1000);
     }
 
+    public void openFileUploadModal(){
+        fileUploadButton.click();
+    }
     public Chat(WebDriver driver){
         this.driver = driver;
         textInput = driver.findElement(textInputBy);
         sendButton = driver.findElement(sendButtonBy);
+        fileUploadButton = driver.findElement(fileUploadButtonBy);
     }
 }

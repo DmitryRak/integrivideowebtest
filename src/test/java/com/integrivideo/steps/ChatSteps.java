@@ -1,6 +1,7 @@
 package com.integrivideo.steps;
 
 import com.integrivideo.pages.Chat;
+import com.integrivideo.pages.FileUploadModal;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
@@ -11,6 +12,7 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class ChatSteps {
     private Chat chat;
+    private FileUploadModal fileUpload;
 
     public void sendWithButton(String text) throws InterruptedException {
         chat.inputText(text);
@@ -61,5 +63,12 @@ public class ChatSteps {
     }
     public ChatSteps(WebDriver driver){
         chat = new Chat(driver);
+        fileUpload = new FileUploadModal(driver);
+    }
+
+    public void uploadFile(String filePath){
+        chat.openFileUploadModal();
+        fileUpload.addFile(filePath);
+        fileUpload.startUpload();
     }
 }
