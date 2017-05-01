@@ -6,6 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -35,14 +37,19 @@ public abstract class BaseTest {
     private void setDriver() {
         System.out.println("OS: " + System.getProperty("os.name") + "; Browser: " + driverString);
         if(driverString.contains("firefox")){
-            System.setProperty("webdriver.gecko.driver", "target\\classes\\geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver", "target"+File.separator+"classes"+File.separator+"geckodriver.exe");
             driver = new FirefoxDriver();
         }else{
-            if (System.getProperty("os.name").contains("OS X"))
-                System.setProperty("webdriver.chrome.driver", "target\\classes\\chromedriver");
-            else
-                System.setProperty("webdriver.chrome.driver", "target\\classes\\chromedriver.exe");
+            if (System.getProperty("os.name").contains("Mac")) {
+                System.setProperty("webdriver.chrome.driver", "target" + File.separator + "classes" + File.separator + "chromedriver");
+                try {
+                    Runtime.getRuntime().exec("chmod +x 'target" + File.separator + "classes" + File.separator + "chromedriver'");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else
+                System.setProperty("webdriver.chrome.driver", "target"+File.separator+"classes"+File.separator+"chromedriver.exe");
             driver = new ChromeDriver();
         }
-}
+    }
 }
