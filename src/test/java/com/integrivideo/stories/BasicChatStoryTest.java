@@ -73,4 +73,12 @@ public class BasicChatStoryTest extends BaseTest{
         //3. Check remove
         //4. Check no edit
     }
+    @Test
+    public void editMessageWithLineBreaks() throws InterruptedException {
+        driver.get(Data.testChatUrl);
+        chatSteps = new ChatSteps(driver);
+        chatSteps.sendSeveralLines(Data.TEST_MGS1, Data.SECOND_LINE);
+        chatSteps.editOwnMessage(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, null);
+        chatSteps.ownMessageShouldBeVisible(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, Utils.getCurrentTime());
+    }
 }

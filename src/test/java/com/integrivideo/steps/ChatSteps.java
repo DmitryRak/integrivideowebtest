@@ -31,14 +31,12 @@ public class ChatSteps {
             chat.inputText(line);
             chat.pressShiftEnter();
         }
-
         Thread.sleep(2000);
         chat.pressEnter();
     }
 
     public void ownMessageShouldBeVisible(final String text, String dateTime){
         Reporter.log("Expected: " + text, true);
-        //Reporter.log(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().getText(), true);
         assertTrue(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).anyMatch(mess -> mess.getDate().equals(dateTime)));
    }
     public void ownMessageShouldBeShownAsEdited(final String text, String dateTime){
@@ -52,6 +50,12 @@ public class ChatSteps {
         assertTrue(chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(id)).findFirst().get().isRemoved());
     }
 
+    /**
+     *
+     * @param text
+     * @param finalText - provide null to edit action -> enter
+     * @throws InterruptedException
+     */
     public void editOwnMessage(final String text, String finalText) throws InterruptedException {
         chat.editMessage(text, finalText);
     }
