@@ -8,6 +8,7 @@ PREREQUISITES:
 TO RUN TESTS:
 
 * mvn clean install
+* mvn clean install -Dbrowser=firefox -Dgroups=edit,upload
 
 TO VIEW RESULTS:
 
