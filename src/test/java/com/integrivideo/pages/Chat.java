@@ -37,7 +37,7 @@ public class Chat {
     }
 
     public void pressShiftEnter(){
-        String keysPressed =  Keys.chord(Keys.LEFT_SHIFT, Keys.RETURN);
+        String keysPressed =  Keys.chord(Keys.LEFT_SHIFT, Keys.ENTER);
         textInput.sendKeys(keysPressed);
     }
 
@@ -63,15 +63,11 @@ public class Chat {
     }
 
     public void editMessage(final String text, final String finalText) throws InterruptedException {
-        driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'iv-icon iv-icon-pencil3 integri-chat-edit-message')]")).get(0).click();
-        WebElement messageText = driver.findElement(By.xpath("//integri-div[contains(.,'"+text+"')]"));
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(messageText);
-        actions.sendKeys(Keys.chord(Keys.LEFT_CONTROL, "a"));
-        actions.sendKeys(finalText);
-        actions.sendKeys(Keys.ENTER);
-        actions.build().perform();
+        driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-edit-message')]")).get(0).click();
+        WebElement messageText = driver.findElement(By.xpath("//input[@value='"+text+"']"));
+        messageText.clear();
+        messageText.sendKeys(finalText);
+        messageText.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
     }
 
