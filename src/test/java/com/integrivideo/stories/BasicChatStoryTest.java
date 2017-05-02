@@ -45,7 +45,7 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.ownMessageShouldBeVisible(Data.SPECIAL_CHARS, Utils.getCurrentTime());
     }
 
-    @Test
+    @Test(groups={"edit"})
     public void editMessage() throws InterruptedException {
         driver.get(Data.testChatUrl);
         chatSteps = new ChatSteps(driver);
@@ -54,14 +54,14 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.ownMessageShouldBeVisible(Data.EDITED_MSG, Utils.getCurrentTime());
         chatSteps.ownMessageShouldBeShownAsEdited(Data.EDITED_MSG, Utils.getCurrentTime());
     }
-    @Test
+    @Test(groups={"remove"})
     public void removeMessage() throws InterruptedException {
         driver.get(Data.testChatUrl);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.ownMessageShouldBeShownAsRemoved(chatSteps.removeMessage(Data.TEST_MGS1));
     }
-    @Test
+    @Test(groups={"upload"})
     public void uploadFile(){
         driver.get(Data.testChatUrl);
         chatSteps = new ChatSteps(driver);
@@ -73,7 +73,7 @@ public class BasicChatStoryTest extends BaseTest{
         //3. Check remove
         //4. Check no edit
     }
-    @Test
+    @Test(groups={"edit"})
     public void editMessageWithLineBreaks() throws InterruptedException {
         driver.get(Data.testChatUrl);
         chatSteps = new ChatSteps(driver);

@@ -17,10 +17,10 @@ public abstract class BaseTest {
 
     WebDriver driver;
     //TODO move to maven option
-    private static final String driverString = "chrome";
+    private static String driverString = "chrome";
 
     //http://stackoverflow.com/questions/38751525/firefox-browser-is-not-opening-with-selenium-webbrowser-code
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp(){
         setDriver();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
@@ -29,12 +29,15 @@ public abstract class BaseTest {
         driver.manage().window().maximize();
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.quit();
     }
 
     private void setDriver() {
+        if(System.getProperty("browser")!=null){
+            driverString = System.getProperty("browser");
+        }
         System.out.println("OS: " + System.getProperty("os.name") + "; Browser: " + driverString);
         if(driverString.contains("firefox")){
             System.setProperty("webdriver.gecko.driver", "target"+File.separator+"classes"+File.separator+"geckodriver.exe");
