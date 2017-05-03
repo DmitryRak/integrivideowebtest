@@ -81,4 +81,11 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.editOwnMessage(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, null);
         chatSteps.ownMessageShouldBeVisible(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, Utils.getCurrentTime());
     }
+    @Test
+    public void escapingCharacters() throws InterruptedException {
+        driver.get(Data.testChatUrl);
+        chatSteps = new ChatSteps(driver);
+        chatSteps.sendWithEnter(Data.XSS_TEXT);
+        chatSteps.ownMessageShouldBeVisible(Data.XSS_TEXT, Utils.getCurrentTime());
+    }
 }

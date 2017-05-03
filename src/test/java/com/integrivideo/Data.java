@@ -12,5 +12,6 @@ public class Data {
     public final static String SPECIAL_CHARS = Character.toString((char)0x0601) + Character.toString((char)0x0600) + Character.toString((char)0x0602);
     public final static String EDITED_MSG = "editText";
     public static final File IMAGE_FILE_PATH = new File("target" +File.separator + "classes" + File.separator + "image1.gif");
+    public final static String XSS_TEXT = "<script>alert('TEXT');</script>";
 
 }
