@@ -2,6 +2,7 @@ package com.integrivideo.stories;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -42,7 +43,10 @@ public abstract class BaseTest {
         if(driverString.contains("firefox")){
             System.setProperty("webdriver.gecko.driver", "target"+File.separator+"classes"+File.separator+"geckodriver.exe");
             driver = new FirefoxDriver();
-        }else{
+        }else if(driverString.contains("edge")){
+            System.setProperty("webdriver.edge.driver", "target"+File.separator+"classes"+File.separator+"MicrosoftWebDriver.exe");
+            driver = new EdgeDriver();
+        }else {
             if (System.getProperty("os.name").contains("Mac")) {
                 System.setProperty("webdriver.chrome.driver", "target" + File.separator + "classes" + File.separator + "chromedriver");
                 try {
