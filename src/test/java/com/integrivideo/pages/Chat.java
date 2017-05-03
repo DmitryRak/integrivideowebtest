@@ -15,10 +15,13 @@ import java.util.List;
 public class Chat {
     private By textInputBy = By.xpath("//integri-div[contains(@class, 'integri-chat-input')]//textarea");
     private By ownMessagesBy = By.xpath("//integri-div[contains(@class, 'integri-chat-message-own')]");
-    private By sendButtonBy = By.xpath("//integri-span[contains(@class,'iv-icon iv-icon-paper-plane')]");
+    private By sendButtonBy = By.xpath("//integri-button[contains(@class,'integri-chat-send-message')]");
+    private By fileUploadButtonBy = By.xpath("//integri-button[contains(@class,'integri-chat-upload-file')]");
+
     private WebDriver driver;
     private WebElement textInput;
     private WebElement sendButton;
+    private WebElement fileUploadButton;
     private List<WebElement> ownMessagesElements = new ArrayList<>();
     private List <Message> ownMessages;
 
@@ -34,7 +37,7 @@ public class Chat {
     }
 
     public void pressShiftEnter(){
-        String keysPressed =  Keys.chord(Keys.LEFT_SHIFT, Keys.RETURN);
+        String keysPressed =  Keys.chord(Keys.SHIFT, Keys.ENTER);
         textInput.sendKeys(keysPressed);
     }
 
@@ -60,15 +63,13 @@ public class Chat {
     }
 
     public void editMessage(final String text, final String finalText) throws InterruptedException {
-        driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'iv-icon iv-icon-pencil3 integri-chat-edit-message')]")).get(0).click();
-        WebElement messageText = driver.findElement(By.xpath("//integri-div[contains(.,'"+text+"')]"));
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(messageText);
-        actions.sendKeys(Keys.chord(Keys.LEFT_CONTROL, "a"));
-        actions.sendKeys(finalText);
-        actions.sendKeys(Keys.ENTER);
-        actions.build().perform();
+        driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-edit-message')]")).get(0).click();
+        WebElement messageText = driver.findElement(By.xpath("//input[@value='"+text+"']"));
+        if(null != finalText) {
+            messageText.clear();
+            messageText.sendKeys(finalText);
+        }
+        messageText.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
     }
 
@@ -78,9 +79,13 @@ public class Chat {
         Thread.sleep(1000);
     }
 
+    public void openFileUploadModal(){
+        fileUploadButton.click();
+    }
     public Chat(WebDriver driver){
         this.driver = driver;
         textInput = driver.findElement(textInputBy);
         sendButton = driver.findElement(sendButtonBy);
+        fileUploadButton = driver.findElement(fileUploadButtonBy);
     }
 }
