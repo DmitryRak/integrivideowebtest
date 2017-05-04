@@ -1,9 +1,12 @@
 package com.integrivideo.stories;
 
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -18,7 +21,7 @@ public abstract class BaseTest {
 
     WebDriver driver;
     //TODO move to maven option
-    private static final String driverString = "chrome";
+    private static final String driverString = "edge";
 
     //http://stackoverflow.com/questions/38751525/firefox-browser-is-not-opening-with-selenium-webbrowser-code
     @BeforeMethod
@@ -42,7 +45,10 @@ public abstract class BaseTest {
             driver = new FirefoxDriver();
         }else if(driverString.contains("edge")){
             System.setProperty("webdriver.edge.driver", "target"+File.separator+"classes"+File.separator+"MicrosoftWebDriver.exe");
-            driver = new EdgeDriver();
+            //to handle alerts in EDGE http://stackoverflow.com/questions/26772793/org-openqa-selenium-unhandledalertexception-unexpected-alert-open
+            DesiredCapabilities dc = new DesiredCapabilities();
+            dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
+            driver = new EdgeDriver(dc);
         }else {
             if (System.getProperty("os.name").contains("Mac")) {
                 System.setProperty("webdriver.chrome.driver", "target" + File.separator + "classes" + File.separator + "chromedriver");
