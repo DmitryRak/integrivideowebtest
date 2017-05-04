@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
@@ -21,7 +22,7 @@ public abstract class BaseTest {
 
     WebDriver driver;
     //TODO move to maven option
-    private static final String driverString = "chrome";
+    private static final String driverString = "ie";
 
     //http://stackoverflow.com/questions/38751525/firefox-browser-is-not-opening-with-selenium-webbrowser-code
     @BeforeMethod
@@ -49,6 +50,14 @@ public abstract class BaseTest {
             DesiredCapabilities dc = new DesiredCapabilities();
             dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
             driver = new EdgeDriver(dc);
+        }else if(driverString.contains("ie")){
+            System.setProperty("webdriver.ie.driver", "target"+File.separator+"classes"+File.separator+"IEDriverServer.exe");
+            //Also workaround from this place is required: http://jimevansmusic.blogspot.com.by/2012/08/youre-doing-it-wrong-protected-mode-and.html#iesettings
+            DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+            caps.setCapability(
+                    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+                    true);
+            driver = new InternetExplorerDriver(caps);
         }else {
             if (System.getProperty("os.name").contains("Mac")) {
                 System.setProperty("webdriver.chrome.driver", "target" + File.separator + "classes" + File.separator + "chromedriver");
