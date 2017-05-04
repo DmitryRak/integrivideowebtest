@@ -21,7 +21,7 @@ public abstract class BaseTest {
 
     WebDriver driver;
     //TODO move to maven option
-    private static final String driverString = "edge";
+    private static final String driverString = "chrome";
 
     //http://stackoverflow.com/questions/38751525/firefox-browser-is-not-opening-with-selenium-webbrowser-code
     @BeforeMethod
