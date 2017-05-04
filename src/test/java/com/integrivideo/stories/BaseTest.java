@@ -1,9 +1,13 @@
 package com.integrivideo.stories;
 
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -45,7 +49,20 @@ public abstract class BaseTest {
             driver = new FirefoxDriver();
         }else if(driverString.contains("edge")){
             System.setProperty("webdriver.edge.driver", "target"+File.separator+"classes"+File.separator+"MicrosoftWebDriver.exe");
-            driver = new EdgeDriver();
+            //to handle alerts in EDGE http://stackoverflow.com/questions/26772793/org-openqa-selenium-unhandledalertexception-unexpected-alert-open
+            DesiredCapabilities dc = new DesiredCapabilities();
+            dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
+            driver = new EdgeDriver(dc);
+        }else if(driverString.contains("ie")){
+            System.setProperty("webdriver.ie.driver", "target"+File.separator+"classes"+File.separator+"IEDriverServer.exe");
+            //Also workaround from this place is required: http://jimevansmusic.blogspot.com.by/2012/08/youre-doing-it-wrong-protected-mode-and.html#iesettings
+            DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+            caps.setCapability(
+                    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+                    true);
+            //workaround to click SHIFT
+            caps.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, true);
+            driver = new InternetExplorerDriver(caps);
         }else {
             if (System.getProperty("os.name").contains("Mac")) {
                 System.setProperty("webdriver.chrome.driver", "target" + File.separator + "classes" + File.separator + "chromedriver");
