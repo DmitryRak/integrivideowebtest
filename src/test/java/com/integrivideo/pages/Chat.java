@@ -64,7 +64,7 @@ public class Chat {
 
     public void editMessage(final String text, final String finalText) throws InterruptedException {
         driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-edit-message')]")).get(0).click();
-        WebElement messageText = driver.findElement(By.xpath("//input[@value='"+text+"']"));
+        WebElement messageText = driver.findElement(By.xpath("//textarea[.='"+text+"']"));
         if(null != finalText) {
             messageText.clear();
             messageText.sendKeys(finalText);
