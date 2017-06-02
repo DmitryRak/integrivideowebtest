@@ -21,6 +21,8 @@
                 <configuration>
                     <systemPropertyVariables>
                         <environment>${browser}</environment>
+                        <user>${user}</user>
+                        <pass>${pass}</pass>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -58,12 +60,12 @@
         <version>4.5.3</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-    <dependency>
-        <groupId>commons-codec</groupId>
-        <artifactId>commons-codec</artifactId>
-        <version>1.10</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
 
 </dependencies>
 </project>
