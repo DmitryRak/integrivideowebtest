@@ -64,6 +64,7 @@ public abstract class BaseTest {
             caps.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
             driver = new InternetExplorerDriver(caps);
         }else {
+            //TODO refactor solution for MAC
             if (System.getProperty("os.name").contains("Mac")) {
                 System.setProperty("webdriver.chrome.driver", "target" + File.separator + "classes" + File.separator + "chromedriver");
                 try {

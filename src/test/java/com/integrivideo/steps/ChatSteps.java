@@ -5,7 +5,8 @@ import com.integrivideo.pages.FileUploadModal;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 
 /**
  * Created by Dmitry Rak on 4/15/2017.
@@ -37,17 +38,17 @@ public class ChatSteps {
 
     public void ownMessageShouldBeVisible(final String text, String dateTime){
         Reporter.log("Expected: " + text, true);
-        assertTrue(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).anyMatch(mess -> mess.getDate().equals(dateTime)));
+        assertThat("Message should be visible",chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).anyMatch(mess -> mess.getDate().equals(dateTime)));
    }
     public void ownMessageShouldBeShownAsEdited(final String text, String dateTime){
         Reporter.log("Expected: " + text, true);
         //Reporter.log(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().getText(), true);
-        assertTrue(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().isEdited());
+        assertThat("Message should be edited",chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().isEdited());
     }
 
     public void ownMessageShouldBeShownAsRemoved(String id){
         //Reporter.log(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().getText(), true);
-        assertTrue(chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(id)).findFirst().get().isRemoved());
+        assertThat("Message should be removed",chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(id)).findFirst().get().isRemoved());
     }
 
     /**
@@ -79,6 +80,9 @@ public class ChatSteps {
         return chat.getInviteLink();
     }
     public void inviteLinkShouldBeLike(String pattern){
-        assertTrue("Invite LInk is incorrect", getInviteLink().contains(pattern));
+        Reporter.log("Expected: " + pattern, true);
+        Reporter.log("Actual: " + getInviteLink(), true);
+        assertThat(getInviteLink(),equalToIgnoringCase(pattern));
+
     }
 }

@@ -12,7 +12,7 @@ import java.util.Base64;
 import java.util.Scanner;
 
 /**
- * Created by asus on 5/2/2017.
+ * Created by drak on 5/2/2017.
  */
 public abstract class BitBucketIssueHelper {
 

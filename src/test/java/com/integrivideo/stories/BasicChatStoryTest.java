@@ -44,7 +44,7 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.sendWithButton(Data.SPECIAL_CHARS);
         chatSteps.ownMessageShouldBeVisible(Data.SPECIAL_CHARS, Utils.getCurrentTime());
     }
-
+//TODO mark as failing in IE using BitbucketHelper
     @Test(groups={"edit"})
     public void editMessage() throws InterruptedException {
         driver.get(Data.testChatUrl);
@@ -67,7 +67,7 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps = new ChatSteps(driver);
         chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
         //chatSteps.ownMessageShouldBeVisible(Data.IMAGE_FILE_PATH.getName(), Utils.getCurrentTime());
-        //TODO
+        //TODO write assertions
         //1. Open link on click
         //2. CHeck fileSize
         //3. Check remove
@@ -88,13 +88,11 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.sendWithEnter(Data.XSS_TEXT);
         chatSteps.ownMessageShouldBeVisible(Data.XSS_TEXT, Utils.getCurrentTime());
     }
+    //TODO handle IE11 asking for access to clipboard
     @Test
     public void inviteUserButton(){
         driver.get(Data.testChatUrl);
         chatSteps = new ChatSteps(driver);
-        chatSteps.inviteLinkShouldBeLike("https://www.integrivideo.com/demo/");
-        chatSteps.getInviteLink();
-
-
+        chatSteps.inviteLinkShouldBeLike(driver.getCurrentUrl());
     }
 }

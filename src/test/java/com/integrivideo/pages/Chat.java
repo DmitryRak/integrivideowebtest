@@ -99,14 +99,19 @@ public class Chat {
     public String getInviteLink(){
         inviteButton = driver.findElement(inviteButtonBy);
         inviteButton.click();
+        //JavascriptExecutor executor = (JavascriptExecutor)driver;
+        //executor.executeScript("arguments[0].click();", inviteButton);
+        String result = "";
         try {
-            return (String) Toolkit.getDefaultToolkit()
-                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+            result = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
         } catch (UnsupportedFlavorException e) {
             e.printStackTrace();
+
+            return result;
         } catch (IOException e) {
             e.printStackTrace();
+            return result;
         }
-        return null;
+        return result;
     }
 }
