@@ -82,8 +82,7 @@ public class Chat {
 
     public void removeMessage(final String text) throws InterruptedException {
         WebElement element = driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-remove-message')]")).get(0);
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", element);
+        element.click();
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
     }
