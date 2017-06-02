@@ -22,7 +22,7 @@ public abstract class BaseTest {
 
     WebDriver driver;
     //TODO move to maven option
-    private static String driverString = "chrome";
+    private static String driverString = "ie";
 
     //http://stackoverflow.com/questions/38751525/firefox-browser-is-not-opening-with-selenium-webbrowser-code
     @BeforeMethod(alwaysRun = true)
@@ -62,6 +62,7 @@ public abstract class BaseTest {
                     true);
             //workaround to click SHIFT
             caps.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, true);
+            caps.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
             driver = new InternetExplorerDriver(caps);
         }else {
             if (System.getProperty("os.name").contains("Mac")) {

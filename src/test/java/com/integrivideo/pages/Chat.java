@@ -3,7 +3,6 @@ package com.integrivideo.pages;
 import com.integrivideo.Message;
 import com.integrivideo.elements.WebElementHelper;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Reporter;
 
 import java.util.ArrayList;
@@ -63,7 +62,9 @@ public class Chat {
     }
 
     public void editMessage(final String text, final String finalText) throws InterruptedException {
-        driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-edit-message')]")).get(0).click();
+        WebElement element = driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-edit-message')]")).get(0);;
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
         WebElement messageText = driver.findElement(By.xpath("//textarea[.='"+text+"']"));
         if(null != finalText) {
             messageText.clear();
@@ -74,7 +75,9 @@ public class Chat {
     }
 
     public void removeMessage(final String text) throws InterruptedException {
-        driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'iv-icon iv-icon-trash2 integri-chat-remove-message')]")).get(0).click();
+        WebElement element = driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-remove-message')]")).get(0);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
     }
