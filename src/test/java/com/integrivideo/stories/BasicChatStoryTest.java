@@ -88,4 +88,13 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.sendWithEnter(Data.XSS_TEXT);
         chatSteps.ownMessageShouldBeVisible(Data.XSS_TEXT, Utils.getCurrentTime());
     }
+    @Test
+    public void inviteUserButton(){
+        driver.get(Data.testChatUrl);
+        chatSteps = new ChatSteps(driver);
+        chatSteps.inviteLinkShouldBeLike("https://www.integrivideo.com/demo/");
+        chatSteps.getInviteLink();
+
+
+    }
 }

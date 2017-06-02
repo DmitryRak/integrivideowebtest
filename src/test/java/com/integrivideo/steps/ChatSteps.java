@@ -75,4 +75,10 @@ public class ChatSteps {
         fileUpload.addFile(filePath);
         fileUpload.startUpload();
     }
+    public String getInviteLink(){
+        return chat.getInviteLink();
+    }
+    public void inviteLinkShouldBeLike(String pattern){
+        assertTrue("Invite LInk is incorrect", getInviteLink().contains(pattern));
+    }
 }

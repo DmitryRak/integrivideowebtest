@@ -5,6 +5,10 @@ import com.integrivideo.elements.WebElementHelper;
 import org.openqa.selenium.*;
 import org.testng.Reporter;
 
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +16,7 @@ import java.util.List;
  * Created by Dmitry Rak on 4/15/2017.
  */
 public class Chat {
+    private By inviteButtonBy = By.id("invite-users-to-chat");
     private By textInputBy = By.xpath("//integri-div[contains(@class, 'integri-chat-input')]//textarea");
     private By ownMessagesBy = By.xpath("//integri-div[contains(@class, 'integri-chat-message-own')]");
     private By sendButtonBy = By.xpath("//integri-button[contains(@class,'integri-chat-send-message')]");
@@ -21,6 +26,7 @@ public class Chat {
     private WebElement textInput;
     private WebElement sendButton;
     private WebElement fileUploadButton;
+    private WebElement inviteButton;
     private List<WebElement> ownMessagesElements = new ArrayList<>();
     private List <Message> ownMessages;
 
@@ -90,5 +96,18 @@ public class Chat {
         textInput = driver.findElement(textInputBy);
         sendButton = driver.findElement(sendButtonBy);
         fileUploadButton = driver.findElement(fileUploadButtonBy);
+    }
+    public String getInviteLink(){
+        inviteButton = driver.findElement(inviteButtonBy);
+        inviteButton.click();
+        try {
+            return (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
