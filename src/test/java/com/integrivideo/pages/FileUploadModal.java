@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
  * Created by asus on 5/1/2017.
  */
 public class FileUploadModal {
-    private By closeModalBy = By.xpath("//integri-span[contains(@class, 'close-integri-modal')]");
-    private By uploadStartBy = By.xpath("//integri-button[contains(@class, 'integri-file-upload-start')]");
-    private By uploadCancelBy = By.xpath("//integri-button[contains(@class, 'integri-file-upload-cancel')]");
+    private By closeModalBy = By.xpath("//span[contains(@class, 'close-integri-modal')]");
+    private By uploadStartBy = By.xpath("//button[contains(@class, 'integri-file-upload-start')]");
+    private By uploadCancelBy = By.xpath("//button[contains(@class, 'integri-file-upload-cancel')]");
     private By fileToUploadBy = By.xpath("//input[@type='file']");
 
 

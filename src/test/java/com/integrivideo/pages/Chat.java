@@ -17,10 +17,10 @@ import java.util.List;
  */
 public class Chat {
     private By inviteButtonBy = By.id("invite-users-to-chat");
-    private By textInputBy = By.xpath("//integri-div[contains(@class, 'integri-chat-input')]//textarea");
-    private By ownMessagesBy = By.xpath("//integri-div[contains(@class, 'integri-chat-message-own')]");
-    private By sendButtonBy = By.xpath("//integri-button[contains(@class,'integri-chat-send-message')]");
-    private By fileUploadButtonBy = By.xpath("//integri-button[contains(@class,'integri-chat-upload-file')]");
+    private By textInputBy = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
+    private By ownMessagesBy = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
+    private By sendButtonBy = By.xpath("//button[contains(@class,'integri-chat-send-message')]");
+    private By fileUploadButtonBy = By.xpath("//button[contains(@class,'integri-chat-upload-file')]");
 
     private WebDriver driver;
     private WebElement textInput;
@@ -55,9 +55,9 @@ public class Chat {
             if(mess.getText().equals("removed...")){
                 message.setRemoved(true);
             }else {
-                message.setDate(mess.findElement(By.xpath("//integri-span[contains(@class,'integri-chat-message-date')]")).getText());
-                message.setUserName(mess.findElement(By.xpath("//integri-span[contains(@class,'integri-chat-message-user-name')]")).getText());
-                message.setText(mess.findElement(By.xpath("//integri-div[contains(@class,'integri-chat-message-text')]")).getText());
+                message.setDate(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-date')]")).getText());
+                message.setUserName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-user-name')]")).getText());
+                message.setText(mess.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText());
                 message.setEdited(WebElementHelper.elementHasClass(mess, "integri-chat-message-edited"));
                 //TODO add isOnline
             }
@@ -68,7 +68,7 @@ public class Chat {
     }
 
     public void editMessage(final String text, final String finalText) throws InterruptedException {
-        WebElement element = driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-edit-message')]")).get(0);;
+        WebElement element = driver.findElements(By.xpath("//div[contains(.,'"+text+"')]/..//span[contains(@class,'integri-chat-edit-message')]")).get(0);;
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);
         WebElement messageText = driver.findElement(By.xpath("//textarea[.='"+text+"']"));
@@ -81,7 +81,7 @@ public class Chat {
     }
 
     public void removeMessage(final String text) throws InterruptedException {
-        WebElement element = driver.findElements(By.xpath("//integri-div[contains(.,'"+text+"')]/..//integri-span[contains(@class,'integri-chat-remove-message')]")).get(0);
+        WebElement element = driver.findElements(By.xpath("//div[contains(.,'"+text+"')]/..//span[contains(@class,'integri-chat-remove-message')]")).get(0);
         element.click();
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
