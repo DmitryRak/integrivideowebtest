@@ -1,6 +1,7 @@
 package com.integrivideo.pages;
 
 import com.integrivideo.Message;
+import com.integrivideo.User;
 import com.integrivideo.elements.WebElementHelper;
 import org.openqa.selenium.*;
 import org.testng.Reporter;
@@ -21,6 +22,7 @@ public class Chat {
     private By ownMessagesBy = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
     private By sendButtonBy = By.xpath("//button[contains(@class,'integri-chat-send-message')]");
     private By fileUploadButtonBy = By.xpath("//button[contains(@class,'integri-chat-upload-file')]");
+    private By usersPicsBy = By.xpath("//div[contains(@class, 'integri-chat-session')]");
 
     private WebDriver driver;
     private WebElement textInput;
@@ -28,7 +30,9 @@ public class Chat {
     private WebElement fileUploadButton;
     private WebElement inviteButton;
     private List<WebElement> ownMessagesElements = new ArrayList<>();
+    private List<WebElement> usersPicsElements = new ArrayList<>();
     private List <Message> ownMessages;
+    private List <User> usersPics;
 
     public void inputText(String text){
         textInput.sendKeys(text);
@@ -45,7 +49,19 @@ public class Chat {
         String keysPressed =  Keys.chord(Keys.SHIFT, Keys.ENTER);
         textInput.sendKeys(keysPressed);
     }
-
+    public List<User> getListOfUsers(){
+        usersPics = new ArrayList<>();
+        usersPicsElements = driver.findElements(usersPicsBy);
+        for(WebElement user:usersPicsElements){
+            User userIcon = new User();
+            userIcon.setSessionId(user.getAttribute("data-session-id"));
+            userIcon.setUserName(user.findElement(By.xpath("//div[contains(@class,'integri-session-user-name')]")).getText());
+            userIcon.setOnline(WebElementHelper.elementHasClass(user.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
+            usersPics.add(userIcon);
+        }
+        Reporter.log(driver.getPageSource(),false);
+        return usersPics;
+    }
     public List<Message> getOwnMessages(){
         ownMessages = new ArrayList<>();
         ownMessagesElements = driver.findElements(ownMessagesBy);
@@ -59,7 +75,7 @@ public class Chat {
                 message.setUserName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-user-name')]")).getText());
                 message.setText(mess.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText());
                 message.setEdited(WebElementHelper.elementHasClass(mess, "integri-chat-message-edited"));
-                //TODO add isOnline
+                message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
             }
             ownMessages.add(message);
         }

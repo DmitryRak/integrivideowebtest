@@ -5,7 +5,9 @@ import com.integrivideo.pages.FileUploadModal;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 
 /**
@@ -83,6 +85,9 @@ public class ChatSteps {
         Reporter.log("Expected: " + pattern, true);
         Reporter.log("Actual: " + getInviteLink(), true);
         assertThat(getInviteLink(),equalToIgnoringCase(pattern));
-
+    }
+    public void userInfoShouldBeLike(int numberInList, String name, boolean isOnline){
+        assertThat(chat.getListOfUsers().get(numberInList).getUserName(),containsString(name));
+        assertThat(chat.getListOfUsers().get(numberInList).isOnline(),equalTo(isOnline));
     }
 }

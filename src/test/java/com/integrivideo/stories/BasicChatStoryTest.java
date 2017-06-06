@@ -15,7 +15,7 @@ public class BasicChatStoryTest extends BaseTest{
 
     @Test
     public void sendMessageUsingEnter() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.ownMessageShouldBeVisible(Data.TEST_MGS1, Utils.getCurrentTime());
@@ -23,7 +23,7 @@ public class BasicChatStoryTest extends BaseTest{
 
     @Test
     public void useOfShiftEnter() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendSeveralLines(Data.TEST_MGS1, Data.SECOND_LINE);
         chatSteps.ownMessageShouldBeVisible(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, Utils.getCurrentTime());
@@ -31,7 +31,7 @@ public class BasicChatStoryTest extends BaseTest{
 
     @Test
     public void sendMessageUsingButton() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendWithButton(Data.TEST_MGS1);
         chatSteps.ownMessageShouldBeVisible(Data.TEST_MGS1, Utils.getCurrentTime());
@@ -39,7 +39,7 @@ public class BasicChatStoryTest extends BaseTest{
 
     @Test
     public void sendMessageWithSpecialSymbols() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendWithButton(Data.SPECIAL_CHARS);
         chatSteps.ownMessageShouldBeVisible(Data.SPECIAL_CHARS, Utils.getCurrentTime());
@@ -47,7 +47,7 @@ public class BasicChatStoryTest extends BaseTest{
 //TODO mark as failing in IE using BitbucketHelper
     @Test(groups={"edit"})
     public void editMessage() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.editOwnMessage(Data.TEST_MGS1, Data.EDITED_MSG);
@@ -56,14 +56,14 @@ public class BasicChatStoryTest extends BaseTest{
     }
     @Test(groups={"remove"})
     public void removeMessage() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.ownMessageShouldBeShownAsRemoved(chatSteps.removeMessage(Data.TEST_MGS1));
     }
     @Test(groups={"upload"})
     public void uploadFile(){
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
         //chatSteps.ownMessageShouldBeVisible(Data.IMAGE_FILE_PATH.getName(), Utils.getCurrentTime());
@@ -75,7 +75,7 @@ public class BasicChatStoryTest extends BaseTest{
     }
     @Test(groups={"edit"})
     public void editMessageWithLineBreaks() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendSeveralLines(Data.TEST_MGS1, Data.SECOND_LINE);
         chatSteps.editOwnMessage(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, null);
@@ -83,7 +83,7 @@ public class BasicChatStoryTest extends BaseTest{
     }
     @Test
     public void escapingCharacters() throws InterruptedException {
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.sendWithEnter(Data.XSS_TEXT);
         chatSteps.ownMessageShouldBeVisible(Data.XSS_TEXT, Utils.getCurrentTime());
@@ -91,8 +91,14 @@ public class BasicChatStoryTest extends BaseTest{
     //TODO handle IE11 asking for access to clipboard
     @Test
     public void inviteUserButton(){
-        driver.get(Data.testChatUrl);
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
         chatSteps.inviteLinkShouldBeLike(driver.getCurrentUrl());
+    }
+    @Test
+    public void userInfoShouldBeCorrect(){
+        driver.get(Data.TEST_CHAT_URL);
+        chatSteps = new ChatSteps(driver);
+        chatSteps.userInfoShouldBeLike(1, Data.NAME, true);
     }
 }
