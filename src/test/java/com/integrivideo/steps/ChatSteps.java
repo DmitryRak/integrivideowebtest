@@ -1,5 +1,6 @@
 package com.integrivideo.steps;
 
+import com.integrivideo.Message;
 import com.integrivideo.pages.Chat;
 import com.integrivideo.pages.FileUploadModal;
 import org.openqa.selenium.WebDriver;
@@ -73,10 +74,11 @@ public class ChatSteps {
         fileUpload = new FileUploadModal(driver);
     }
 
-    public void uploadFile(String filePath){
+    public String uploadFile(String filePath){
         chat.openFileUploadModal();
         fileUpload.addFile(filePath);
         fileUpload.startUpload();
+        return chat.getOwnMessages().stream().findFirst().get().getId();
     }
     public String getInviteLink(){
         return chat.getInviteLink();
@@ -89,5 +91,10 @@ public class ChatSteps {
     public void userInfoShouldBeLike(int numberInList, String name, boolean isOnline){
         assertThat(chat.getListOfUsers().get(numberInList).getUserName(),containsString(name));
         assertThat(chat.getListOfUsers().get(numberInList).isOnline(),equalTo(isOnline));
+    }
+
+    public void ownMessageShouldContainFileInfo(String messageId, String fileName){
+        Message message = chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(messageId)).findFirst().get();
+        assertThat(message.getFileName(), equalTo(fileName));
     }
 }

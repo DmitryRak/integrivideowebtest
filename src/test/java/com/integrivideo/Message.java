@@ -8,9 +8,13 @@ public class Message {
     private String date;
     private String userName;
     private String text;
+    private String fileName;
+    private String size;
+    private String fileLink;
     private boolean isOnline;
     private boolean isEdited;
-    private boolean isRemoved = false;
+    private boolean isRemoved;
+    private boolean isFile;
 
     public boolean isRemoved() {
         return isRemoved;
@@ -66,5 +70,37 @@ public class Message {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isFile() {
+        return isFile;
+    }
+
+    public void setFile(boolean file) {
+        isFile = file;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getFileLink() {
+        return fileLink;
+    }
+
+    public void setFileLink(String fileLink) {
+        this.fileLink = fileLink;
     }
 }

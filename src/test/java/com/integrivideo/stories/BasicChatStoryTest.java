@@ -44,7 +44,7 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.sendWithButton(Data.SPECIAL_CHARS);
         chatSteps.ownMessageShouldBeVisible(Data.SPECIAL_CHARS, Utils.getCurrentTime());
     }
-//TODO mark as failing in IE using BitbucketHelper
+
     @Test(groups={"edit"})
     public void editMessage() throws InterruptedException {
         driver.get(Data.TEST_CHAT_URL);
@@ -65,13 +65,9 @@ public class BasicChatStoryTest extends BaseTest{
     public void uploadFile(){
         driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);
-        chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
-        //chatSteps.ownMessageShouldBeVisible(Data.IMAGE_FILE_PATH.getName(), Utils.getCurrentTime());
-        //TODO write assertions
-        //1. Open link on click
-        //2. CHeck fileSize
-        //3. Check remove
-        //4. Check no edit
+        String messageId = chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
+        chatSteps.ownMessageShouldContainFileInfo(messageId, Data.IMAGE_FILE_PATH.getName() + " (2kb)");
+
     }
     @Test(groups={"edit"})
     public void editMessageWithLineBreaks() throws InterruptedException {

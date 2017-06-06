@@ -72,6 +72,12 @@ public class Chat {
                 message.setText(mess.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText());
                 message.setEdited(WebElementHelper.elementHasClass(mess, "integri-chat-message-edited"));
                 message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
+                if(mess.findElements(By.xpath("//div[contains(@class,'integri-chat-message-type-file')]")).size() > 0){
+                    message.setFile(true);
+                    message.setFileName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-attachment-file-name')]")).getText());
+                    message.setFileLink(mess.findElement(By.xpath("//a[contains(@class,'integri-chat-message-attachment-file-link')]")).getAttribute("href"));
+                    message.setSize(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-attachment-file-name')]/small")).getText());
+                }
             }
             ownMessages.add(message);
         }
