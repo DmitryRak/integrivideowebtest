@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- * Created by asus on 5/1/2017.
+ * Created by Dmitry Rak on 5/1/2017.
  */
 public class FileUploadModal {
     private By closeModalBy = By.xpath("//span[contains(@class, 'close-integri-modal')]");
@@ -20,8 +20,8 @@ public class FileUploadModal {
     private WebElement uploadCancel;
     private WebElement fileToUpload;
 
-    public FileUploadModal(WebDriver driver){
-        this.driver = driver;
+    public FileUploadModal(WebDriver webDriver){
+        driver = webDriver;
         closeModal = driver.findElement(closeModalBy);
         uploadStart = driver.findElement(uploadStartBy);
         uploadCancel = driver.findElement(uploadCancelBy);

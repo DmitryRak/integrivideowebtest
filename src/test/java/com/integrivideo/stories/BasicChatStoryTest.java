@@ -95,7 +95,7 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps = new ChatSteps(driver);
         chatSteps.inviteLinkShouldBeLike(driver.getCurrentUrl());
     }
-    @Test
+    @Test(groups={"user"})
     public void userInfoShouldBeCorrect(){
         driver.get(Data.TEST_CHAT_URL);
         chatSteps = new ChatSteps(driver);

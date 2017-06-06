@@ -29,10 +29,6 @@ public class Chat {
     private WebElement sendButton;
     private WebElement fileUploadButton;
     private WebElement inviteButton;
-    private List<WebElement> ownMessagesElements = new ArrayList<>();
-    private List<WebElement> usersPicsElements = new ArrayList<>();
-    private List <Message> ownMessages;
-    private List <User> usersPics;
 
     public void inputText(String text){
         textInput.sendKeys(text);
@@ -50,9 +46,9 @@ public class Chat {
         textInput.sendKeys(keysPressed);
     }
     public List<User> getListOfUsers(){
-        usersPics = new ArrayList<>();
-        usersPicsElements = driver.findElements(usersPicsBy);
-        for(WebElement user:usersPicsElements){
+        List<User> usersPics = new ArrayList<>();
+        List<WebElement> usersPicsElements = driver.findElements(usersPicsBy);
+        for(WebElement user: usersPicsElements){
             User userIcon = new User();
             userIcon.setSessionId(user.getAttribute("data-session-id"));
             userIcon.setUserName(user.findElement(By.xpath("//div[contains(@class,'integri-session-user-name')]")).getText());
@@ -63,9 +59,9 @@ public class Chat {
         return usersPics;
     }
     public List<Message> getOwnMessages(){
-        ownMessages = new ArrayList<>();
-        ownMessagesElements = driver.findElements(ownMessagesBy);
-        for(WebElement mess:ownMessagesElements){
+        List<Message> ownMessages = new ArrayList<>();
+        List<WebElement> ownMessagesElements = driver.findElements(ownMessagesBy);
+        for(WebElement mess: ownMessagesElements){
             Message message = new Message();
             message.setId(mess.getAttribute("data-message-id"));
             if(mess.getText().equals("removed...")){
@@ -84,7 +80,7 @@ public class Chat {
     }
 
     public void editMessage(final String text, final String finalText) throws InterruptedException {
-        WebElement element = driver.findElements(By.xpath("//div[contains(.,'"+text+"')]/..//span[contains(@class,'integri-chat-edit-message')]")).get(0);;
+        WebElement element = driver.findElements(By.xpath("//div[contains(.,'"+text+"')]/..//span[contains(@class,'integri-chat-edit-message')]")).get(0);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);
         WebElement messageText = driver.findElement(By.xpath("//textarea[.='"+text+"']"));
@@ -122,7 +118,6 @@ public class Chat {
             result = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
         } catch (UnsupportedFlavorException e) {
             e.printStackTrace();
-
             return result;
         } catch (IOException e) {
             e.printStackTrace();
