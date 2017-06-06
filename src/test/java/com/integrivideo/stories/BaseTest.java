@@ -1,11 +1,13 @@
 package com.integrivideo.stories;
 
+import io.github.bonigarcia.wdm.*;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
@@ -44,16 +46,15 @@ public abstract class BaseTest {
         }
         System.out.println("OS: " + System.getProperty("os.name") + "; Browser: " + driverString);
         if(driverString.contains("firefox")){
-            System.setProperty("webdriver.gecko.driver", "target"+File.separator+"classes"+File.separator+"geckodriver.exe");
+            FirefoxDriverManager.getInstance().setup();
             driver = new FirefoxDriver();
         }else if(driverString.contains("edge")){
-            System.setProperty("webdriver.edge.driver", "target"+File.separator+"classes"+File.separator+"MicrosoftWebDriver.exe");
-            //to handle alerts in EDGE http://stackoverflow.com/questions/26772793/org-openqa-selenium-unhandledalertexception-unexpected-alert-open
+            EdgeDriverManager.getInstance().setup();//to handle alerts in EDGE http://stackoverflow.com/questions/26772793/org-openqa-selenium-unhandledalertexception-unexpected-alert-open
             DesiredCapabilities dc = new DesiredCapabilities();
             dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
             driver = new EdgeDriver(dc);
         }else if(driverString.contains("ie")){
-            System.setProperty("webdriver.ie.driver", "target"+File.separator+"classes"+File.separator+"IEDriverServer.exe");
+            InternetExplorerDriverManager.getInstance().setup();
             //Also workaround from this place is required: http://jimevansmusic.blogspot.com.by/2012/08/youre-doing-it-wrong-protected-mode-and.html#iesettings
             DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
             caps.setCapability(
@@ -63,17 +64,11 @@ public abstract class BaseTest {
             caps.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, true);
             caps.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
             driver = new InternetExplorerDriver(caps);
+        }else if(driverString.contains("opera")){
+            OperaDriverManager.getInstance().setup();
+            driver = new OperaDriver();
         }else {
-            //TODO refactor solution for MAC
-            if (System.getProperty("os.name").contains("Mac")) {
-                System.setProperty("webdriver.chrome.driver", "target" + File.separator + "classes" + File.separator + "chromedriver");
-                try {
-                    Runtime.getRuntime().exec("chmod +x 'target" + File.separator + "classes" + File.separator + "chromedriver'");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }else
-                System.setProperty("webdriver.chrome.driver", "target"+File.separator+"classes"+File.separator+"chromedriver.exe");
+            ChromeDriverManager.getInstance().setup();
             driver = new ChromeDriver();
         }
     }
