@@ -12,4 +12,8 @@ public class Utils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy, HH:mm");
         return now.format(formatter);
     }
+    public static long getSeconds() {
+        return System.currentTimeMillis() / 1000;
+    }
+
 }

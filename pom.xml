@@ -17,10 +17,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
                 <configuration>
-                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
                     <systemPropertyVariables>
-                        <webdriver.chrome.driver>C:\Users\asus\IdeaProjects\integrivideowebtest\src\main\resources\chromedriver.exe</webdriver.chrome.driver>
+                        <environment>${browser}</environment>
+                        <user>${user}</user>
+                        <pass>${pass}</pass>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -29,18 +31,34 @@
     <groupId>integrivideo-webtest</groupId>
     <artifactId>integrivideo-webtest</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>1.2.4</serenity.version>
-    </properties>
-
 
 <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.4.0</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+    <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-all</artifactId>
+        <version>1.3</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.4.0</version>
+        <scope>test</scope>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
     <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
         <version>1.7.25</version>
+        <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/net.serenity-bdd/core -->
     <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-core -->
@@ -48,36 +66,37 @@
         <groupId>net.serenity-bdd</groupId>
         <artifactId>serenity-core</artifactId>
         <version>1.4.0</version>
+        <scope>test</scope>
     </dependency>
-
-
     <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit -->
     <dependency>
         <groupId>net.serenity-bdd</groupId>
         <artifactId>serenity-junit</artifactId>
         <version>1.4.0</version>
+        <scope>test</scope>
     </dependency>
 
-
-
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
     <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-java</artifactId>
-        <version>3.4.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
-    <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-all</artifactId>
-        <version>1.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
-    <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-support</artifactId>
-        <version>3.4.0</version>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.3</version>
+        <scope>test</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+    <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.10</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>1.6.2</version>
+        <scope>test</scope>
+    </dependency>
 </dependencies>
 </project>
