@@ -1,6 +1,8 @@
 package com.integrivideo.stories;
 
+import com.integrivideo.steps.ChatSteps;
 import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.webdriver.SerenityWebdriverManager;
 import net.thucydides.core.webdriver.WebDriverFacade;
 import org.junit.After;
@@ -16,24 +18,23 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    @Managed(driver="chrome", uniqueSession = true)
-    public WebDriver driver;
+
 
     //http://stackoverflow.com/questions/38751525/firefox-browser-is-not-opening-with-selenium-webbrowser-code
     @Before
     public void setUp(){
+ /*       setDriver();
         SerenityWebdriverManager.inThisTestThread()
                 .registerDriverCalled(
                         ((WebDriverFacade) driver).getDriverName()
                 ).forDriver(driver);
-        setDriver();
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        driver.manage().window().maximize();*/
     }
 
     @After
     public void tearDown(){
-        driver.quit();
+        //driver.quit();
     }
 
     private static void setDriver() {
