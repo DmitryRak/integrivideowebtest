@@ -25,8 +25,6 @@ public class BasicChatStoryTest extends BaseTest{
 
     @Test
     public void sendMessageUsingEnter() throws InterruptedException {
-        String id = System.getProperty("webdriver.chrome.driver");
-        String id2 = System.getProperty("webdriver.chrome.driver");
         driver.get("https://www.integrivideo.com/demo/chat/new");
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.ownMessageShouldBeVisible(Data.TEST_MGS1, Utils.getCurrentTime());

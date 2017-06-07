@@ -23,6 +23,12 @@
                         <environment>${browser}</environment>
                         <user>${user}</user>
                         <pass>${pass}</pass>
+                        <webdriver.gecko.driver>src\main\resources\geckodriver.exe</webdriver.gecko.driver>
+                        <webdriver.chrome.driver>src\main\resources\chromedriver.exe</webdriver.chrome.driver>
+                        <webdriver.ie.driver>src\main\resources\IEDriverServer.exe</webdriver.ie.driver>
+                        <webdriver.edge.driver>src\main\resources\MicrosoftWebDriver.exe</webdriver.edge.driver>
+                        <webdriver.opera.driver>src\main\resources\operadriver.exe</webdriver.opera.driver>
+
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
