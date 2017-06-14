@@ -1,7 +1,6 @@
 package com.integrivideo.pages;
 
 import com.integrivideo.Message;
-import com.integrivideo.PageUtils;
 import com.integrivideo.User;
 import com.integrivideo.elements.WebElementHelper;
 import net.serenitybdd.core.annotations.findby.*;
@@ -128,5 +127,10 @@ public class Chat extends PageObject{
             return result;
         }
         return result;
+    }
+    public String getMessageText(final int messageNumber){
+        WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber);
+        return messageContainer.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText();
+
     }
 }

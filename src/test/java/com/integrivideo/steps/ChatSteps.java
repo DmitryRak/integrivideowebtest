@@ -89,7 +89,6 @@ public class ChatSteps {
     }
     @Step
     public void messageTextShouldBeLike(final int messageNumber, String text){
-        Message message = chat.getOwnMessages().get(messageNumber-1);
-        assertThat(message.getText(), equalTo(text));
+        assertThat(chat.getMessageText(messageNumber-1), equalTo(text));
     }
 }
