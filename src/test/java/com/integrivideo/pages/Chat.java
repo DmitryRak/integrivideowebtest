@@ -77,7 +77,7 @@ public class Chat extends PageObject{
                 message.setDate(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-date')]")).getText());
                 message.setUserName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-user-name')]")).getText());
                 message.setEdited(WebElementHelper.elementHasClass(mess, "integri-chat-message-edited"));
-                message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
+//                message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
                 if(mess.findElements(By.xpath("//div[contains(@class,'integri-chat-message-type-file')]")).size() > 0){
                     message.setFile(true);
                     message.setFileName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-attachment-file-name')]")).getText());
@@ -90,12 +90,11 @@ public class Chat extends PageObject{
         return ownMessages;
     }
 
-    public void editMessage(final String text, final String finalText) throws InterruptedException {
-        WebElement button = switchToPage(PageUtils.class).
-                findElement(By.xpath("//div[contains(.,'"+text+"')]/..//span[contains(@class,'integri-chat-edit-message')]"),null, 10,true);
+    public void editMessage(final int messageNumber, final String finalText) throws InterruptedException {
+        WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber-1);
+        WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-edit-message')]"));
         button.click();
-        WebElementFacade messageText = switchToPage(PageUtils.class).
-                findElement(By.xpath("//textarea[.='"+text+"']"), null,10,true);
+        WebElement messageText = messageContainer.findElement(By.tagName("textarea"));
         if(null != finalText) {
             messageText.clear();
             messageText.sendKeys(finalText);
@@ -104,9 +103,9 @@ public class Chat extends PageObject{
         Thread.sleep(1000);
     }
 
-    public void removeMessage(final String text) throws InterruptedException {
-        WebElement button = switchToPage(PageUtils.class).
-                findElement(By.xpath("//div[contains(.,'"+text+"')]/..//span[contains(@class,'integri-chat-remove-message')]"), null,10,true);
+    public void removeMessage(final int messageNumber) throws InterruptedException {
+        WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber-1);
+        WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-remove-message')]"));
         button.click();
         getAlert().accept();
         Thread.sleep(1000);

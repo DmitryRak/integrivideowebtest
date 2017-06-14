@@ -55,7 +55,7 @@ public class BasicChatStoryTest extends BaseTest{
     public void editMessage() throws InterruptedException {
         driver.get("https://www.integrivideo.com/demo/chat/new");
         chatSteps.sendWithEnter(Data.TEST_MGS1);
-        chatSteps.editOwnMessage(Data.TEST_MGS1, Data.EDITED_MSG);
+        chatSteps.editOwnMessage(1, Data.EDITED_MSG);
         chatSteps.ownMessageShouldBeVisible(Data.EDITED_MSG, Utils.getCurrentTime());
         chatSteps.ownMessageShouldBeShownAsEdited(Data.EDITED_MSG, Utils.getCurrentTime());
     }
@@ -63,20 +63,21 @@ public class BasicChatStoryTest extends BaseTest{
     public void removeMessage() throws InterruptedException {
         driver.get("https://www.integrivideo.com/demo/chat/new");
         chatSteps.sendWithEnter(Data.TEST_MGS1);
-        chatSteps.ownMessageShouldBeShownAsRemoved(chatSteps.removeMessage(Data.TEST_MGS1));
+        chatSteps.removeMessage(1);
+        chatSteps.ownMessageShouldBeShownAsRemoved(1);
     }
     @Test
     public void uploadFile(){
         driver.get(Data.TEST_CHAT_URL);
-        String messageId = chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
-        chatSteps.ownMessageShouldContainFileInfo(messageId, Data.IMAGE_FILE_PATH.getName() + " (2kb)");
+        chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
+        chatSteps.ownMessageShouldContainFileInfo(1, Data.IMAGE_FILE_PATH.getName() + " (2kb)");
 
     }
     @Test
     public void editMessageWithLineBreaks() throws InterruptedException {
         driver.get(Data.TEST_CHAT_URL);
         chatSteps.sendSeveralLines(Data.TEST_MGS1, Data.SECOND_LINE);
-        chatSteps.editOwnMessage(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, null);
+        chatSteps.editOwnMessage(1, null);
         chatSteps.ownMessageShouldBeVisible(Data.TEST_MGS1 + "\n" + Data.SECOND_LINE, Utils.getCurrentTime());
     }
     @Test

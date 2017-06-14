@@ -47,25 +47,24 @@ public class ChatSteps {
         assertThat("Message should be edited",chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().isEdited());
     }
     @Step
-    public void ownMessageShouldBeShownAsRemoved(String id){
-       assertThat("Message should be removed",chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(id)).findFirst().get().isRemoved());
+    public void ownMessageShouldBeShownAsRemoved(final int messageNumber){
+       assertThat("Message should be removed",chat.getOwnMessages().get(messageNumber-1).isRemoved());
     }
 
     /**
      *
-     * @param text
+     * @param messageNumber
      * @param finalText - provide null to edit action -> enter
      * @throws InterruptedException
      */
     @Step
-    public void editOwnMessage(final String text, String finalText) throws InterruptedException {
-        chat.editMessage(text, finalText);
+    public void editOwnMessage(final int messageNumber, String finalText) throws InterruptedException {
+        chat.editMessage(messageNumber, finalText);
     }
     @Step
-    public String removeMessage(final String text) throws InterruptedException {
-        String id = chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
-        chat.removeMessage(text);
-        return id;
+    public void removeMessage(final int messageNumber) throws InterruptedException {
+        //String id = chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
+        chat.removeMessage(messageNumber);
     }
     @Step
     public String uploadFile(String filePath){
@@ -88,8 +87,8 @@ public class ChatSteps {
         assertThat(chat.getListOfUsers().get(numberInList).isOnline(),equalTo(isOnline));
     }
     @Step
-    public void ownMessageShouldContainFileInfo(String messageId, String fileName){
-        Message message = chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(messageId)).findFirst().get();
+    public void ownMessageShouldContainFileInfo(final int messageNumber, String fileName){
+        Message message = chat.getOwnMessages().get(messageNumber-1);
         assertThat(message.getFileName(), equalTo(fileName));
     }
 }

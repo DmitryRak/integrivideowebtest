@@ -2,6 +2,7 @@ package com.integrivideo.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -18,11 +19,12 @@ public class FileUploadModal extends PageObject{
     WebElement fileToUpload;
 
     public void addFile(String filePath){
-        fileToUpload.sendKeys(filePath);
+        find(By.xpath("//input[@type='file']")).sendKeys(filePath);
+        //fileToUpload.sendKeys(filePath);
     }
 
     public void startUpload(){
-        clickOn(uploadStart);
+        uploadStart.click();
     }
 
 }
