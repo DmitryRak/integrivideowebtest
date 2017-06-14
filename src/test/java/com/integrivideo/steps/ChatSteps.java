@@ -3,8 +3,7 @@ package com.integrivideo.steps;
 import com.integrivideo.Message;
 import com.integrivideo.pages.Chat;
 import com.integrivideo.pages.FileUploadModal;
-import org.openqa.selenium.WebDriver;
-import org.testng.Reporter;
+import net.thucydides.core.annotations.Step;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,21 +14,22 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
  * Created by Dmitry Rak on 4/15/2017.
  */
 public class ChatSteps {
-    private Chat chat;
-    private FileUploadModal fileUpload;
+    Chat chat;
+    FileUploadModal fileUpload;
 
+    @Step
     public void sendWithButton(String text) throws InterruptedException {
         chat.inputText(text);
         Thread.sleep(2000);
         chat.clickSendButton();
     }
-
+    @Step
     public void sendWithEnter(String text) throws InterruptedException {
         chat.inputText(text);
         Thread.sleep(2000);
         chat.pressEnter();
     }
-
+    @Step
     public void sendSeveralLines(String...lines) throws InterruptedException {
         for(String line:lines){
             chat.inputText(line);
@@ -39,62 +39,57 @@ public class ChatSteps {
         chat.pressEnter();
     }
 
-    public void ownMessageShouldBeVisible(final String text, String dateTime){
-        Reporter.log("Expected: " + text, true);
-        assertThat("Message should be visible",chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).anyMatch(mess -> mess.getDate().equals(dateTime)));
-   }
-    public void ownMessageShouldBeShownAsEdited(final String text, String dateTime){
-        Reporter.log("Expected: " + text, true);
-        //Reporter.log(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().getText(), true);
-        assertThat("Message should be edited",chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().isEdited());
+    @Step
+    public void messageShouldBeShownAsEdited(final int messageNumber){
+        assertThat("Message should be edited",chat.getOwnMessages().get(messageNumber-1).isEdited());
     }
-
-    public void ownMessageShouldBeShownAsRemoved(String id){
-        //Reporter.log(chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().getText(), true);
-        assertThat("Message should be removed",chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(id)).findFirst().get().isRemoved());
+    @Step
+    public void messageShouldBeShownAsRemoved(final int messageNumber){
+       assertThat("Message should be removed",chat.getOwnMessages().get(messageNumber-1).isRemoved());
     }
 
     /**
      *
-     * @param text
+     * @param messageNumber
      * @param finalText - provide null to edit action -> enter
      * @throws InterruptedException
      */
-    public void editOwnMessage(final String text, String finalText) throws InterruptedException {
-        chat.editMessage(text, finalText);
+    @Step
+    public void editMessage(final int messageNumber, String finalText) throws InterruptedException {
+        chat.editMessage(messageNumber, finalText);
     }
-
-    public String removeMessage(final String text) throws InterruptedException {
-        String id = chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
-        chat.removeMessage(text);
-        return id;
+    @Step
+    public void removeMessage(final int messageNumber) throws InterruptedException {
+        //String id = chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
+        chat.removeMessage(messageNumber);
     }
-    public ChatSteps(WebDriver driver){
-        chat = new Chat(driver);
-        fileUpload = new FileUploadModal(driver);
-    }
-
-    public String uploadFile(String filePath){
+    @Step
+    public void uploadFile(String filePath){
         chat.openFileUploadModal();
         fileUpload.addFile(filePath);
         fileUpload.startUpload();
-        return chat.getOwnMessages().stream().findFirst().get().getId();
     }
+    @Step
     public String getInviteLink(){
         return chat.getInviteLink();
     }
+    @Step
     public void inviteLinkShouldBeLike(String pattern){
-        Reporter.log("Expected: " + pattern, true);
-        Reporter.log("Actual: " + getInviteLink(), true);
-        assertThat(getInviteLink(),equalToIgnoringCase(pattern));
+       assertThat(getInviteLink(),equalToIgnoringCase(pattern));
     }
+    @Step
     public void userInfoShouldBeLike(int numberInList, String name, boolean isOnline){
         assertThat(chat.getListOfUsers().get(numberInList).getUserName(),containsString(name));
         assertThat(chat.getListOfUsers().get(numberInList).isOnline(),equalTo(isOnline));
     }
-
-    public void ownMessageShouldContainFileInfo(String messageId, String fileName){
-        Message message = chat.getOwnMessages().stream().filter(mess -> mess.getId().equals(messageId)).findFirst().get();
+    @Step
+    public void messageShouldContainFileInfo(final int messageNumber, String fileName){
+        Message message = chat.getOwnMessages().get(messageNumber-1);
         assertThat(message.getFileName(), equalTo(fileName));
+    }
+    @Step
+    public void messageTextShouldBeLike(final int messageNumber, String text){
+        Message message = chat.getOwnMessages().get(messageNumber-1);
+        assertThat(message.getText(), equalTo(text));
     }
 }
