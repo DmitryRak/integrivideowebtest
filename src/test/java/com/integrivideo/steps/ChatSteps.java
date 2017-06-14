@@ -38,16 +38,13 @@ public class ChatSteps {
         Thread.sleep(2000);
         chat.pressEnter();
     }
+
     @Step
-    public void ownMessageShouldBeVisible(final String text, String dateTime){
-        assertThat("Message should be visible",chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).anyMatch(mess -> mess.getDate().equals(dateTime)));
-   }
-    @Step
-    public void ownMessageShouldBeShownAsEdited(final String text, String dateTime){
-        assertThat("Message should be edited",chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).filter(mess -> mess.getDate().equals(dateTime)).findFirst().get().isEdited());
+    public void messageShouldBeShownAsEdited(final int messageNumber){
+        assertThat("Message should be edited",chat.getOwnMessages().get(messageNumber-1).isEdited());
     }
     @Step
-    public void ownMessageShouldBeShownAsRemoved(final int messageNumber){
+    public void messageShouldBeShownAsRemoved(final int messageNumber){
        assertThat("Message should be removed",chat.getOwnMessages().get(messageNumber-1).isRemoved());
     }
 
@@ -58,7 +55,7 @@ public class ChatSteps {
      * @throws InterruptedException
      */
     @Step
-    public void editOwnMessage(final int messageNumber, String finalText) throws InterruptedException {
+    public void editMessage(final int messageNumber, String finalText) throws InterruptedException {
         chat.editMessage(messageNumber, finalText);
     }
     @Step
@@ -67,11 +64,10 @@ public class ChatSteps {
         chat.removeMessage(messageNumber);
     }
     @Step
-    public String uploadFile(String filePath){
+    public void uploadFile(String filePath){
         chat.openFileUploadModal();
         fileUpload.addFile(filePath);
         fileUpload.startUpload();
-        return chat.getOwnMessages().stream().findFirst().get().getId();
     }
     @Step
     public String getInviteLink(){
@@ -87,8 +83,13 @@ public class ChatSteps {
         assertThat(chat.getListOfUsers().get(numberInList).isOnline(),equalTo(isOnline));
     }
     @Step
-    public void ownMessageShouldContainFileInfo(final int messageNumber, String fileName){
+    public void messageShouldContainFileInfo(final int messageNumber, String fileName){
         Message message = chat.getOwnMessages().get(messageNumber-1);
         assertThat(message.getFileName(), equalTo(fileName));
+    }
+    @Step
+    public void messageTextShouldBeLike(final int messageNumber, String text){
+        Message message = chat.getOwnMessages().get(messageNumber-1);
+        assertThat(message.getText(), equalTo(text));
     }
 }
