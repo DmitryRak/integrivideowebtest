@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
  */
 public class FileUploadModal extends PageObject{
 
-    public static final By START_UPLOAD_BY= By.xpath("//input[@type='file']");
+    public static final By START_UPLOAD_BY= By.xpath("//button[contains(@class,'integri-file-upload-start')]");
 
     public static final By ADD_FILE_BY = By.xpath("//input[@type='file']");
 
