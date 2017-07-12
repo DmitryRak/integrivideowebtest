@@ -1,9 +1,10 @@
 package com.integrivideo.steps;
 
 import com.integrivideo.Message;
-import com.integrivideo.pages.Chat;
+import com.integrivideo.pages.ChatPage;
 import com.integrivideo.pages.FileUploadModal;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.steps.ScenarioSteps;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,39 +14,39 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
-public class ChatSteps {
-    Chat chat;
+public class ChatSteps extends ScenarioSteps {
+    ChatPage chatPage;
     FileUploadModal fileUpload;
 
     @Step
     public void sendWithButton(String text) throws InterruptedException {
-        chat.inputText(text);
+        chatPage.inputText(text);
         Thread.sleep(2000);
-        chat.clickSendButton();
+        chatPage.clickSendButton();
     }
     @Step
     public void sendWithEnter(String text) throws InterruptedException {
-        chat.inputText(text);
+        chatPage.inputText(text);
         Thread.sleep(2000);
-        chat.pressEnter();
+        chatPage.pressEnter();
     }
     @Step
     public void sendSeveralLines(String...lines) throws InterruptedException {
         for(String line:lines){
-            chat.inputText(line);
-            chat.pressShiftEnter();
+            chatPage.inputText(line);
+            chatPage.pressShiftEnter();
         }
         Thread.sleep(2000);
-        chat.pressEnter();
+        chatPage.pressEnter();
     }
 
     @Step
     public void messageShouldBeShownAsEdited(final int messageNumber){
-        assertThat("Message should be edited",chat.getOwnMessages().get(messageNumber-1).isEdited());
+        assertThat("Message should be edited",chatPage.getOwnMessages().get(messageNumber-1).isEdited());
     }
     @Step
     public void messageShouldBeShownAsRemoved(final int messageNumber){
-       assertThat("Message should be removed",chat.getOwnMessages().get(messageNumber-1).isRemoved());
+       assertThat("Message should be removed",chatPage.getOwnMessages().get(messageNumber-1).isRemoved());
     }
 
     /**
@@ -56,22 +57,22 @@ public class ChatSteps {
      */
     @Step
     public void editMessage(final int messageNumber, String finalText) throws InterruptedException {
-        chat.editMessage(messageNumber, finalText);
+        chatPage.editMessage(messageNumber, finalText);
     }
     @Step
     public void removeMessage(final int messageNumber) throws InterruptedException {
-        //String id = chat.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
-        chat.removeMessage(messageNumber);
+        //String id = chatPage.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
+        chatPage.removeMessage(messageNumber);
     }
     @Step
     public void uploadFile(String filePath){
-        chat.openFileUploadModal();
+        chatPage.openFileUploadModal();
         fileUpload.addFile(filePath);
         fileUpload.startUpload();
     }
     @Step
     public String getInviteLink(){
-        return chat.getInviteLink();
+        return chatPage.getInviteLink();
     }
     @Step
     public void inviteLinkShouldBeLike(String pattern){
@@ -79,16 +80,16 @@ public class ChatSteps {
     }
     @Step
     public void userInfoShouldBeLike(int numberInList, String name, boolean isOnline){
-        assertThat(chat.getListOfUsers().get(numberInList).getUserName(),containsString(name));
-        assertThat(chat.getListOfUsers().get(numberInList).isOnline(),equalTo(isOnline));
+        assertThat(chatPage.getListOfUsers().get(numberInList).getUserName(),containsString(name));
+        assertThat(chatPage.getListOfUsers().get(numberInList).isOnline(),equalTo(isOnline));
     }
     @Step
     public void messageShouldContainFileInfo(final int messageNumber, String fileName){
-        Message message = chat.getOwnMessages().get(messageNumber-1);
+        Message message = chatPage.getOwnMessages().get(messageNumber-1);
         assertThat(message.getFileName(), equalTo(fileName));
     }
     @Step
     public void messageTextShouldBeLike(final int messageNumber, String text){
-        assertThat(chat.getMessageText(messageNumber-1), equalTo(text));
+        assertThat(chatPage.getMessageText(messageNumber-1), equalTo(text));
     }
 }

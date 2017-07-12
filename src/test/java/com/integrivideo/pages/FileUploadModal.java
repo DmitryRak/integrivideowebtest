@@ -17,6 +17,7 @@ public class FileUploadModal extends PageObject{
     }
 
     public void startUpload(){
+        //TODO for some reason this button is not visible
         find(START_UPLOAD_BY).click();
     }
 

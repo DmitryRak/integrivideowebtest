@@ -3,56 +3,52 @@ package com.integrivideo.stories;
 import com.integrivideo.Data;
 import com.integrivideo.steps.ChatSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
 
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
 @Story(BasicChatStoryTest.class)
 @RunWith(SerenityRunner.class)
-public class BasicChatStoryTest{
-    @Managed(driver="chrome", uniqueSession = true)
-    WebDriver driver;
+public class BasicChatStoryTest extends BaseTest{
 
     @Steps
     ChatSteps chatSteps;
 
     @Test
     public void sendMessageUsingEnter() throws InterruptedException {
-        driver.get("https://www.integrivideo.com/demo/chat/new");
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.messageTextShouldBeLike(1, Data.TEST_MGS1);
     }
 
     @Test
     public void useOfShiftEnter() throws InterruptedException {
-        driver.get("https://www.integrivideo.com/demo/chat/new");
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps.sendSeveralLines(Data.TEST_MGS1, Data.SECOND_LINE);
         chatSteps.messageTextShouldBeLike(1, Data.TEST_MGS1 + "\n" + Data.SECOND_LINE);
     }
 
     @Test
     public void sendMessageUsingButton() throws InterruptedException {
-        driver.get("https://www.integrivideo.com/demo/chat/new");
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps.sendWithButton(Data.TEST_MGS1);
         chatSteps.messageTextShouldBeLike(1, Data.TEST_MGS1);
     }
 
     @Test
     public void sendMessageWithSpecialSymbols() throws InterruptedException {
-        driver.get("https://www.integrivideo.com/demo/chat/new");
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps.sendWithButton(Data.SPECIAL_CHARS);
         chatSteps.messageTextShouldBeLike(1, Data.SPECIAL_CHARS);
     }
 
     @Test
     public void editMessage() throws InterruptedException {
-        driver.get("https://www.integrivideo.com/demo/chat/new");
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.editMessage(1, Data.EDITED_MSG);
         chatSteps.messageTextShouldBeLike(1, Data.EDITED_MSG);
@@ -60,7 +56,7 @@ public class BasicChatStoryTest{
     }
     @Test
     public void removeMessage() throws InterruptedException {
-        driver.get("https://www.integrivideo.com/demo/chat/new");
+        driver.get(Data.TEST_CHAT_URL);
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.removeMessage(1);
         chatSteps.messageShouldBeShownAsRemoved(1);

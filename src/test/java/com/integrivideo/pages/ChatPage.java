@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
-public class Chat extends PageObject{
+public class ChatPage extends PageObject{
     @FindBy(xpath="//div[contains(@class, 'integri-chat-input')]//textarea")
     WebElement textInput;
 
@@ -131,6 +131,5 @@ public class Chat extends PageObject{
     public String getMessageText(final int messageNumber){
         WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber);
         return messageContainer.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText();
-
     }
 }
