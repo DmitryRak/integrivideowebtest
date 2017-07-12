@@ -6,7 +6,8 @@ import java.io.File;
  * Created by Dmitry Rak on 4/15/2017.
  */
 public class Data {
-    public final static String BASE_URL = "https://integrivideo.com/";
+    //TODO get this config from some config file (will be useful in future)
+    public final static String BASE_URL = "https://dev.integrivideo.com/";
     public final static String TEST_CHAT_URL = BASE_URL + "demo/chat/new";
     public final static String SIGNUP_PAGE_URL = BASE_URL + "signup";
     public final static String LOGIN_PAGE_URL = BASE_URL + "login";
