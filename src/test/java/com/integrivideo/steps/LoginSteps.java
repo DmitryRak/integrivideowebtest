@@ -1,6 +1,7 @@
 package com.integrivideo.steps;
 
 import com.integrivideo.Data;
+import com.integrivideo.pages.LoginPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -13,8 +14,16 @@ public class LoginSteps extends ScenarioSteps {
     @Steps
     CommonSteps commonSteps;
 
+    LoginPage loginPage;
+
     @Step
     public void shouldBeOnLoginPage(){
         commonSteps.currentPageShouldBe(Data.LOGIN_PAGE_URL);
+    }
+
+    @Step
+    public void enterCredentialsAndLogin(String email, String password){
+        loginPage.enterCredentials(email, password);
+        loginPage.submitLoginForm();
     }
 }
