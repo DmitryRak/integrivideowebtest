@@ -14,14 +14,11 @@ public class LoginPage extends PageObject {
     @FindBy(xpath="//input[contains(@name,'password')]")
     WebElement passwordField;
 
-    @FindBy(xpath="button[contains(text(),'Log in')]")
+    @FindBy(xpath="//button[contains(text(),'Log in')]")
     WebElement loginButton;
 
-    @FindBy(xpath="button[contains(text(),'Sign up')]")
+    @FindBy(xpath="//button[contains(text(),'Sign up')]")
     WebElement signUpLink;
-
-    @FindBy(id="login-form")
-    WebElement loginForm;
 
     public void enterCredentials(String email, String password){
         emailField.sendKeys(email);
@@ -29,7 +26,7 @@ public class LoginPage extends PageObject {
     }
 
     public void submitLoginForm(){
-        loginForm.submit();
+        loginButton.submit();
     }
 
 }

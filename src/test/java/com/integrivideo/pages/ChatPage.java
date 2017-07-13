@@ -20,9 +20,6 @@ import java.util.List;
  * Created by Dmitry Rak on 4/15/2017.
  */
 public class ChatPage extends PageObject{
-    @FindBy(xpath="//div[contains(@class, 'integri-chat-input')]//textarea")
-    WebElement textInput;
-
     @FindBy(xpath="//button[contains(@class,'integri-chat-upload-file')]")
     WebElement fileUploadButton;
 
@@ -34,13 +31,14 @@ public class ChatPage extends PageObject{
 
     private final By OWN_MESSAGES_BY = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
     private final By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
+    private final By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
 
     public void inputText(String text){
-        textInput.sendKeys(text);
+        find(TEXT_INPUT).sendKeys(text);
     }
 
     public void pressEnter(){
-        textInput.sendKeys(Keys.ENTER);
+        find(TEXT_INPUT).sendKeys(Keys.ENTER);
     }
     public void clickSendButton(){
         sendButton.click();
@@ -48,7 +46,7 @@ public class ChatPage extends PageObject{
 
     public void pressShiftEnter(){
         String keysPressed =  Keys.chord(Keys.SHIFT, Keys.ENTER);
-        textInput.sendKeys(keysPressed);
+        find(TEXT_INPUT).sendKeys(keysPressed);
     }
     public List<User> getListOfUsers(){
         List<User> usersPics = new ArrayList<>();

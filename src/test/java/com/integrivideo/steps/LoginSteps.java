@@ -7,7 +7,7 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
 /**
- * Created by asus on 7/12/2017.
+ * Created by Dmitry Rak on 7/12/2017.
  */
 public class LoginSteps extends ScenarioSteps {
 
@@ -23,6 +23,9 @@ public class LoginSteps extends ScenarioSteps {
 
     @Step
     public void enterCredentialsAndLogin(String email, String password){
+        if(!getDriver().getCurrentUrl().equals(Data.LOGIN_PAGE_URL)){
+            getDriver().get(Data.LOGIN_PAGE_URL);
+        }
         loginPage.enterCredentials(email, password);
         loginPage.submitLoginForm();
     }
