@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 /**
  * Created by asus on 7/13/2017.
  */
-@Story(BasicChatStoryTest.class)
+@Story(LoginStoryTest.class)
 @RunWith(SerenityRunner.class)
 public class LoginStoryTest extends BaseTest {
 
