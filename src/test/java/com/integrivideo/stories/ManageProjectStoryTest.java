@@ -1,6 +1,7 @@
 package com.integrivideo.stories;
 
 import com.integrivideo.Data;
+import com.integrivideo.Project;
 import com.integrivideo.steps.LoginSteps;
 import com.integrivideo.steps.ProjectSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -23,7 +24,7 @@ public class ManageProjectStoryTest extends BaseTest {
     LoginSteps loginSteps;
 
     @Test
-    public void newProjectCanBeCreated(){
+    public void projectCanBeCreated(){
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
 
         long projectCount = projectSteps.getProjectCount();
@@ -31,5 +32,18 @@ public class ManageProjectStoryTest extends BaseTest {
         projectSteps.createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
         projectSteps.shouldBeOnProjectsPage();
         projectSteps.numberOfProjectShouldBeEqualTo(projectCount+1);
+        projectSteps.openProjectPage(projectCount-1);
+        projectSteps.projectDetailsShouldBeLike(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION);
+    }
+
+    @Test
+    public void projectCanBeEdited(){
+        projectSteps.createProject();
+        long projectCount = projectSteps.getProjectCount();
+        projectSteps.openProjectPage(projectCount-2);
+        Project project = new Project(Data.RANDOM_PROJECT_NAME, Data.RANDOM_PROJECT_DESCRIPTION, Data.RANDOM_PROJECT_DOMAIN);
+        projectSteps.editProject(project.getName(), project.getDescription(), project.getDomains().get(0));
+        projectSteps.openProjectPage(projectCount-2);
+        projectSteps.projectDetailsShouldBeLike(project.getName(), project.getDescription());
     }
 }

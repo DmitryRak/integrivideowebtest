@@ -16,6 +16,7 @@ public class CreateProjectPage extends PageObject {
     WebElement projectDescriptionField;
 
     private final static By CREATE_PROJECT_BUTTON_BY = By.xpath("//button[contains(text(), 'Create')]");
+    private final static By UPDATE_PROJECT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     private final static By DOMAINS_INPUT_BY = By.xpath("//input[contains(@name,'domains[]')]");
 
     /**
@@ -25,13 +26,20 @@ public class CreateProjectPage extends PageObject {
      * @param domains - as single string separated by ;
      */
     public void fillInForm(String name, String description, String domains){
+        projectNameField.clear();
         projectNameField.sendKeys(name);
+        projectDescriptionField.clear();
         projectDescriptionField.sendKeys(description);
         //TODO add ability to input multiple domains
+        findAll(DOMAINS_INPUT_BY).get(0).clear();
         findAll(DOMAINS_INPUT_BY).get(0).sendKeys(domains);
     }
 
     public void clickCreateButton(){
         find(CREATE_PROJECT_BUTTON_BY).submit();
+    }
+
+    public void clickUpdateButton(){
+        find(UPDATE_PROJECT_BUTTON_BY).submit();
     }
 }

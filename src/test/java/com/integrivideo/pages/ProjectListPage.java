@@ -21,4 +21,8 @@ public class ProjectListPage extends PageObject {
     public long getProjectCount(){
         return findAll(SINGLE_PROJECT_BY).size();
     }
+
+    public void openProjectPage(long projectNumberInList){
+        findAll(SINGLE_PROJECT_BY).get((int)projectNumberInList).click();
+    }
 }

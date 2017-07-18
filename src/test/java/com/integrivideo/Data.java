@@ -26,7 +26,10 @@ public class Data {
     public final static String USER_2_PASSWORD = "integripassword";
     public final static String RANDOM_EMAIL = System.currentTimeMillis() +"@mailinator.com";
     public final static String PROJECT_NAME = "PROJECT_NAME";
+    public final static String RANDOM_PROJECT_NAME = "PROJECT_NAME" + System.currentTimeMillis();
     public final static String PROJECT_DESCRIPTION = "PROJECT_DESCRIPTION";
+    public final static String RANDOM_PROJECT_DESCRIPTION = "PROJECT_DESCRIPTION" + System.currentTimeMillis();
     public final static String PROJECT_DOMAIN1 = "easyhire.me";
+    public final static String RANDOM_PROJECT_DOMAIN = System.currentTimeMillis() + "easyhire.me";
 
 }
