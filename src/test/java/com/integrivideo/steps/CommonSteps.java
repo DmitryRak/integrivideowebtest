@@ -3,6 +3,7 @@ package com.integrivideo.steps;
 import com.integrivideo.popups.NotificationMessagePopup;
 import net.thucydides.core.steps.ScenarioSteps;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 
@@ -17,6 +18,6 @@ public class CommonSteps extends ScenarioSteps{
     }
 
     public void notificationMessageShouldBeLike(String message){
-        assertThat(notificationMessagePopup.getNotificationText(),equalToIgnoringCase(message));
+        assertThat(notificationMessagePopup.getNotificationText(),containsString(message));
     }
 }

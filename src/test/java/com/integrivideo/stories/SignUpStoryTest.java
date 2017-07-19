@@ -34,8 +34,7 @@ public class SignUpStoryTest extends BaseTest{
     public void newUserCanBeRegistered(){
         landingPageSteps.goToSignUpLinkFromFirstBlock();
         signUpSteps.enterCredentialsAndSignUp(Data.RANDOM_EMAIL, Data.USER_1_PASSWORD);
-        //TODO fix locator for notificator
-        //commonSteps.notificationMessageShouldBeLike("Message with instructions was sent");
+        commonSteps.notificationMessageShouldBeLike("Message with instructions was sent");
         loginSteps.shouldBeOnLoginPage();
     }
 
