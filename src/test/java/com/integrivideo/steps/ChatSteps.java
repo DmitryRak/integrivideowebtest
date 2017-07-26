@@ -1,5 +1,6 @@
 package com.integrivideo.steps;
 
+import com.integrivideo.Data;
 import com.integrivideo.Message;
 import com.integrivideo.pages.ChatPage;
 import com.integrivideo.pages.FileUploadModal;
@@ -91,5 +92,11 @@ public class ChatSteps extends ScenarioSteps {
     @Step
     public void messageTextShouldBeLike(final int messageNumber, String text){
         assertThat(chatPage.getMessageText(messageNumber-1), equalTo(text));
+    }
+
+    @Step
+    public void openDemoChatAsAnonym(){
+        getDriver().get(Data.TEST_CHAT_URL);
+        chatPage.closeSettingsWindow();
     }
 }

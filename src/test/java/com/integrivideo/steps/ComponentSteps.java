@@ -1,5 +1,6 @@
 package com.integrivideo.steps;
 
+import com.integrivideo.Data;
 import com.integrivideo.Project;
 import com.integrivideo.pages.ComponentListPage;
 import com.integrivideo.pages.ComponentTypeEnum;
@@ -40,7 +41,7 @@ public class ComponentSteps extends ScenarioSteps {
     }
 
     @Step
-    public void numberOfProjectShouldBeEqualTo(long number){
+    public void numberOfComponentsShouldBeEqualTo(long number){
         assertTrue(number == componentListPage.getComponentCount());
     }
 

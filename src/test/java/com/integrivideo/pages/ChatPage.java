@@ -33,6 +33,8 @@ public class ChatPage extends PageObject{
     private final By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
     private final By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
 
+    private final By CLOSE_MODAL_BY = By.xpath("//div[contains(@class, 'integri-user-settings')]/../..//span[contains(@class, 'close-integri-modal')]");
+
     public void inputText(String text){
         find(TEXT_INPUT).sendKeys(text);
     }
@@ -72,7 +74,7 @@ public class ChatPage extends PageObject{
                 message.setRemoved(true);
             }else {
                 message.setDate(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-date')]")).getText());
-                message.setUserName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-user-name')]")).getText());
+                message.setUserName(mess.findElement(By.xpath("//span[contains(@class,'integri-session-user-name')]")).getText());
                 message.setEdited(WebElementHelper.elementHasClass(mess, "integri-chat-message-edited"));
 //                message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
                 if(mess.findElements(By.xpath("//div[contains(@class,'integri-chat-message-type-file')]")).size() > 0){
@@ -129,5 +131,11 @@ public class ChatPage extends PageObject{
     public String getMessageText(final int messageNumber){
         WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber);
         return messageContainer.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText();
+    }
+
+    public void closeSettingsWindow(){
+        //System.out.println(findAll(CLOSE_MODAL_BY).size());
+        waitForRenderedElements(CLOSE_MODAL_BY);
+        find(CLOSE_MODAL_BY).click();
     }
 }

@@ -12,16 +12,12 @@ public class CreateComponentPage extends PageObject {
     @FindBy(xpath="//input[contains(@name,'name')]")
     WebElement componentNameField;
 
-    @FindBy(xpath="//textarea[contains(@name,'description')]")
-    WebElement projectDescriptionField;
-
     private final static By CREATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Create')]");
     private final static By UPDATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
 
     public void fillInForm(ComponentTypeEnum componentTypeEnum, String name){
         componentNameField.clear();
         componentNameField.sendKeys(name);
-        projectDescriptionField.clear();
         //TODO add select type
     }
 

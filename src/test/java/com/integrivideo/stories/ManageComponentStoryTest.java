@@ -2,6 +2,7 @@ package com.integrivideo.stories;
 
 import com.integrivideo.Data;
 import com.integrivideo.Project;
+import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.steps.ComponentSteps;
 import com.integrivideo.steps.LoginSteps;
 import com.integrivideo.steps.ProjectSteps;
@@ -30,9 +31,10 @@ public class ManageComponentStoryTest extends BaseTest {
 
     @Test
     public void componentCanBeCreated(){
-/*        projectSteps.createProject();
+        projectSteps.createProject();
         long projectCount = projectSteps.getProjectCount();
-        projectSteps.openProjectPage(projectCount-2);*/
-        //TODO
+        projectSteps.openProjectPage(projectCount-2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
     }
 }
