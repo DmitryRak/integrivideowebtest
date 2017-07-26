@@ -46,4 +46,28 @@ public class ManageProjectStoryTest extends BaseTest {
         projectSteps.openProjectPage(projectCount-2);
         projectSteps.projectDetailsShouldBeLike(project.getName(), project.getDescription());
     }
+
+    @Test
+    public void projectWithMultipleDomainsCanBeCreated(){
+        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+
+        long projectCount = projectSteps.getProjectCount();
+        projectSteps.openCreateProjectPage();
+        projectSteps.createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1 + ";" + Data.RANDOM_PROJECT_DOMAIN);
+        projectSteps.shouldBeOnProjectsPage();
+        projectSteps.numberOfProjectShouldBeEqualTo(projectCount+1);
+    }
+
+    @Test
+    public void domainCanBeRemovedAtProjectCreationPage(){
+        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+
+        long projectCount = projectSteps.getProjectCount();
+        projectSteps.openCreateProjectPage();
+        projectSteps.fillInForm(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1 + ";" + Data.RANDOM_PROJECT_DOMAIN);
+        projectSteps.removeDomain(1);
+        projectSteps.clickOnCreateButton();
+        projectSteps.shouldBeOnProjectsPage();
+        projectSteps.numberOfProjectShouldBeEqualTo(projectCount+1);
+    }
 }

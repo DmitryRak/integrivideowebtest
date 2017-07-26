@@ -66,19 +66,48 @@ public class ProjectSteps extends ScenarioSteps {
         return projectListPage.getProjectCount();
     }
 
+    @Step
     public void openProjectPage(long projectNumberInList){
         projectListPage.openProjectPage(projectNumberInList);
     }
 
+    @Step
     public void projectDetailsShouldBeLike(String name, String description){
         Project project = projectDetailsPage.getProjectDetails();
         assertTrue(name.equals(project.getName()));
         assertTrue(description.equals(project.getDescription()));
     }
 
+    @Step
+    public void projectDetailsShouldBeLike(Project expectedProject){
+        Project actualProject = createProjectPage.getProjectDetails();
+        assertTrue(expectedProject.getName().equals(actualProject.getName()));
+        assertTrue(expectedProject.getDescription().equals(actualProject.getDescription()));
+        assertTrue(expectedProject.getDomains().equals(actualProject.getDomains()));
+    }
+
+    @Step
     public void editProject(String name, String description, String domains){
         projectDetailsPage.clickEditProjectLink();
         createProjectPage.fillInForm(name, description, domains);
         createProjectPage.clickUpdateButton();
+    }
+
+    @Step
+    public void fillInForm(String name, String description, String domains){
+        if(!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)){
+            getDriver().get(Data.CREATE_PROJECT_URL);
+        }
+        createProjectPage.fillInForm(name, description, domains);
+    }
+
+    @Step
+    public void removeDomain(int domainOrderNum){
+        createProjectPage.removeDomainByIndex(domainOrderNum);
+    }
+
+    @Step
+    public void clickOnCreateButton(){
+        createProjectPage.clickCreateButton();
     }
 }
