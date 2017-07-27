@@ -97,6 +97,6 @@ public class ChatSteps extends ScenarioSteps {
     @Step
     public void openDemoChatAsAnonym(){
         getDriver().get(Data.TEST_CHAT_URL);
-        chatPage.closeSettingsWindow();
+        //chatPage.closeSettingsWindow();
     }
 }

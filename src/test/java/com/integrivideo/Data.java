@@ -19,7 +19,7 @@ public class Data {
     public final static String EDITED_MSG = "editText";
     public static final File IMAGE_FILE_PATH = new File("target" +File.separator + "classes" + File.separator + "2kb.gif");
     public final static String XSS_TEXT = "<script>alert('TEXT');</script>";
-    public final static String NAME = "Anonymous";
+    public final static String NAME = "Guest";
     public final static String USER_1_EMAIL = "integriuser1@mailinator.com";
     public final static String USER_1_PASSWORD = "integripassword";
     public final static String USER_2_EMAIL = "integriuser2@mailinator.com";
