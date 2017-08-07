@@ -3,12 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <serenity.version>1.5.4-rc.1</serenity.version>
+        <webdriver.driver>chrome</webdriver.driver>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.6.2</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -28,15 +35,36 @@
                         <webdriver.ie.driver>src\main\resources\IEDriverServer.exe</webdriver.ie.driver>
                         <webdriver.edge.driver>src\main\resources\MicrosoftWebDriver.exe</webdriver.edge.driver>
                         <webdriver.opera.driver>src\main\resources\operadriver.exe</webdriver.opera.driver>
-
                     </systemPropertyVariables>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.serenity-bdd</groupId>
+                        <artifactId>core</artifactId>
+                        <version>1.0.47</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
     <groupId>integrivideo-webtest</groupId>
     <artifactId>integrivideo-webtest</artifactId>
     <version>1.0-SNAPSHOT</version>
+
 
 <dependencies>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -53,12 +81,7 @@
         <version>1.3</version>
         <scope>test</scope>
     </dependency>
-    <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-java</artifactId>
-        <version>3.0.0</version>
-        <scope>test</scope>
-    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
     <dependency>
         <groupId>org.slf4j</groupId>
@@ -71,14 +94,14 @@
     <dependency>
         <groupId>net.serenity-bdd</groupId>
         <artifactId>serenity-core</artifactId>
-        <version>1.4.0</version>
+        <version>${serenity.version}</version>
         <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit -->
     <dependency>
         <groupId>net.serenity-bdd</groupId>
         <artifactId>serenity-junit</artifactId>
-        <version>1.4.0</version>
+        <version>${serenity.version}</version>
         <scope>test</scope>
     </dependency>
 
