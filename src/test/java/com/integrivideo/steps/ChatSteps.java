@@ -2,8 +2,10 @@ package com.integrivideo.steps;
 
 import com.integrivideo.Data;
 import com.integrivideo.Message;
+import com.integrivideo.modals.UserSettings;
+import com.integrivideo.modals.UserSettingsModal;
 import com.integrivideo.pages.ChatPage;
-import com.integrivideo.pages.FileUploadModal;
+import com.integrivideo.modals.FileUploadModal;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 
@@ -18,6 +20,7 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 public class ChatSteps extends ScenarioSteps {
     ChatPage chatPage;
     FileUploadModal fileUpload;
+    UserSettingsModal userSettingsModal;
 
     @Step
     public void sendWithButton(String text) throws InterruptedException {
@@ -95,8 +98,41 @@ public class ChatSteps extends ScenarioSteps {
     }
 
     @Step
-    public void openDemoChatAsAnonym(){
+    public void openDemoChat(){
         getDriver().get(Data.TEST_CHAT_URL);
-        //chatPage.closeSettingsWindow();
+    }
+
+    /**
+     *
+     */
+    @Step
+    public void openSettingsModal(){
+        chatPage.openUserSettingsModal();
+    }
+
+    /**
+     *
+     * @param name
+     * @param email
+     * @param imageUrl
+     */
+    @Step
+    public void validateUserSettings(String name, String email, String imageUrl){
+        UserSettings userSettings = userSettingsModal.getUserSettings();
+        assertThat(userSettings.getName(), equalTo(name));
+        assertThat(userSettings.getEmail(), equalTo(email));
+        assertThat(userSettings.getUserPicUrl(), equalTo(imageUrl));
+    }
+
+    /**
+     *
+     * @param name
+     * @param email
+     * @param imageUrl
+     */
+    @Step
+    public void updateUserSettings(String name, String email, String imageUrl){
+        userSettingsModal.insertSettings(name, email, imageUrl);
+        userSettingsModal.saveSettings();
     }
 }

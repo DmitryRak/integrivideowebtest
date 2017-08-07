@@ -1,4 +1,4 @@
-package com.integrivideo.pages;
+package com.integrivideo.modals;
 
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;

@@ -31,5 +31,5 @@ public class Data {
     public final static String RANDOM_PROJECT_DESCRIPTION = "PROJECT_DESCRIPTION" + System.currentTimeMillis();
     public final static String PROJECT_DOMAIN1 = "easyhire.me";
     public final static String RANDOM_PROJECT_DOMAIN = System.currentTimeMillis() + "easyhire.me";
-
+    public final static String IMAGE_URL_4K = "http://4k.com/wp-content/uploads/2014/06/4k-image-tiger-jumping.jpg";
 }

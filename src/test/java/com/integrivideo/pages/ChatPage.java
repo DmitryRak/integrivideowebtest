@@ -29,11 +29,13 @@ public class ChatPage extends PageObject{
     @FindBy(xpath="//button[contains(@class,'integri-chat-send-message')]")
     WebElement sendButton;
 
+    @FindBy(xpath="//button[contains(@class,'integri-show-user-settings')]")
+    WebElement userSettingsButton;
+
+
     private final By OWN_MESSAGES_BY = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
     private final By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
     private final By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
-
-    private final By CLOSE_MODAL_BY = By.xpath("//div[contains(@class, 'integri-user-settings')]/../..//span[contains(@class, 'close-integri-modal')]");
 
     public void inputText(String text){
         find(TEXT_INPUT).sendKeys(text);
@@ -133,9 +135,7 @@ public class ChatPage extends PageObject{
         return messageContainer.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText();
     }
 
-    public void closeSettingsWindow(){
-        //System.out.println(findAll(CLOSE_MODAL_BY).size());
-        waitForRenderedElements(CLOSE_MODAL_BY);
-        find(CLOSE_MODAL_BY).click();
+    public void openUserSettingsModal(){
+        clickOn(userSettingsButton);
     }
 }
