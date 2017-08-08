@@ -15,7 +15,7 @@ import static com.integrivideo.Data.SPECIAL_CHARS;
  */
 @Story(BasicChatStoryTest.class)
 @RunWith(SerenityRunner.class)
-public class BasicChatStoryTest extends BaseTest{
+public class BasicChatStoryTest extends BaseTest {
 
     @Steps
     ChatSteps chatSteps;
@@ -56,6 +56,7 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.messageTextShouldBeLike(1, Data.EDITED_MSG);
         chatSteps.messageShouldBeShownAsEdited(1);
     }
+
     @Test
     public void removeMessage() throws InterruptedException {
         chatSteps.openDemoChat();
@@ -63,13 +64,15 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.removeMessage(1);
         chatSteps.messageShouldBeShownAsRemoved(1);
     }
+
     @Test
-    public void uploadFile(){
+    public void uploadFile() {
         chatSteps.openDemoChat();
         chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
         chatSteps.messageShouldContainFileInfo(1, Data.IMAGE_FILE_PATH.getName() + " (2kb)");
 
     }
+
     @Test
     public void editMessageWithLineBreaks() throws InterruptedException {
         chatSteps.openDemoChat();
@@ -77,25 +80,29 @@ public class BasicChatStoryTest extends BaseTest{
         chatSteps.editMessage(1, null);
         chatSteps.messageTextShouldBeLike(1, Data.TEST_MGS1 + "\n" + Data.SECOND_LINE);
     }
+
     @Test
     public void escapingCharacters() throws InterruptedException {
         chatSteps.openDemoChat();
         chatSteps.sendWithEnter(Data.XSS_TEXT);
         chatSteps.messageTextShouldBeLike(1, Data.XSS_TEXT);
     }
+
     //TODO handle IE11 asking for access to clipboard
     @Test
-    public void inviteUserButton(){
+    public void inviteUserButton() {
         chatSteps.openDemoChat();
         chatSteps.inviteLinkShouldBeLike(driver.getCurrentUrl());
     }
+
     @Test
-    public void userInfoShouldBeCorrect(){
+    public void userInfoShouldBeCorrect() {
         chatSteps.openDemoChat();
         chatSteps.userInfoShouldBeLike(1, Data.NAME, true);
     }
+
     @Test
-    public void userSettingsCanBeUpdated(){
+    public void userSettingsCanBeUpdated() {
         chatSteps.openDemoChat();
         chatSteps.openSettingsModal();
         chatSteps.updateUserSettings(Data.SPECIAL_CHARS, Data.USER_2_EMAIL, Data.IMAGE_URL_4K);

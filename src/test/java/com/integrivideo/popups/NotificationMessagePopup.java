@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 public class NotificationMessagePopup extends PageObject {
     private static final By MESSAGE_BY = By.xpath("//div[contains(@class,'alert')]");
 
-    public String getNotificationText(){
+    public String getNotificationText() {
         return find(MESSAGE_BY).getText();
     }
 }

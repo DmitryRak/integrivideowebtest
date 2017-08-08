@@ -11,6 +11,28 @@ public class Project {
     private String description;
     private List<String> domains;
 
+    /**
+     * @param name
+     * @param description
+     * @param domains     TODO separated string to list
+     */
+    public Project(String name, String description, List<String> domains) {
+        this.name = name;
+        this.description = description;
+        this.domains = domains;
+    }
+
+    public Project() {
+        this.domains = new ArrayList<>();
+    }
+
+    public Project(String name, String description, String domains) {
+        this.name = name;
+        this.description = description;
+        this.domains = new ArrayList<>();
+        this.domains.add(domains);
+    }
+
     public String getName() {
         return name;
     }
@@ -35,36 +57,14 @@ public class Project {
         this.domains = domains;
     }
 
-    /**
-     * @param name
-     * @param description
-     * @param domains TODO separated string to list
-     */
-    public Project(String name, String description, List<String> domains){
-        this.name = name;
-        this.description = description;
-        this.domains = domains;
-    }
-
-    public Project(){
-        this.domains = new ArrayList<>();
-    }
-
-    public Project(String name, String description, String domains){
-        this.name = name;
-        this.description = description;
-        this.domains = new ArrayList<>();
-        this.domains.add(domains);
-    }
-
-    public void addDomains(String... domains){
-        for(String domain:domains){
+    public void addDomains(String... domains) {
+        for (String domain : domains) {
             this.domains.add(domain);
         }
     }
 
-    public void removeDomains(String... domains){
-        for(String domain:domains){
+    public void removeDomains(String... domains) {
+        for (String domain : domains) {
             this.domains.remove(domain);
         }
     }

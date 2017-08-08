@@ -11,12 +11,12 @@ public class LandingPageSteps extends ScenarioSteps {
     LandingPage landingPage;
 
     @Step
-    public void goToSignUpLinkFromFirstBlock(){
+    public void goToSignUpLinkFromFirstBlock() {
         landingPage.clickSignUpOnFirstBlock();
     }
 
     @Step
-    public void goToLoginPage(){
+    public void goToLoginPage() {
         landingPage.clickLoginLinkFromTopMenu();
     }
 }

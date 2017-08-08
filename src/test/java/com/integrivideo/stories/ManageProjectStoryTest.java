@@ -24,42 +24,42 @@ public class ManageProjectStoryTest extends BaseTest {
     LoginSteps loginSteps;
 
     @Test
-    public void projectCanBeCreated(){
+    public void projectCanBeCreated() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
 
         long projectCount = projectSteps.getProjectCount();
         projectSteps.openCreateProjectPage();
         projectSteps.createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
         projectSteps.shouldBeOnProjectsPage();
-        projectSteps.numberOfProjectShouldBeEqualTo(projectCount+1);
-        projectSteps.openProjectPage(projectCount-1);
+        projectSteps.numberOfProjectShouldBeEqualTo(projectCount + 1);
+        projectSteps.openProjectPage(projectCount - 1);
         projectSteps.projectDetailsShouldBeLike(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION);
     }
 
     @Test
-    public void projectCanBeEdited(){
+    public void projectCanBeEdited() {
         projectSteps.createProject();
         long projectCount = projectSteps.getProjectCount();
-        projectSteps.openProjectPage(projectCount-2);
+        projectSteps.openProjectPage(projectCount - 2);
         Project project = new Project(Data.RANDOM_PROJECT_NAME, Data.RANDOM_PROJECT_DESCRIPTION, Data.RANDOM_PROJECT_DOMAIN);
         projectSteps.editProject(project.getName(), project.getDescription(), project.getDomains().get(0));
-        projectSteps.openProjectPage(projectCount-2);
+        projectSteps.openProjectPage(projectCount - 2);
         projectSteps.projectDetailsShouldBeLike(project.getName(), project.getDescription());
     }
 
     @Test
-    public void projectWithMultipleDomainsCanBeCreated(){
+    public void projectWithMultipleDomainsCanBeCreated() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
 
         long projectCount = projectSteps.getProjectCount();
         projectSteps.openCreateProjectPage();
         projectSteps.createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1 + ";" + Data.RANDOM_PROJECT_DOMAIN);
         projectSteps.shouldBeOnProjectsPage();
-        projectSteps.numberOfProjectShouldBeEqualTo(projectCount+1);
+        projectSteps.numberOfProjectShouldBeEqualTo(projectCount + 1);
     }
 
     @Test
-    public void domainCanBeRemovedAtProjectCreationPage(){
+    public void domainCanBeRemovedAtProjectCreationPage() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
 
         long projectCount = projectSteps.getProjectCount();
@@ -68,6 +68,6 @@ public class ManageProjectStoryTest extends BaseTest {
         projectSteps.removeDomain(1);
         projectSteps.clickOnCreateButton();
         projectSteps.shouldBeOnProjectsPage();
-        projectSteps.numberOfProjectShouldBeEqualTo(projectCount+1);
+        projectSteps.numberOfProjectShouldBeEqualTo(projectCount + 1);
     }
 }

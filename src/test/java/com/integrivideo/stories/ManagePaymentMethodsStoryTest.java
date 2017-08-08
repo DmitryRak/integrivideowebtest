@@ -24,7 +24,7 @@ public class ManagePaymentMethodsStoryTest extends BaseTest {
     CommonSteps commonSteps;
 
     @Test
-    public void paymentMethodCanBeAdded(){
+    public void paymentMethodCanBeAdded() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
         billingSteps.addNewCard(Data.CARD_NUMBER, Data.EXPIRATION_MONTH, Data.EXPIRATION_YEAR, Data.CARDHOLDER_NAME);
         commonSteps.currentPageShouldBe(Data.BILLING_PAGE);

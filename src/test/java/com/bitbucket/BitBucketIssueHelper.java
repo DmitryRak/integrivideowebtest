@@ -4,7 +4,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
@@ -16,11 +15,11 @@ import java.util.Scanner;
  */
 public abstract class BitBucketIssueHelper {
 
-    public static void getIssueDetails(String user, String password, String issueNumber){
+    public static void getIssueDetails(String user, String password, String issueNumber) {
         HttpClient client = HttpClientBuilder.create().build();
         String credentials = user + ":" + password;
         String encoding = new String(Base64.getEncoder().encode(credentials.getBytes()));
-        HttpGet httpget = new HttpGet("http://api.bitbucket.org/1.0/repositories/integrivideo/integrivideo-service/issues/"+issueNumber);
+        HttpGet httpget = new HttpGet("http://api.bitbucket.org/1.0/repositories/integrivideo/integrivideo-service/issues/" + issueNumber);
         httpget.setHeader("Authorization", "Basic " + encoding);
 
         System.out.println("executing request " + httpget.getRequestLine());
@@ -37,7 +36,7 @@ public abstract class BitBucketIssueHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while(scan.hasNextLine()){
+        while (scan.hasNextLine()) {
             System.out.println(scan.nextLine());
         }
     }

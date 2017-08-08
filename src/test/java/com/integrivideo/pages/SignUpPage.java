@@ -9,24 +9,24 @@ import org.openqa.selenium.WebElement;
  */
 public class SignUpPage extends PageObject {
 
-    @FindBy(xpath="//input[contains(@name,'email')]")
+    @FindBy(xpath = "//input[contains(@name,'email')]")
     WebElement emailField;
 
-    @FindBy(xpath="//input[contains(@name,'password')]")
+    @FindBy(xpath = "//input[contains(@name,'password')]")
     WebElement passwordField;
 
-    @FindBy(xpath="//button[contains(text(),'Sign up')]")
+    @FindBy(xpath = "//button[contains(text(),'Sign up')]")
     WebElement signUpButton;
 
-    @FindBy(xpath="//button[contains(text(),'Log in')]")
+    @FindBy(xpath = "//button[contains(text(),'Log in')]")
     WebElement loginLink;
 
-    public void enterCredentials(String email, String password){
+    public void enterCredentials(String email, String password) {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
     }
 
-    public void submitSignUpForm(){
+    public void submitSignUpForm() {
         signUpButton.submit();
     }
 }

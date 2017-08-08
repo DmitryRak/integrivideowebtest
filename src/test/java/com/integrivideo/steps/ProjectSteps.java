@@ -29,18 +29,18 @@ public class ProjectSteps extends ScenarioSteps {
     LoginSteps loginSteps;
 
     @Step
-    public void shouldBeOnProjectsPage(){
+    public void shouldBeOnProjectsPage() {
         commonSteps.currentPageShouldBe(Data.PROJECTS_LIST_URL);
     }
 
     @Step
-    public void openCreateProjectPage(){
+    public void openCreateProjectPage() {
         projectListPage.clickAddProject();
     }
 
     @Step
-    public void createProject(String name, String description, String domains){
-        if(!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)){
+    public void createProject(String name, String description, String domains) {
+        if (!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)) {
             getDriver().get(Data.CREATE_PROJECT_URL);
         }
         createProjectPage.fillInForm(name, description, domains);
@@ -48,9 +48,9 @@ public class ProjectSteps extends ScenarioSteps {
     }
 
     @Step
-    public void createProject(){
+    public void createProject() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
-        if(!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)){
+        if (!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)) {
             getDriver().get(Data.CREATE_PROJECT_URL);
         }
         createProjectPage.fillInForm(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
@@ -58,28 +58,28 @@ public class ProjectSteps extends ScenarioSteps {
     }
 
     @Step
-    public void numberOfProjectShouldBeEqualTo(long number){
+    public void numberOfProjectShouldBeEqualTo(long number) {
         assertTrue(number == projectListPage.getProjectCount());
     }
 
-    public long getProjectCount(){
+    public long getProjectCount() {
         return projectListPage.getProjectCount();
     }
 
     @Step
-    public void openProjectPage(long projectNumberInList){
+    public void openProjectPage(long projectNumberInList) {
         projectListPage.openProjectPage(projectNumberInList);
     }
 
     @Step
-    public void projectDetailsShouldBeLike(String name, String description){
+    public void projectDetailsShouldBeLike(String name, String description) {
         Project project = projectDetailsPage.getProjectDetails();
         assertTrue(name.equals(project.getName()));
         assertTrue(description.equals(project.getDescription()));
     }
 
     @Step
-    public void projectDetailsShouldBeLike(Project expectedProject){
+    public void projectDetailsShouldBeLike(Project expectedProject) {
         Project actualProject = createProjectPage.getProjectDetails();
         assertTrue(expectedProject.getName().equals(actualProject.getName()));
         assertTrue(expectedProject.getDescription().equals(actualProject.getDescription()));
@@ -87,27 +87,27 @@ public class ProjectSteps extends ScenarioSteps {
     }
 
     @Step
-    public void editProject(String name, String description, String domains){
+    public void editProject(String name, String description, String domains) {
         projectDetailsPage.clickEditProjectLink();
         createProjectPage.fillInForm(name, description, domains);
         createProjectPage.clickUpdateButton();
     }
 
     @Step
-    public void fillInForm(String name, String description, String domains){
-        if(!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)){
+    public void fillInForm(String name, String description, String domains) {
+        if (!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)) {
             getDriver().get(Data.CREATE_PROJECT_URL);
         }
         createProjectPage.fillInForm(name, description, domains);
     }
 
     @Step
-    public void removeDomain(int domainOrderNum){
+    public void removeDomain(int domainOrderNum) {
         createProjectPage.removeDomainByIndex(domainOrderNum);
     }
 
     @Step
-    public void clickOnCreateButton(){
+    public void clickOnCreateButton() {
         createProjectPage.clickCreateButton();
     }
 }

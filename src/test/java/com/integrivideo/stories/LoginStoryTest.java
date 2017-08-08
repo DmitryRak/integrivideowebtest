@@ -1,7 +1,6 @@
 package com.integrivideo.stories;
 
 import com.integrivideo.Data;
-import com.integrivideo.pages.CommonPage;
 import com.integrivideo.steps.CommonSteps;
 import com.integrivideo.steps.LandingPageSteps;
 import com.integrivideo.steps.LoginSteps;
@@ -32,14 +31,14 @@ public class LoginStoryTest extends BaseTest {
     CommonSteps commonSteps;
 
     @Test
-    public void userCanLoginFromLanding(){
+    public void userCanLoginFromLanding() {
         landingPageSteps.goToLoginPage();
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
         projectSteps.shouldBeOnProjectsPage();
     }
 
     @Test
-    public void userCanLogout(){
+    public void userCanLogout() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
         commonSteps.doLogout();
         commonSteps.currentPageShouldBe(Data.BASE_URL);

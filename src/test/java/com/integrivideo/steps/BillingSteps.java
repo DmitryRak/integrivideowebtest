@@ -9,9 +9,9 @@ public class BillingSteps extends ScenarioSteps {
     BillingPage billingPage;
 
     @Step
-    public void addNewCard(String number, String month, String year, String cardholder){
+    public void addNewCard(String number, String month, String year, String cardholder) {
         getDriver().get(Data.BILLING_PAGE);
         billingPage.clickAddPayment();
-        billingPage.typeCardInfo(number, month,year,cardholder);
+        billingPage.typeCardInfo(number, month, year, cardholder);
     }
 }

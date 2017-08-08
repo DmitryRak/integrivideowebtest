@@ -12,20 +12,20 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 /**
  * Created by asus on 7/12/2017.
  */
-public class CommonSteps extends ScenarioSteps{
+public class CommonSteps extends ScenarioSteps {
     public NotificationMessagePopup notificationMessagePopup;
     public CommonPage commonPage;
 
-    public void currentPageShouldBe(String url){
-        assertThat(getDriver().getCurrentUrl(),equalToIgnoringCase(url));
+    public void currentPageShouldBe(String url) {
+        assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(url));
     }
 
-    public void notificationMessageShouldBeLike(String message){
-        assertThat(notificationMessagePopup.getNotificationText(),containsString(message));
+    public void notificationMessageShouldBeLike(String message) {
+        assertThat(notificationMessagePopup.getNotificationText(), containsString(message));
     }
 
     @Step
-    public void doLogout(){
+    public void doLogout() {
         commonPage.clickLogout();
     }
 }

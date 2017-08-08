@@ -17,13 +17,13 @@ public class LoginSteps extends ScenarioSteps {
     LoginPage loginPage;
 
     @Step
-    public void shouldBeOnLoginPage(){
+    public void shouldBeOnLoginPage() {
         commonSteps.currentPageShouldBe(Data.LOGIN_PAGE_URL);
     }
 
     @Step
-    public void enterCredentialsAndLogin(String email, String password){
-        if(!getDriver().getCurrentUrl().equals(Data.LOGIN_PAGE_URL)){
+    public void enterCredentialsAndLogin(String email, String password) {
+        if (!getDriver().getCurrentUrl().equals(Data.LOGIN_PAGE_URL)) {
             getDriver().get(Data.LOGIN_PAGE_URL);
         }
         loginPage.enterCredentials(email, password);

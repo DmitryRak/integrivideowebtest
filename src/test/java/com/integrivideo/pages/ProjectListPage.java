@@ -9,20 +9,19 @@ import org.openqa.selenium.WebElement;
  * Created by asus on 7/13/2017.
  */
 public class ProjectListPage extends PageObject {
-    @FindBy(xpath="//div[contains(@class, 'new')]")
+    public static final By SINGLE_PROJECT_BY = By.xpath("//div[contains(@class, 'project')]");
+    @FindBy(xpath = "//div[contains(@class, 'new')]")
     WebElement addProjectButton;
 
-    public static final By SINGLE_PROJECT_BY = By.xpath("//div[contains(@class, 'project')]");
-
-    public void clickAddProject(){
+    public void clickAddProject() {
         addProjectButton.click();
     }
 
-    public long getProjectCount(){
+    public long getProjectCount() {
         return findAll(SINGLE_PROJECT_BY).size();
     }
 
-    public void openProjectPage(long projectNumberInList){
-        findAll(SINGLE_PROJECT_BY).get((int)projectNumberInList).click();
+    public void openProjectPage(long projectNumberInList) {
+        findAll(SINGLE_PROJECT_BY).get((int) projectNumberInList).click();
     }
 }

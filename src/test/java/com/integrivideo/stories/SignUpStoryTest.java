@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
  */
 @Story(SignUpStoryTest.class)
 @RunWith(SerenityRunner.class)
-public class SignUpStoryTest extends BaseTest{
+public class SignUpStoryTest extends BaseTest {
 
     @Steps
     SignUpSteps signUpSteps;
@@ -31,7 +31,7 @@ public class SignUpStoryTest extends BaseTest{
     CommonSteps commonSteps;
 
     @Test
-    public void newUserCanBeRegistered(){
+    public void newUserCanBeRegistered() {
         landingPageSteps.goToSignUpLinkFromFirstBlock();
         signUpSteps.enterCredentialsAndSignUp(Data.RANDOM_EMAIL, Data.USER_1_PASSWORD);
         commonSteps.notificationMessageShouldBeLike("Message with instructions was sent");

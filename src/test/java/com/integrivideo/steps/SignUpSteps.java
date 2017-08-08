@@ -12,13 +12,13 @@ public class SignUpSteps extends ScenarioSteps {
     SignUpPage signUpPage;
 
     @Step
-    public void enterCredentialsAndSignUp(String email, String password){
+    public void enterCredentialsAndSignUp(String email, String password) {
         signUpPage.enterCredentials(email, password);
         signUpPage.submitSignUpForm();
     }
 
     @Step
-    public void isOnSignUpPage(){
+    public void isOnSignUpPage() {
         getDriver().get(Data.SIGNUP_PAGE_URL);
     }
 }

@@ -1,8 +1,8 @@
 package com.integrivideo;
 
-import org.openqa.selenium.By;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by asus on 6/7/2017.
  */
-public class PageUtils extends PageObject{
+public class PageUtils extends PageObject {
     public WebElementFacade findElement(By elementBy, By containerBy, int timeoutSeconds, boolean isEnabled) {
         long startTime = Utils.getSeconds();
         while (Utils.getSeconds() - startTime <= timeoutSeconds) {

@@ -1,6 +1,5 @@
 package com.integrivideo.steps;
 
-import com.integrivideo.Data;
 import com.integrivideo.Project;
 import com.integrivideo.pages.ComponentListPage;
 import com.integrivideo.pages.ComponentTypeEnum;
@@ -30,38 +29,38 @@ public class ComponentSteps extends ScenarioSteps {
     LoginSteps loginSteps;
 
     @Step
-    public void openCreateComponentPage(){
+    public void openCreateComponentPage() {
         componentListPage.clickAddComponent();
     }
 
     @Step
-    public void createComponent(ComponentTypeEnum componentType, String name){
+    public void createComponent(ComponentTypeEnum componentType, String name) {
         createComponentPage.fillInForm(componentType, name);
         createComponentPage.clickCreateButton();
     }
 
     @Step
-    public void numberOfComponentsShouldBeEqualTo(long number){
+    public void numberOfComponentsShouldBeEqualTo(long number) {
         assertTrue(number == componentListPage.getComponentCount());
     }
 
-    public long getComponentCount(){
+    public long getComponentCount() {
         return componentListPage.getComponentCount();
     }
 
-    public void openComponentPage(long projectNumberInList){
+    public void openComponentPage(long projectNumberInList) {
         componentListPage.openComponentPage(projectNumberInList);
     }
 
     //TODO
-    public void projectDetailsShouldBeLike(String name, String description){
+    public void projectDetailsShouldBeLike(String name, String description) {
         Project project = projectDetailsPage.getProjectDetails();
         assertTrue(name.equals(project.getName()));
         assertTrue(description.equals(project.getDescription()));
     }
 
     //TODO
-    public void editProject(String name, String description, String domains){
+    public void editProject(String name, String description, String domains) {
         projectDetailsPage.clickEditProjectLink();
         //createComponentPage.fillInForm(name, description, domains);
         createComponentPage.clickUpdateButton();
