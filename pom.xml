@@ -3,10 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <groupId>integrivideo-webtest</groupId>
+    <artifactId>integrivideo-webtest</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>1.5.4-rc.1</serenity.version>
+        <serenity.version>1.5.3</serenity.version>
         <webdriver.driver>chrome</webdriver.driver>
     </properties>
 
@@ -45,8 +48,8 @@
                 <dependencies>
                     <dependency>
                         <groupId>net.serenity-bdd</groupId>
-                        <artifactId>core</artifactId>
-                        <version>1.0.47</version>
+                        <artifactId>serenity-core</artifactId>
+                        <version>${serenity.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -61,10 +64,6 @@
             </plugin>
         </plugins>
     </build>
-    <groupId>integrivideo-webtest</groupId>
-    <artifactId>integrivideo-webtest</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
 
 <dependencies>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -89,7 +88,7 @@
         <version>1.7.25</version>
         <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/net.serenity-bdd/core -->
+
     <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-core -->
     <dependency>
         <groupId>net.serenity-bdd</groupId>
