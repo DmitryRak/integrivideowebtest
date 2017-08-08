@@ -13,6 +13,7 @@ public class Data {
     public final static String LOGIN_PAGE_URL = BASE_URL + "login";
     public final static String PROJECTS_LIST_URL = BASE_URL + "app/projects";
     public final static String CREATE_PROJECT_URL = BASE_URL + "app/projects/new";
+    public final static String BILLING_PAGE = BASE_URL + "app/billing";
     public final static String TEST_MGS1 = "Test Message 1";
     public final static String SECOND_LINE = "String on second line";
     public final static String SPECIAL_CHARS = Character.toString((char)0x0601) + Character.toString((char)0x0600) + Character.toString((char)0x0602);
@@ -32,4 +33,8 @@ public class Data {
     public final static String PROJECT_DOMAIN1 = "easyhire.me";
     public final static String RANDOM_PROJECT_DOMAIN = System.currentTimeMillis() + "easyhire.me";
     public final static String IMAGE_URL_4K = "http://4k.com/wp-content/uploads/2014/06/4k-image-tiger-jumping.jpg";
+    public final static String CARD_NUMBER = "378282246310005";
+    public final static String EXPIRATION_MONTH = "12";
+    public final static String EXPIRATION_YEAR = "2021";
+    public final static String CARDHOLDER_NAME = "Integri User";
 }
