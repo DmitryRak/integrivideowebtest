@@ -25,7 +25,7 @@ public class BillingPage extends PageObject {
         find(CARDHOLDER_BY).clear();
         find(CARDHOLDER_BY).sendKeys(cardholder);
         clickOn(find(ADD_CARD_BY));
-        waitABit(1000);
+        waitABit(3000);
     }
 
     public void clickAddPayment() {
