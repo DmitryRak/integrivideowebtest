@@ -23,6 +23,7 @@ public class Data {
     public final static String NAME = "Guest";
     public final static String USER_1_EMAIL = "integriuser1@mailinator.com";
     public final static String USER_1_PASSWORD = "integripassword";
+    //TODO this user should be added directly into DB
     public final static String USER_2_EMAIL = "integriuser2@mailinator.com";
     public final static String USER_2_PASSWORD = "integripassword";
     public final static String RANDOM_EMAIL = System.currentTimeMillis() + "@mailinator.com";

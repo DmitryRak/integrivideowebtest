@@ -29,4 +29,6 @@ public class ManagePaymentMethodsStoryTest extends BaseTest {
         billingSteps.addNewCard(Data.CARD_NUMBER, Data.EXPIRATION_MONTH, Data.EXPIRATION_YEAR, Data.CARDHOLDER_NAME);
         commonSteps.currentPageShouldBe(Data.BILLING_PAGE);
     }
+    //TODO test Delete paymnent
+    //TODO test make default payment
 }
