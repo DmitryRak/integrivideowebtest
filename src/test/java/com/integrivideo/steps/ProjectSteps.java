@@ -45,16 +45,13 @@ public class ProjectSteps extends ScenarioSteps {
         }
         createProjectPage.fillInForm(name, description, domains);
         createProjectPage.clickCreateButton();
+        waitABit(2000);
     }
 
     @Step
     public void createProject() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
-        if (!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)) {
-            getDriver().get(Data.CREATE_PROJECT_URL);
-        }
-        createProjectPage.fillInForm(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
-        createProjectPage.clickCreateButton();
+        createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
     }
 
     @Step
