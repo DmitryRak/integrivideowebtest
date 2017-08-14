@@ -120,6 +120,14 @@ public class ChatSteps extends ScenarioSteps {
     }
 
     /**
+     *
+     */
+    @Step
+    public void closeSettingModal(){
+        userSettingsModal.closeSettingsWindow();
+    }
+
+    /**
      * @param name
      * @param email
      * @param imageUrl

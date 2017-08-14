@@ -38,4 +38,5 @@ public class Data {
     public final static String EXPIRATION_MONTH = "12";
     public final static String EXPIRATION_YEAR = "2021";
     public final static String CARDHOLDER_NAME = "Integri User";
+    public final static String INSTALLED_CHAT_WITH_DOMAIN = "http://dmitryrak11.000webhostapp.com/COMPONENT_CHAT_WITH_DOMAIN/";
 }
