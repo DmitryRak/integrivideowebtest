@@ -2,7 +2,6 @@ package com.integrivideo.stories;
 
 import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.steps.ComponentSteps;
-import com.integrivideo.steps.LoginSteps;
 import com.integrivideo.steps.ProjectSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
@@ -22,17 +21,23 @@ public class ManageComponentStoryTest extends BaseTest {
     ProjectSteps projectSteps;
 
     @Steps
-    LoginSteps loginSteps;
-
-    @Steps
     ComponentSteps componentSteps;
 
     @Test
-    public void componentCanBeCreated() {
+    public void videoChatComponentCanBeCreated() {
         projectSteps.createProject();
         long projectCount = projectSteps.getProjectCount();
         projectSteps.openProjectPage(projectCount - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
+    }
+
+    @Test
+    public void cloudVideoRecorderComponentCanBeCreated() {
+        projectSteps.createProject();
+        long projectCount = projectSteps.getProjectCount();
+        projectSteps.openProjectPage(projectCount - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
     }
 }
