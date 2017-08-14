@@ -22,12 +22,6 @@ public class ComponentSteps extends ScenarioSteps {
 
     ProjectDetailsPage projectDetailsPage;
 
-    @Steps
-    CommonSteps commonSteps;
-
-    @Steps
-    LoginSteps loginSteps;
-
     @Step
     public void openCreateComponentPage() {
         componentListPage.clickAddComponent();
@@ -48,21 +42,18 @@ public class ComponentSteps extends ScenarioSteps {
         return componentListPage.getComponentCount();
     }
 
-    public void openComponentPage(long projectNumberInList) {
-        componentListPage.openComponentPage(projectNumberInList);
+    public void openComponentPage(long componentNumberInList) {
+        componentListPage.openComponentPage(componentNumberInList);
     }
 
     //TODO
-    public void projectDetailsShouldBeLike(String name, String description) {
+    public void componentDetailsShouldBeLike(ComponentTypeEnum componentTypeEnum, String name) {
         Project project = projectDetailsPage.getProjectDetails();
         assertTrue(name.equals(project.getName()));
-        assertTrue(description.equals(project.getDescription()));
     }
 
     //TODO
-    public void editProject(String name, String description, String domains) {
-        projectDetailsPage.clickEditProjectLink();
-        //createComponentPage.fillInForm(name, description, domains);
+    public void editComponent(String name) {
         createComponentPage.clickUpdateButton();
     }
 }

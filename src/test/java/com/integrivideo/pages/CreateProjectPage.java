@@ -32,7 +32,6 @@ public class CreateProjectPage extends PageObject {
         projectNameField.sendKeys(name);
         projectDescriptionField.clear();
         projectDescriptionField.sendKeys(description);
-        //TODO add ability to input multiple domains
         String[] domainsArray = domains.split(";");
         for (int i = 0; i < domainsArray.length; i++) {
             findAll(DOMAINS_INPUT_BY).get(i).clear();

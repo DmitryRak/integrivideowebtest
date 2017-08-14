@@ -26,18 +26,28 @@ public class ManageComponentStoryTest extends BaseTest {
     @Test
     public void videoChatComponentCanBeCreated() {
         projectSteps.createProject();
-        long projectCount = projectSteps.getProjectCount();
-        projectSteps.openProjectPage(projectCount - 2);
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
+        //TODO add steps to validate content
     }
 
     @Test
     public void cloudVideoRecorderComponentCanBeCreated() {
         projectSteps.createProject();
-        long projectCount = projectSteps.getProjectCount();
-        projectSteps.openProjectPage(projectCount - 2);
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
+        //TODO add steps to validate content
+    }
+
+    @Test
+    public void componentCanBeUpdated() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
+        componentSteps.editComponent("edited");
+        //TODO add steps to validate content
     }
 }
