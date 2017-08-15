@@ -10,6 +10,9 @@ import net.thucydides.core.annotations.Story;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
+import static org.junit.Assert.assertEquals;
+
 @Story(ManagePaymentMethodsStoryTest.class)
 @RunWith(SerenityRunner.class)
 public class ManagePaymentMethodsStoryTest extends BaseTest {
@@ -26,9 +29,28 @@ public class ManagePaymentMethodsStoryTest extends BaseTest {
     @Test
     public void paymentMethodCanBeAdded() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+
+        int cardCount = billingSteps.getCardCount();
         billingSteps.addNewCard(Data.CARD_NUMBER, Data.EXPIRATION_MONTH, Data.EXPIRATION_YEAR, Data.CARDHOLDER_NAME);
         commonSteps.currentPageShouldBe(Data.BILLING_PAGE);
+        assertEquals(cardCount + 1, billingSteps.getCardCount());
     }
-    //TODO test Delete payment
-    //TODO test make default payment
+
+    @Test
+    public void defaultPaymentMethodCanBeChanged() {
+        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+        getDriver().get(Data.BILLING_PAGE);
+        billingSteps.addNewCard(Data.CARD_NUMBER, Data.EXPIRATION_MONTH, Data.EXPIRATION_YEAR, Data.CARDHOLDER_NAME);
+        billingSteps.makeDefaultCard(billingSteps.getCardCount() - 1);
+        commonSteps.notificationMessageShouldBeLike("Default payment method successfully changed");
+    }
+
+    @Test
+    public void removePaymentMethod() {
+        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+        getDriver().get(Data.BILLING_PAGE);
+        billingSteps.addNewCard(Data.CARD_NUMBER, Data.EXPIRATION_MONTH, Data.EXPIRATION_YEAR, Data.CARDHOLDER_NAME);
+        billingSteps.removeCard(billingSteps.getCardCount() - 1);
+        commonSteps.notificationMessageShouldBeLike("Payment method successfully removed");
+    }
 }
