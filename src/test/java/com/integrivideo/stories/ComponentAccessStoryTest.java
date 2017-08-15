@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 public class ComponentAccessStoryTest extends BaseTest {
 
     @Test
-    public void toDOTest(){
+    public void toDOTest() {
         //TODO test for demo without domain specified (1 domain)
         //TODO test for component without domain specified (2 domain)
         //TODO test for component with domain specified (3 domain)

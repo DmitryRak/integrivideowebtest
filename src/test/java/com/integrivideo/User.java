@@ -4,6 +4,7 @@ package com.integrivideo;
  * Created by Олька on 06.06.2017.
  */
 public class User {
+
     public String sessionId;
     private String userName;
     private boolean isOnline;

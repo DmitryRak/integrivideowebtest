@@ -19,16 +19,13 @@ import org.junit.runner.RunWith;
 public class LoginStoryTest extends BaseTest {
 
     @Steps
-    LoginSteps loginSteps;
-
+    CommonSteps commonSteps;
     @Steps
     LandingPageSteps landingPageSteps;
-
+    @Steps
+    LoginSteps loginSteps;
     @Steps
     ProjectSteps projectSteps;
-
-    @Steps
-    CommonSteps commonSteps;
 
     @Test
     public void userCanLoginFromLanding() {

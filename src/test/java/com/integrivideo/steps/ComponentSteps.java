@@ -6,7 +6,6 @@ import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.pages.CreateComponentPage;
 import com.integrivideo.pages.ProjectDetailsPage;
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
 import static org.junit.Assert.assertTrue;
@@ -16,11 +15,11 @@ import static org.junit.Assert.assertTrue;
  */
 public class ComponentSteps extends ScenarioSteps {
 
-    ComponentListPage componentListPage;
+    private ComponentListPage componentListPage;
 
-    CreateComponentPage createComponentPage;
+    private CreateComponentPage createComponentPage;
 
-    ProjectDetailsPage projectDetailsPage;
+    private ProjectDetailsPage projectDetailsPage;
 
     @Step
     public void openCreateComponentPage() {

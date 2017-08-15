@@ -10,16 +10,17 @@ import org.openqa.selenium.support.ui.Select;
  * Created by asus on 7/13/2017.
  */
 public class CreateComponentPage extends PageObject {
+
     private final static By CREATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Create')]");
     private final static By UPDATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     @FindBy(xpath = "//input[contains(@name,'name')]")
-    WebElement componentNameField;
+    private WebElement componentNameField;
     @FindBy(xpath = "//select[contains(@name,'type')]")
-    WebElement componentTypeField;
+    private WebElement componentTypeField;
 
     public void fillInForm(ComponentTypeEnum componentTypeEnum, String name) {
         Select select = new Select(componentTypeField);
-        switch(componentTypeEnum){
+        switch (componentTypeEnum) {
             case VIDEO_CHAT:
                 select.selectByVisibleText("Video Chat");
                 break;

@@ -16,17 +16,13 @@ import static org.junit.Assert.assertTrue;
  */
 public class ProjectSteps extends ScenarioSteps {
 
-    ProjectListPage projectListPage;
-
-    CreateProjectPage createProjectPage;
-
-    ProjectDetailsPage projectDetailsPage;
-
+    private CreateProjectPage createProjectPage;
+    private ProjectDetailsPage projectDetailsPage;
+    private ProjectListPage projectListPage;
     @Steps
-    CommonSteps commonSteps;
-
+    private LoginSteps loginSteps;
     @Steps
-    LoginSteps loginSteps;
+    private CommonSteps commonSteps;
 
     @Step
     public void shouldBeOnProjectsPage() {

@@ -18,10 +18,9 @@ public class ManageComponentStoryTest extends BaseTest {
 
 
     @Steps
-    ProjectSteps projectSteps;
-
-    @Steps
     ComponentSteps componentSteps;
+    @Steps
+    ProjectSteps projectSteps;
 
     @Test
     public void videoChatComponentCanBeCreated() {

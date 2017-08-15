@@ -18,10 +18,9 @@ import org.junit.runner.RunWith;
 public class ManageProjectStoryTest extends BaseTest {
 
     @Steps
-    ProjectSteps projectSteps;
-
-    @Steps
     LoginSteps loginSteps;
+    @Steps
+    ProjectSteps projectSteps;
 
     @Test
     public void projectCanBeCreated() {

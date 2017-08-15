@@ -7,15 +7,17 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
 public class BillingSteps extends ScenarioSteps {
-    BillingPage billingPage;
+
+    private BillingPage billingPage;
 
     @Steps
-    LoginSteps loginSteps;
+    private LoginSteps loginSteps;
 
     @Step
     public void isOnBillingPage() {
         loginSteps.opensUrlAndLogin(Data.BILLING_PAGE, Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
     }
+
     @Step
     public void addNewCard(String number, String month, String year, String cardholder) {
         getDriver().get(Data.BILLING_PAGE);

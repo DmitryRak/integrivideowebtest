@@ -9,7 +9,8 @@ import net.thucydides.core.steps.ScenarioSteps;
  * Created by asus on 7/12/2017.
  */
 public class SignUpSteps extends ScenarioSteps {
-    SignUpPage signUpPage;
+
+    private SignUpPage signUpPage;
 
     @Step
     public void enterCredentialsAndSignUp(String email, String password) {

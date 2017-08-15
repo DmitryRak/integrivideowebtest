@@ -7,6 +7,7 @@ import java.util.List;
  * Created by asus on 7/18/2017.
  */
 public class Project {
+
     private String name;
     private String description;
     private List<String> domains;

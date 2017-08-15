@@ -1,5 +1,12 @@
 package com.integrivideo.pages;
 
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.integrivideo.Message;
 import com.integrivideo.User;
 import com.integrivideo.elements.WebElementHelper;
@@ -10,28 +17,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
 public class ChatPage extends PageObject {
-    private final By OWN_MESSAGES_BY = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
-    private final By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
-    private final By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
+
+    private final static By OWN_MESSAGES_BY = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
+    private final static By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
+    private final static By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
     @FindBy(xpath = "//button[contains(@class,'integri-chat-upload-file')]")
-    WebElement fileUploadButton;
+    private WebElement fileUploadButton;
     @FindBy(id = "invite-users-to-chat")
-    WebElement inviteButton;
+    private WebElement inviteButton;
     @FindBy(xpath = "//button[contains(@class,'integri-chat-send-message')]")
-    WebElement sendButton;
+    private WebElement sendButton;
     @FindBy(xpath = "//button[contains(@class,'integri-show-user-settings')]")
-    WebElement userSettingsButton;
+    private WebElement userSettingsButton;
 
     public void inputText(String text) {
         find(TEXT_INPUT).sendKeys(text);
@@ -77,7 +78,7 @@ public class ChatPage extends PageObject {
                 message.setDate(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-date')]")).getText());
                 message.setUserName(mess.findElement(By.xpath("//span[contains(@class,'integri-session-user-name')]")).getText());
                 message.setEdited(WebElementHelper.elementHasClass(mess, "integri-chat-message-edited"));
-//                message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
+                //                message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
                 if (mess.findElements(By.xpath("//div[contains(@class,'integri-chat-message-type-file')]")).size() > 0) {
                     message.setFile(true);
                     message.setFileName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-attachment-file-name')]")).getText());

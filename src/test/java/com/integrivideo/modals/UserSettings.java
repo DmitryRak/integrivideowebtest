@@ -1,8 +1,9 @@
 package com.integrivideo.modals;
 
 public class UserSettings {
-    String name;
+
     String email;
+    String name;
     String userPicUrl;
 
     public String getName() {

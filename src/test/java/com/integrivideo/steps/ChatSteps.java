@@ -18,9 +18,10 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
  * Created by Dmitry Rak on 4/15/2017.
  */
 public class ChatSteps extends ScenarioSteps {
-    ChatPage chatPage;
-    FileUploadModal fileUpload;
-    UserSettingsModal userSettingsModal;
+
+    private ChatPage chatPage;
+    private FileUploadModal fileUpload;
+    private UserSettingsModal userSettingsModal;
 
     @Step
     public void sendWithButton(String text) throws InterruptedException {
@@ -123,7 +124,7 @@ public class ChatSteps extends ScenarioSteps {
      *
      */
     @Step
-    public void closeSettingModal(){
+    public void closeSettingModal() {
         userSettingsModal.closeSettingsWindow();
     }
 

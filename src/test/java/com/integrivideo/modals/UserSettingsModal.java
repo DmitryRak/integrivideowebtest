@@ -6,14 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class UserSettingsModal extends PageObject {
+
     private final By CANCEL_BUTTON_BY = By.xpath("//a[contains(@class, 'integri-user-settings-reset')]");
     private final By SAVE_BUTTON_BY = By.xpath("//button[contains(@class, 'integri-user-settings-save')]");
-    @FindBy(xpath = "//input[contains(@name,'userName')]")
-    WebElement userName;
     @FindBy(xpath = "//input[contains(@name,'userEmail')]")
-    WebElement userEmail;
+    private WebElement userEmail;
+    @FindBy(xpath = "//input[contains(@name,'userName')]")
+    private WebElement userName;
     @FindBy(xpath = "//input[contains(@name,'userPic')]")
-    WebElement userPic;
+    private WebElement userPic;
 
     public void closeSettingsWindow() {
         waitForRenderedElements(CANCEL_BUTTON_BY);

@@ -1,5 +1,7 @@
 package com.integrivideo.pages;
 
+import java.util.List;
+
 import com.integrivideo.Project;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -7,20 +9,19 @@ import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
 /**
  * Created by asus on 7/13/2017.
  */
 public class CreateProjectPage extends PageObject {
+
     private final static By CREATE_PROJECT_BUTTON_BY = By.xpath("//button[contains(text(), 'Create')]");
-    private final static By UPDATE_PROJECT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     private final static By DOMAINS_INPUT_BY = By.xpath("//input[contains(@name,'domains[]')]");
     private final static By REMOVE_DOMAIN_BY = By.xpath("//div[contains(@class,'remove-domain')]");
-    @FindBy(xpath = "//input[contains(@name,'name')]")
-    WebElement projectNameField;
+    private final static By UPDATE_PROJECT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     @FindBy(xpath = "//textarea[contains(@name,'description')]")
-    WebElement projectDescriptionField;
+    private WebElement projectDescriptionField;
+    @FindBy(xpath = "//input[contains(@name,'name')]")
+    private WebElement projectNameField;
 
     /**
      * @param name

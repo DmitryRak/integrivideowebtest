@@ -13,8 +13,9 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
  * Created by asus on 7/12/2017.
  */
 public class CommonSteps extends ScenarioSteps {
-    public NotificationMessagePopup notificationMessagePopup;
-    public CommonPage commonPage;
+
+    private CommonPage commonPage;
+    private NotificationMessagePopup notificationMessagePopup;
 
     public void currentPageShouldBe(String url) {
         assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(url));

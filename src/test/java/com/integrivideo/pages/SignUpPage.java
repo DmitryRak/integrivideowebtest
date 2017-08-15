@@ -10,16 +10,13 @@ import org.openqa.selenium.WebElement;
 public class SignUpPage extends PageObject {
 
     @FindBy(xpath = "//input[contains(@name,'email')]")
-    WebElement emailField;
-
-    @FindBy(xpath = "//input[contains(@name,'password')]")
-    WebElement passwordField;
-
-    @FindBy(xpath = "//button[contains(text(),'Sign up')]")
-    WebElement signUpButton;
-
+    private WebElement emailField;
     @FindBy(xpath = "//button[contains(text(),'Log in')]")
-    WebElement loginLink;
+    private WebElement loginLink;
+    @FindBy(xpath = "//input[contains(@name,'password')]")
+    private WebElement passwordField;
+    @FindBy(xpath = "//button[contains(text(),'Sign up')]")
+    private WebElement signUpButton;
 
     public void enterCredentials(String email, String password) {
         emailField.sendKeys(email);

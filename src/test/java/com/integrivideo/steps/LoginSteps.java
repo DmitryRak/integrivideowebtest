@@ -16,9 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginSteps extends ScenarioSteps {
 
     @Steps
-    CommonSteps commonSteps;
+    private CommonSteps commonSteps;
 
-    LoginPage loginPage;
+    private LoginPage loginPage;
 
     @Step
     public void shouldBeOnLoginPage() {

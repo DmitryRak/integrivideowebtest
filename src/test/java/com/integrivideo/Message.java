@@ -4,6 +4,7 @@ package com.integrivideo;
  * Created by Dmitry Rak on 4/15/2017.
  */
 public class Message {
+
     private String id;
     private String date;
     private String userName;

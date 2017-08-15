@@ -9,11 +9,11 @@ import org.openqa.selenium.WebElement;
  * Created by Dmitry Rak on 7/12/2017.
  */
 public class LandingPage extends PageObject {
-    @FindBy(xpath = "//span[contains(text(), 'Free Sign up')]")
-    WebElement signUpLink;
 
     @FindBy(xpath = "//a[contains(text(), 'Log in')]")
-    WebElement loginLink;
+    private WebElement loginLink;
+    @FindBy(xpath = "//span[contains(text(), 'Free Sign up')]")
+    private WebElement signUpLink;
 
     public void clickSignUpOnFirstBlock() {
         getDriver().get(Data.BASE_URL);

@@ -18,18 +18,16 @@ import static org.junit.Assert.assertEquals;
 public class ManagePaymentMethodsStoryTest extends BaseTest {
 
     @Steps
-    LoginSteps loginSteps;
-
-    @Steps
     BillingSteps billingSteps;
-
     @Steps
     CommonSteps commonSteps;
+    @Steps
+    LoginSteps loginSteps;
 
     @Test
     public void paymentMethodCanBeAdded() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
-
+        getDriver().get(Data.BILLING_PAGE);
         int cardCount = billingSteps.getCardCount();
         billingSteps.addNewCard(Data.CARD_NUMBER, Data.EXPIRATION_MONTH, Data.EXPIRATION_YEAR, Data.CARDHOLDER_NAME);
         commonSteps.currentPageShouldBe(Data.BILLING_PAGE);

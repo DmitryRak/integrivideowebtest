@@ -19,16 +19,13 @@ import org.junit.runner.RunWith;
 public class SignUpStoryTest extends BaseTest {
 
     @Steps
-    SignUpSteps signUpSteps;
-
-    @Steps
-    LoginSteps loginSteps;
-
+    CommonSteps commonSteps;
     @Steps
     LandingPageSteps landingPageSteps;
-
     @Steps
-    CommonSteps commonSteps;
+    LoginSteps loginSteps;
+    @Steps
+    SignUpSteps signUpSteps;
 
     @Test
     public void newUserCanBeRegistered() {

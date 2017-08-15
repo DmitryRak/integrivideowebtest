@@ -7,16 +7,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BillingPage extends PageObject {
-    public static final By CARD_NUMBER_BY = By.xpath("//input[contains(@name,'number')]");
-    public static final By EXPIRATION_MONTH_BY = By.xpath("//input[contains(@name,'expirationMonth')]");
-    public static final By EXPIRATION_YEAR_BY = By.xpath("//input[contains(@name,'expirationYear')]");
-    public static final By CARDHOLDER_BY = By.xpath("//input[contains(@name,'cardholderName')]");
-    public static final By ADD_CARD_BY = By.xpath("//button[contains(text(), 'Add')]");
-    public static final By CARD_ROW_BY = By.xpath("//div[contains(@class,'cards')]/div[contains(@class,'row')]");
-    public static final By MAKE_DEFAULT_BY = By.xpath("//a[contains(text(), 'Make default')]");
-    public static final By REMOVE_BY = By.xpath("//a[contains(text(), 'Remove')]");
+
+    private static final By ADD_CARD_BY = By.xpath("//button[contains(text(), 'Add')]");
+    private static final By CARDHOLDER_BY = By.xpath("//input[contains(@name,'cardholderName')]");
+    private static final By CARD_NUMBER_BY = By.xpath("//input[contains(@name,'number')]");
+    private static final By CARD_ROW_BY = By.xpath("//div[contains(@class,'cards')]/div[contains(@class,'row')]");
+    private static final By EXPIRATION_MONTH_BY = By.xpath("//input[contains(@name,'expirationMonth')]");
+    private static final By EXPIRATION_YEAR_BY = By.xpath("//input[contains(@name,'expirationYear')]");
+    private static final By MAKE_DEFAULT_BY = By.xpath("//a[contains(text(), 'Make default')]");
+    private static final By REMOVE_BY = By.xpath("//a[contains(text(), 'Remove')]");
     @FindBy(xpath = "//a[contains(text(), 'Add new')]")
-    WebElement addPaymentMethod;
+    private WebElement addPaymentMethod;
 
     public void typeCardInfo(String number, String month, String year, String cardholder) {
         find(CARD_NUMBER_BY).clear();

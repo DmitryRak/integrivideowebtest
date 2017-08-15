@@ -4,7 +4,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-public class TEST    {
+public class TEST {
 
     //TODO open remote connections on the server
     public static void main(String[] args) {

@@ -6,14 +6,12 @@ import org.openqa.selenium.WebElement;
 
 public class CommonPage extends PageObject {
 
-    @FindBy(xpath = "//a[contains(text(), 'Projects')]")
-    WebElement projectsLink;
-
     @FindBy(xpath = "//a[contains(text(), 'Billing')]")
-    WebElement billingLink;
-
+    private WebElement billingLink;
     @FindBy(xpath = "//a[contains(text(), 'Logout')]")
-    WebElement logoutLink;
+    private WebElement logoutLink;
+    @FindBy(xpath = "//a[contains(text(), 'Projects')]")
+    private WebElement projectsLink;
 
     public void clickLogout() {
         clickOn(logoutLink);

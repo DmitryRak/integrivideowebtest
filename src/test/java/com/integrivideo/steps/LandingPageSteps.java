@@ -8,7 +8,8 @@ import net.thucydides.core.steps.ScenarioSteps;
  * Created by asus on 7/12/2017.
  */
 public class LandingPageSteps extends ScenarioSteps {
-    LandingPage landingPage;
+
+    private LandingPage landingPage;
 
     @Step
     public void goToSignUpLinkFromFirstBlock() {
