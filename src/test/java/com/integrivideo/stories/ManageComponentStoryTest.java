@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 /**
  * Created by drak on 7/19/2017.
  */
-@Story(ManageProjectStoryTest.class)
+@Story(ManageComponentStoryTest.class)
 @RunWith(SerenityRunner.class)
 public class ManageComponentStoryTest extends BaseTest {
 

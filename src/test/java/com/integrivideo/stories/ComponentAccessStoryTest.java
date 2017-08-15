@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 /**
  * Created by drak on 8/9/2017.
  */
-@Story(ManageProjectStoryTest.class)
+@Story(ComponentAccessStoryTest.class)
 @RunWith(SerenityRunner.class)
 public class ComponentAccessStoryTest extends BaseTest {
 

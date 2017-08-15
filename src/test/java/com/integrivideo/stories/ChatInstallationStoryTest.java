@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.Story;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@Story(BasicChatStoryTest.class)
+@Story(ChatInstallationStoryTest.class)
 @RunWith(SerenityRunner.class)
 public class ChatInstallationStoryTest extends BaseTest {
 

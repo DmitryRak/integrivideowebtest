@@ -2,6 +2,7 @@ package com.integrivideo.stories;
 
 import com.integrivideo.Data;
 import com.integrivideo.steps.ChatSteps;
+import com.integrivideo.steps.CommonSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
@@ -19,6 +20,9 @@ public class BasicChatStoryTest extends BaseTest {
 
     @Steps
     ChatSteps chatSteps;
+
+    @Steps
+    CommonSteps commonSteps;
 
     @Test
     public void sendMessageUsingEnter() throws InterruptedException {
@@ -93,6 +97,7 @@ public class BasicChatStoryTest extends BaseTest {
     public void inviteUserButton() {
         chatSteps.openDemoChat();
         chatSteps.inviteLinkShouldBeLike(driver.getCurrentUrl());
+        commonSteps.notificationMessageShouldBeLike("Link was copied");
     }
 
     @Test

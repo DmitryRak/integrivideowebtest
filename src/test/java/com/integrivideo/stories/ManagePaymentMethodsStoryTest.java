@@ -10,7 +10,7 @@ import net.thucydides.core.annotations.Story;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@Story(ManageProjectStoryTest.class)
+@Story(ManagePaymentMethodsStoryTest.class)
 @RunWith(SerenityRunner.class)
 public class ManagePaymentMethodsStoryTest extends BaseTest {
 
