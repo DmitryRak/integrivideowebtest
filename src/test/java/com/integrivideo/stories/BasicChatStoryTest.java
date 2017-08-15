@@ -25,35 +25,35 @@ public class BasicChatStoryTest extends BaseTest {
     CommonSteps commonSteps;
 
     @Test
-    public void sendMessageUsingEnter() throws InterruptedException {
+    public void sendMessageUsingEnter() {
         chatSteps.openDemoChat();
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.messageTextShouldBeLike(1, Data.TEST_MGS1);
     }
 
     @Test
-    public void useOfShiftEnter() throws InterruptedException {
+    public void useOfShiftEnter() {
         chatSteps.openDemoChat();
         chatSteps.sendSeveralLines(Data.TEST_MGS1, Data.SECOND_LINE);
         chatSteps.messageTextShouldBeLike(1, Data.TEST_MGS1 + "\n" + Data.SECOND_LINE);
     }
 
     @Test
-    public void sendMessageUsingButton() throws InterruptedException {
+    public void sendMessageUsingButton() {
         chatSteps.openDemoChat();
         chatSteps.sendWithButton(Data.TEST_MGS1);
         chatSteps.messageTextShouldBeLike(1, Data.TEST_MGS1);
     }
 
     @Test
-    public void sendMessageWithSpecialSymbols() throws InterruptedException {
+    public void sendMessageWithSpecialSymbols() {
         chatSteps.openDemoChat();
         chatSteps.sendWithButton(SPECIAL_CHARS);
         chatSteps.messageTextShouldBeLike(1, SPECIAL_CHARS);
     }
 
     @Test
-    public void editMessage() throws InterruptedException {
+    public void editMessage() {
         chatSteps.openDemoChat();
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.editMessage(1, Data.EDITED_MSG);
@@ -62,7 +62,7 @@ public class BasicChatStoryTest extends BaseTest {
     }
 
     @Test
-    public void removeMessage() throws InterruptedException {
+    public void removeMessage() {
         chatSteps.openDemoChat();
         chatSteps.sendWithEnter(Data.TEST_MGS1);
         chatSteps.removeMessage(1);
@@ -78,7 +78,7 @@ public class BasicChatStoryTest extends BaseTest {
     }
 
     @Test
-    public void editMessageWithLineBreaks() throws InterruptedException {
+    public void editMessageWithLineBreaks() {
         chatSteps.openDemoChat();
         chatSteps.sendSeveralLines(Data.TEST_MGS1, Data.SECOND_LINE);
         chatSteps.editMessage(1, null);
@@ -86,7 +86,7 @@ public class BasicChatStoryTest extends BaseTest {
     }
 
     @Test
-    public void escapingCharacters() throws InterruptedException {
+    public void escapingCharacters() {
         chatSteps.openDemoChat();
         chatSteps.sendWithEnter(Data.XSS_TEXT);
         chatSteps.messageTextShouldBeLike(1, Data.XSS_TEXT);

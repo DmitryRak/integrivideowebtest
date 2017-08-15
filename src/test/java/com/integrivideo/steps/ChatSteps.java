@@ -24,26 +24,26 @@ public class ChatSteps extends ScenarioSteps {
     private UserSettingsModal userSettingsModal;
 
     @Step
-    public void sendWithButton(String text) throws InterruptedException {
+    public void sendWithButton(String text) {
         chatPage.inputText(text);
-        Thread.sleep(2000);
+        waitABit(2000);
         chatPage.clickSendButton();
     }
 
     @Step
-    public void sendWithEnter(String text) throws InterruptedException {
+    public void sendWithEnter(String text) {
         chatPage.inputText(text);
-        Thread.sleep(2000);
+        waitABit(2000);
         chatPage.pressEnter();
     }
 
     @Step
-    public void sendSeveralLines(String... lines) throws InterruptedException {
+    public void sendSeveralLines(String... lines) {
         for (String line : lines) {
             chatPage.inputText(line);
             chatPage.pressShiftEnter();
         }
-        Thread.sleep(2000);
+        waitABit(2000);
         chatPage.pressEnter();
     }
 
@@ -63,12 +63,12 @@ public class ChatSteps extends ScenarioSteps {
      * @throws InterruptedException
      */
     @Step
-    public void editMessage(final int messageNumber, String finalText) throws InterruptedException {
+    public void editMessage(final int messageNumber, String finalText) {
         chatPage.editMessage(messageNumber, finalText);
     }
 
     @Step
-    public void removeMessage(final int messageNumber) throws InterruptedException {
+    public void removeMessage(final int messageNumber) {
         //String id = chatPage.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
         chatPage.removeMessage(messageNumber);
     }

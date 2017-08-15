@@ -91,7 +91,7 @@ public class ChatPage extends PageObject {
         return ownMessages;
     }
 
-    public void editMessage(final int messageNumber, final String finalText) throws InterruptedException {
+    public void editMessage(final int messageNumber, final String finalText) {
         WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber - 1);
         WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-edit-message')]"));
         button.click();
@@ -101,15 +101,15 @@ public class ChatPage extends PageObject {
             messageText.sendKeys(finalText);
         }
         messageText.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
+        waitABit(1000);
     }
 
-    public void removeMessage(final int messageNumber) throws InterruptedException {
+    public void removeMessage(final int messageNumber) {
         WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber - 1);
         WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-remove-message')]"));
         button.click();
         getAlert().accept();
-        Thread.sleep(1000);
+        waitABit(1000);
     }
 
     public void openFileUploadModal() {
