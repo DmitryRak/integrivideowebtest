@@ -114,4 +114,13 @@ public class BasicChatStoryTest extends BaseTest {
         chatSteps.openSettingsModal();
         chatSteps.validateUserSettings(Data.SPECIAL_CHARS, Data.USER_2_EMAIL, Data.IMAGE_URL_4K);
     }
+
+    @Test
+    public void demoComponentShouldHaveRestriction(){
+        chatSteps.openDemoChat();
+        for(int i = 0; i <= Data.MAX_DEMO_MESSAGE_COUNT; i++){
+            chatSteps.sendWithEnter("text");
+        }
+        chatSteps.isThisIsTrialVersionModalShown();
+    }
 }

@@ -13,6 +13,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Dmitry Rak on 4/15/2017.
@@ -26,14 +27,14 @@ public class ChatSteps extends ScenarioSteps {
     @Step
     public void sendWithButton(String text) {
         chatPage.inputText(text);
-        waitABit(2000);
+        waitABit(1000);
         chatPage.clickSendButton();
     }
 
     @Step
     public void sendWithEnter(String text) {
         chatPage.inputText(text);
-        waitABit(2000);
+        waitABit(1000);
         chatPage.pressEnter();
     }
 
@@ -43,7 +44,7 @@ public class ChatSteps extends ScenarioSteps {
             chatPage.inputText(line);
             chatPage.pressShiftEnter();
         }
-        waitABit(2000);
+        waitABit(1000);
         chatPage.pressEnter();
     }
 
@@ -150,5 +151,10 @@ public class ChatSteps extends ScenarioSteps {
     public void updateUserSettings(String name, String email, String imageUrl) {
         userSettingsModal.insertSettings(name, email, imageUrl);
         userSettingsModal.saveSettings();
+    }
+
+    @Step
+    public void isThisIsTrialVersionModalShown(){
+        assertTrue(chatPage.isThisIsTrialVersionModalShown());
     }
 }

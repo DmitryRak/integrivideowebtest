@@ -40,4 +40,5 @@ public class Data {
     public final static String USER_2_EMAIL = "integriuser2@mailinator.com";
     public final static String USER_2_PASSWORD = "integripassword";
     public final static String XSS_TEXT = "<script>alert('TEXT');</script>";
+    public final static int MAX_DEMO_MESSAGE_COUNT = 10;
 }

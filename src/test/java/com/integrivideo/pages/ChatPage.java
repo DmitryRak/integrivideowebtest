@@ -25,6 +25,7 @@ public class ChatPage extends PageObject {
     private final static By OWN_MESSAGES_BY = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
     private final static By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
     private final static By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
+    private final static By DEMO_DISCLAIMER_BY =    By.xpath("//div[contains(@class, 'integri-demo-version')]");
     @FindBy(xpath = "//button[contains(@class,'integri-chat-upload-file')]")
     private WebElement fileUploadButton;
     @FindBy(id = "invite-users-to-chat")
@@ -138,5 +139,9 @@ public class ChatPage extends PageObject {
 
     public void openUserSettingsModal() {
         clickOn(userSettingsButton);
+    }
+
+    public boolean isThisIsTrialVersionModalShown(){
+        return find(DEMO_DISCLAIMER_BY).isDisplayed();
     }
 }

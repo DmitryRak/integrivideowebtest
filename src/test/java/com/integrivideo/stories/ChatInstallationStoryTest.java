@@ -29,6 +29,9 @@ public class ChatInstallationStoryTest extends BaseTest {
         chatSteps.closeSettingModal();
         chatSteps.uploadFile(Data.IMAGE_FILE_PATH.getAbsolutePath());
         chatSteps.messageShouldContainFileInfo(1, Data.IMAGE_FILE_PATH.getName() + " (2kb)");
-
     }
+    //TODO test for demo without domain specified (1 domain)
+    //TODO test for component without domain specified (2 domain)
+    //TODO test for component with domain specified (3 domain)
+    //TODO test for component with domain specified in another project (4 domain)
 }
