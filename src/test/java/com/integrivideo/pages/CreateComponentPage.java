@@ -1,5 +1,8 @@
 package com.integrivideo.pages;
 
+import java.util.logging.Logger;
+
+import com.integrivideo.Component;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
@@ -11,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class CreateComponentPage extends PageObject {
 
+    private static final Logger LOGGER = Logger.getLogger(CreateComponentPage.class.getName());
     private final static By CREATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Create')]");
     private final static By UPDATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     @FindBy(xpath = "//input[contains(@name,'name')]")
@@ -19,16 +23,18 @@ public class CreateComponentPage extends PageObject {
     private WebElement componentTypeField;
 
     public void fillInForm(ComponentTypeEnum componentTypeEnum, String name) {
-        Select select = new Select(componentTypeField);
-        switch (componentTypeEnum) {
-            case VIDEO_CHAT:
-                select.selectByVisibleText("Video Chat");
-                break;
-            case CLOUD_VIDEO_RECORDER:
-                select.selectByVisibleText("Cloud video recorder");
-                break;
-            default:
-                break;
+        if (null != componentTypeEnum) {
+            Select select = new Select(componentTypeField);
+            switch (componentTypeEnum) {
+                case VIDEO_CHAT:
+                    select.selectByVisibleText("Video Chat");
+                    break;
+                case CLOUD_VIDEO_RECORDER:
+                    select.selectByVisibleText("Cloud video recorder");
+                    break;
+                default:
+                    break;
+            }
         }
         componentNameField.clear();
         componentNameField.sendKeys(name);
@@ -40,5 +46,20 @@ public class CreateComponentPage extends PageObject {
 
     public void clickUpdateButton() {
         find(UPDATE_COMPONENT_BUTTON_BY).submit();
+    }
+
+    public Component getComponentDetails() {
+        Component component = new Component();
+        component.setName(componentNameField.getAttribute("value"));
+        //TODO uncomment after adding of locator
+        /*Select select = new Select(componentTypeField);
+        String selectedComponent = select.getFirstSelectedOption().getText();
+        LOGGER.info(selectedComponent);
+        if(selectedComponent.equals(VIDEO_CHAT.toString())){
+            component.setComponentTypeEnum(VIDEO_CHAT);
+        }else if(selectedComponent.equals(CLOUD_VIDEO_RECORDER.toString())){
+            component.setComponentTypeEnum(CLOUD_VIDEO_RECORDER);
+        }*/
+        return component;
     }
 }

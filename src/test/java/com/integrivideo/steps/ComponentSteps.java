@@ -1,6 +1,6 @@
 package com.integrivideo.steps;
 
-import com.integrivideo.Project;
+import com.integrivideo.Component;
 import com.integrivideo.pages.ComponentListPage;
 import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.pages.CreateComponentPage;
@@ -45,14 +45,15 @@ public class ComponentSteps extends ScenarioSteps {
         componentListPage.openComponentPage(componentNumberInList);
     }
 
-    //TODO
     public void componentDetailsShouldBeLike(ComponentTypeEnum componentTypeEnum, String name) {
-        Project project = projectDetailsPage.getProjectDetails();
-        assertTrue(name.equals(project.getName()));
+        Component component = createComponentPage.getComponentDetails();
+        assertTrue(name.equals(component.getName()));
+        //TODO uncomment after updat eof locators
+        //assertTrue(componentTypeEnum.equals(component.getComponentTypeEnum()));
     }
 
-    //TODO
     public void editComponent(String name) {
+        createComponentPage.fillInForm(null, name);
         createComponentPage.clickUpdateButton();
     }
 }

@@ -28,7 +28,7 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
-        //TODO add steps to validate content
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.VIDEO_CHAT, "name");
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
-        //TODO add steps to validate content
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
     }
 
     @Test
@@ -47,6 +47,6 @@ public class ManageComponentStoryTest extends BaseTest {
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
         componentSteps.editComponent("edited");
-        //TODO add steps to validate content
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "edited");
     }
 }

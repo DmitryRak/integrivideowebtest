@@ -15,7 +15,7 @@ public class Project {
     /**
      * @param name
      * @param description
-     * @param domains     TODO separated string to list
+     * @param domains
      */
     public Project(String name, String description, List<String> domains) {
         this.name = name;
