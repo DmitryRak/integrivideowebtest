@@ -34,6 +34,7 @@ public class ManagePaymentMethodsStoryTest extends BaseTest {
         assertEquals(cardCount + 1, billingSteps.getCardCount());
     }
 
+    //TODO at least 2 payment methods should exist
     @Test
     public void defaultPaymentMethodCanBeChanged() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);

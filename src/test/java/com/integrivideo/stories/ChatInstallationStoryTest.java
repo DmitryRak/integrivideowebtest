@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 @RunWith(SerenityRunner.class)
 public class ChatInstallationStoryTest extends BaseTest {
 
+    //TODO components and project for these tests should be created via DB
     @Steps
     ChatSteps chatSteps;
 
