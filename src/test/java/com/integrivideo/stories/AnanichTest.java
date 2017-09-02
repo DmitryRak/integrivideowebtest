@@ -29,12 +29,7 @@ public class AnanichTest extends BaseTest {
 
     @Test
     public void newUserCanBeRegistered() {
-        landingPageSteps.goToSignUpLinkFromFirstBlock();
-        signUpSteps.enterCredentialsAndSignUp(Data.RANDOM_EMAIL, Data.USER_1_PASSWORD);
-        commonSteps.notificationMessageShouldBeLike("Message with instructions was sent");
-        loginSteps.shouldBeOnLoginPage();
+
     }
 
-    //TODO add test to validate email
-    //TODO add test to validate activation
 }
