@@ -7,9 +7,9 @@ PREREQUISITES:
 
 TO RUN TESTS:
 
-* mvn clean install
-* mvn clean install -Dbrowser=firefox -Dgroups=edit,upload
+* mvn clean install serenity:aggregate
+* mvn clean install -Dbrowser=firefox -Dgroups=edit,upload serenity:aggregate
 
 TO VIEW RESULTS:
 
-* See /target/surefire-reports/emailable-report.html
+* See /target/site/index.html
