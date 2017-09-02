@@ -24,8 +24,7 @@ public class ManageProjectStoryTest extends BaseTest {
 
     @Test
     public void projectCanBeCreated() {
-        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
-
+        projectSteps.isOnProjectListPage();
         long projectCount = projectSteps.getProjectCount();
         projectSteps.openCreateProjectPage();
         projectSteps.createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
@@ -48,8 +47,7 @@ public class ManageProjectStoryTest extends BaseTest {
 
     @Test
     public void projectWithMultipleDomainsCanBeCreated() {
-        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
-
+        projectSteps.isOnProjectListPage();
         long projectCount = projectSteps.getProjectCount();
         projectSteps.openCreateProjectPage();
         projectSteps.createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1 + ";" + Data.RANDOM_PROJECT_DOMAIN);
@@ -59,8 +57,7 @@ public class ManageProjectStoryTest extends BaseTest {
 
     @Test
     public void domainCanBeRemovedAtProjectCreationPage() {
-        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
-
+        projectSteps.isOnProjectListPage();
         long projectCount = projectSteps.getProjectCount();
         projectSteps.openCreateProjectPage();
         projectSteps.fillInForm(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1 + ";" + Data.RANDOM_PROJECT_DOMAIN);

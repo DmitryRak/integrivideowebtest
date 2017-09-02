@@ -42,6 +42,7 @@ public class LoginSteps extends ScenarioSteps {
             loginPage.submitLoginForm();
         }
 
-        new WebDriverWait(getDriver(), 10).pollingEvery(3, TimeUnit.SECONDS).until(ExpectedConditions.urlToBe(url));
+        new WebDriverWait(getDriver(), 10).pollingEvery(3, TimeUnit.SECONDS).
+                until(ExpectedConditions.urlToBe(url));
     }
 }

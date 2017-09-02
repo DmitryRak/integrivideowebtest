@@ -25,6 +25,11 @@ public class ProjectSteps extends ScenarioSteps {
     private CommonSteps commonSteps;
 
     @Step
+    public void isOnProjectListPage(){
+        loginSteps.opensUrlAndLogin(Data.PROJECTS_LIST_URL, Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+    }
+
+    @Step
     public void shouldBeOnProjectsPage() {
         commonSteps.currentPageShouldBe(Data.PROJECTS_LIST_URL);
     }
@@ -36,9 +41,6 @@ public class ProjectSteps extends ScenarioSteps {
 
     @Step
     public void createProject(String name, String description, String domains) {
-        if (!getDriver().getCurrentUrl().equals(Data.CREATE_PROJECT_URL)) {
-            getDriver().get(Data.CREATE_PROJECT_URL);
-        }
         createProjectPage.fillInForm(name, description, domains);
         createProjectPage.clickCreateButton();
         waitABit(2000);
@@ -46,7 +48,7 @@ public class ProjectSteps extends ScenarioSteps {
 
     @Step
     public void createProject() {
-        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+        loginSteps.opensUrlAndLogin(Data.CREATE_PROJECT_URL, Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
         createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
     }
 
