@@ -17,6 +17,7 @@ public class CreateComponentPage extends PageObject {
     private static final Logger LOGGER = Logger.getLogger(CreateComponentPage.class.getName());
     private final static By CREATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Create')]");
     private final static By UPDATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
+    private final static By HIDDEN_PROJECT_ID_BY = By.xpath("//input[contains(@name,'project')]");
     @FindBy(xpath = "//input[contains(@name,'name')]")
     private WebElement componentNameField;
     @FindBy(xpath = "//select[contains(@name,'type')]")

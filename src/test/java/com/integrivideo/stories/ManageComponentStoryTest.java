@@ -49,4 +49,7 @@ public class ManageComponentStoryTest extends BaseTest {
         componentSteps.editComponent("edited");
         componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "edited");
     }
+
+    //TODO check prices for each component
+
 }

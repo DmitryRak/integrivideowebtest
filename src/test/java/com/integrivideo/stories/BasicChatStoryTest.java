@@ -123,4 +123,6 @@ public class BasicChatStoryTest extends BaseTest {
         }
         chatSteps.isThisIsTrialVersionModalShown();
     }
+
+    //TODO add test to validate message with url + click
 }
