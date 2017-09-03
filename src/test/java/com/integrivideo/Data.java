@@ -20,8 +20,6 @@ public class Data {
     public final static String IMAGE_URL_4K = "http://4k.com/wp-content/uploads/2014/06/4k-image-tiger-jumping.jpg";
     public final static String INSTALLED_CHAT_WITH_DOMAIN = "http://dmitryrak11.000webhostapp.com/COMPONENT_CHAT_WITH_DOMAIN/";
     public final static String LOGIN_PAGE_URL = BASE_URL + "login";
-    public final static String MSG_WITH_URL = "Hi, check this site: http://bbc.com";
-    public final static String MSG_WITH_URL_FORMATTED = "Hi, check this site: <a target=\"_blank\" href='http://bbc.com'>http://bbc.com</a>";
     public final static String NAME = "Guest";
     public final static String PROJECTS_LIST_URL = BASE_URL + "app/projects";
     public final static String PROJECT_DESCRIPTION = "PROJECT_DESCRIPTION";

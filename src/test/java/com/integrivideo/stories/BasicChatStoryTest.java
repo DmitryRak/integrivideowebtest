@@ -127,8 +127,8 @@ public class BasicChatStoryTest extends BaseTest {
     @Test
     public void sendMessageWithUrl() {
         chatSteps.openDemoChat();
-        chatSteps.sendWithEnter(Data.MSG_WITH_URL);
-        chatSteps.messageTextShouldBeLike(1, Data.MSG_WITH_URL_FORMATTED);
+        chatSteps.sendWithEnter(Data.URL_BBC_SITE);
+        chatSteps.messageTextShouldBeLike(1, Data.URL_BBC_SITE);
         chatSteps.clickAttachment(1);
         chatSteps.verifyTabLink(2, Data.URL_BBC_SITE);
     }
