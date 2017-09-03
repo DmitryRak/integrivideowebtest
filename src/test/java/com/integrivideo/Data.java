@@ -40,6 +40,14 @@ public class Data {
     //TODO this user should be added directly into DB
     public final static String USER_2_EMAIL = "integriuser2@mailinator.com";
     public final static String USER_2_PASSWORD = "integripassword";
+    public final static String ADMIN_1_EMAIL = "integriadmin1@mailinator.com";
+    public final static String ADMIN_1_PASSWORD = "integripassword";
     public final static String XSS_TEXT = "<script>alert('TEXT');</script>";
     public final static int MAX_DEMO_MESSAGE_COUNT = 10;
+    public final static String ADMIN_HOME_PAGE = BASE_URL + "admin/";
+    public final static String ADMIN_USERS_PAGE_URL = ADMIN_HOME_PAGE + "users";
+    public final static String ADMIN_PROJECTS_PAGE_URL = ADMIN_HOME_PAGE + "projects";
+    public final static String ADMIN_COMPONENTS_PAGE_URL = ADMIN_HOME_PAGE + "components";
+    public final static String ADMIN_SESSIONS_PAGE_URL = ADMIN_HOME_PAGE + "sessions";
+    public final static String ADMIN_LOGS_PAGE_URL = ADMIN_HOME_PAGE + "logs";
 }

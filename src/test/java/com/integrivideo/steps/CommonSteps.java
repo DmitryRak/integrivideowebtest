@@ -29,4 +29,9 @@ public class CommonSteps extends ScenarioSteps {
     public void doLogout() {
         commonPage.clickLogout();
     }
+
+    @Step
+    public void openUrl(String url){
+        getDriver().get(url);
+    }
 }
