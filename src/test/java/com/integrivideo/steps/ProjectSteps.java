@@ -9,6 +9,8 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -79,6 +81,12 @@ public class ProjectSteps extends ScenarioSteps {
         assertTrue(expectedProject.getName().equals(actualProject.getName()));
         assertTrue(expectedProject.getDescription().equals(actualProject.getDescription()));
         assertTrue(expectedProject.getDomains().equals(actualProject.getDomains()));
+    }
+
+    @Step
+    public void projectPricesShouldBeLike(int base, int usage, int total) {
+        assertThat(projectDetailsPage.getProjectPrices(),
+                equalTo(String.format("BASE - $%s | USAGE - $%s | TOTAL - $%s", base, usage, total)));
     }
 
     @Step

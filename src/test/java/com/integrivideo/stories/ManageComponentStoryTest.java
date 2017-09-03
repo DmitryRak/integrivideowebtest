@@ -1,5 +1,6 @@
 package com.integrivideo.stories;
 
+import com.integrivideo.Data;
 import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.steps.ComponentSteps;
 import com.integrivideo.steps.ProjectSteps;
@@ -50,6 +51,33 @@ public class ManageComponentStoryTest extends BaseTest {
         componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "edited");
     }
 
-    //TODO check prices for each component
+    @Test
+    public void componentVideoChatPriceIsCorrect() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
+        componentSteps.returnToProject();
+        projectSteps.projectPricesShouldBeLike(15, 0, 15);
+    }
 
+    @Test
+    public void componentCloudVideoRecorderPriceIsCorrect() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
+        componentSteps.returnToProject();
+        projectSteps.projectPricesShouldBeLike(10, 0, 10);
+    }
+
+    @Test
+    public void componentMultiDeviceVideoPlayerPriceIsCorrect() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, "name");
+        componentSteps.returnToProject();
+        projectSteps.projectPricesShouldBeLike(10, 0, 10);
+    }
 }

@@ -16,12 +16,19 @@ public class ProjectDetailsPage extends PageObject {
     private WebElement projectDescription;
     @FindBy(tagName = "h1")
     private WebElement projectName;
+    @FindBy(xpath = "//h3[starts-with(.,'Base')]")
+    private WebElement prices;
 
     public Project getProjectDetails() {
         Project project = new Project();
         project.setName(projectName.getText());
         project.setDescription(projectDescription.getText());
         return project;
+    }
+
+    public String getProjectPrices() {
+        waitFor(prices);
+        return prices.getText();
     }
 
     public void clickEditProjectLink() {
