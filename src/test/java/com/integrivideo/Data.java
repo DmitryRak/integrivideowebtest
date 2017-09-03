@@ -34,6 +34,7 @@ public class Data {
     public final static String SPECIAL_CHARS = Character.toString((char) 0x0601) + Character.toString((char) 0x0600) + Character.toString((char) 0x0602);
     public final static String TEST_CHAT_URL = BASE_URL + "demo/chat/new";
     public final static String TEST_MGS1 = "Test Message 1";
+    public final static String URL_BBC_SITE = "http://www.bbc.com/";
     public final static String USER_1_EMAIL = "integriuser1@mailinator.com";
     public final static String USER_1_PASSWORD = "integripassword";
     //TODO this user should be added directly into DB

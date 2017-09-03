@@ -157,4 +157,15 @@ public class ChatSteps extends ScenarioSteps {
     public void isThisIsTrialVersionModalShown(){
         assertTrue(chatPage.isThisIsTrialVersionModalShown());
     }
+
+    @Step
+    public void clickAttachment(final int messageNumber) {
+        chatPage.getAttachment(messageNumber).click();
+    }
+
+    @Step
+    public void verifyTabLink(final int tabNumber, final String url) {
+        getDriver().switchTo().window(getDriver().getWindowHandles().toArray()[tabNumber - 1].toString());
+        assertThat(getDriver().getCurrentUrl(), equalTo(url));
+    }
 }
