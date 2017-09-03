@@ -52,20 +52,32 @@ public class ManageComponentStoryTest extends BaseTest {
     }
 
     @Test
-    public void componentPrices() {
+    public void componentVideoChatPriceIsCorrect() {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
         componentSteps.returnToProject();
-        projectSteps.projectPricesShouldBeLike(Data.PRICES_VC);
+        projectSteps.projectPricesShouldBeLike(15, 0, 15);
+    }
+
+    @Test
+    public void componentCloudVideoRecorderPriceIsCorrect() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
         componentSteps.returnToProject();
-        projectSteps.projectPricesShouldBeLike(Data.PRICES_VC_CVR);
+        projectSteps.projectPricesShouldBeLike(10, 0, 10);
+    }
+
+    @Test
+    public void componentMultiDeviceVideoPlayerPriceIsCorrect() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, "name");
         componentSteps.returnToProject();
-        projectSteps.projectPricesShouldBeLike(Data.PRICES_VC_CVR_MVP);
+        projectSteps.projectPricesShouldBeLike(10, 0, 10);
     }
 }

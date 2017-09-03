@@ -84,8 +84,9 @@ public class ProjectSteps extends ScenarioSteps {
     }
 
     @Step
-    public void projectPricesShouldBeLike(String expectedPrices) {
-        assertThat(projectDetailsPage.getProjectPrices(), equalTo(expectedPrices));
+    public void projectPricesShouldBeLike(int base, int usage, int total) {
+        assertThat(projectDetailsPage.getProjectPrices(),
+                equalTo(String.format("BASE - $%s | USAGE - $%s | TOTAL - $%s", base, usage, total)));
     }
 
     @Step

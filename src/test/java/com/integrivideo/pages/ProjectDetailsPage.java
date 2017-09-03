@@ -28,7 +28,7 @@ public class ProjectDetailsPage extends PageObject {
 
     public String getProjectPrices() {
         waitFor(prices);
-        return this.prices.getText();
+        return prices.getText();
     }
 
     public void clickEditProjectLink() {
