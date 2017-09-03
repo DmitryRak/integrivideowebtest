@@ -56,4 +56,8 @@ public class ComponentSteps extends ScenarioSteps {
         createComponentPage.fillInForm(null, name);
         createComponentPage.clickUpdateButton();
     }
+
+    public void returnToProject() {
+        createComponentPage.returnToProject();
+    }
 }

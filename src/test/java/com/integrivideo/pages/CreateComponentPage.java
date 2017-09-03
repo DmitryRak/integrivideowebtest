@@ -18,6 +18,7 @@ public class CreateComponentPage extends PageObject {
     private final static By CREATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Create')]");
     private final static By UPDATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     private final static By HIDDEN_PROJECT_ID_BY = By.xpath("//input[contains(@name,'project')]");
+    private final static By BACK_TO_PROJECT_BUTTON_BY = By.xpath("//nav[@class='nav']/a[3]");
     @FindBy(xpath = "//input[contains(@name,'name')]")
     private WebElement componentNameField;
     @FindBy(xpath = "//select[contains(@name,'type')]")
@@ -32,6 +33,9 @@ public class CreateComponentPage extends PageObject {
                     break;
                 case CLOUD_VIDEO_RECORDER:
                     select.selectByVisibleText("Cloud video recorder");
+                    break;
+                case MULTI_DEVICE_VIDEO_PLAYER:
+                    select.selectByVisibleText("Multi-device Video Player");
                     break;
                 default:
                     break;
@@ -48,6 +52,8 @@ public class CreateComponentPage extends PageObject {
     public void clickUpdateButton() {
         find(UPDATE_COMPONENT_BUTTON_BY).submit();
     }
+
+    public void returnToProject() { find(BACK_TO_PROJECT_BUTTON_BY).click(); }
 
     public Component getComponentDetails() {
         Component component = new Component();

@@ -21,6 +21,9 @@ public class Data {
     public final static String INSTALLED_CHAT_WITH_DOMAIN = "http://dmitryrak11.000webhostapp.com/COMPONENT_CHAT_WITH_DOMAIN/";
     public final static String LOGIN_PAGE_URL = BASE_URL + "login";
     public final static String NAME = "Guest";
+    public final static String PRICES_VC = "BASE - $15 | USAGE - $0 | TOTAL - $15";
+    public final static String PRICES_VC_CVR = "BASE - $25 | USAGE - $0 | TOTAL - $25";
+    public final static String PRICES_VC_CVR_MVP = "BASE - $35 | USAGE - $0 | TOTAL - $35";
     public final static String PROJECTS_LIST_URL = BASE_URL + "app/projects";
     public final static String PROJECT_DESCRIPTION = "PROJECT_DESCRIPTION";
     public final static String PROJECT_DOMAIN1 = "easyhire.me";
