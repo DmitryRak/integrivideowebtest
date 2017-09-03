@@ -124,5 +124,14 @@ public class BasicChatStoryTest extends BaseTest {
         chatSteps.isThisIsTrialVersionModalShown();
     }
 
-    //TODO add test to validate message with url + click
+    @Test
+    public void sendMessageWithUrl() {
+        chatSteps.openDemoChat();
+        chatSteps.sendWithEnter(Data.MSG_WITH_URL);
+        chatSteps.messageTextShouldBeLike(1, Data.MSG_WITH_URL_FORMATTED);
+        chatSteps.clickAttachment(1);
+        chatSteps.verifyTabLink(2, Data.URL_BBC_SITE);
+    }
+
+    //TODO add test to validate message with url (different types of URL) + click
 }
