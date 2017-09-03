@@ -137,6 +137,12 @@ public class ChatPage extends PageObject {
         return messageContainer.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText();
     }
 
+    public WebElement getAttachment(final int messageNumber) {
+        String attachmentXpath = String.format("//div[contains(@class,'integri-chat-message-container')][%s]/div[contains(@class,'integri-chat-message')]/div[contains(@class,'integri-chat-message-attachment')]/a", messageNumber);
+        WebElement attachment = waitFor(findAll(By.xpath(attachmentXpath)).get(0));
+        return attachment;
+    }
+
     public void openUserSettingsModal() {
         clickOn(userSettingsButton);
     }

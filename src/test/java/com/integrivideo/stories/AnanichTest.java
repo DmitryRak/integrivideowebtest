@@ -1,10 +1,7 @@
 package com.integrivideo.stories;
 
 import com.integrivideo.Data;
-import com.integrivideo.steps.CommonSteps;
-import com.integrivideo.steps.LandingPageSteps;
-import com.integrivideo.steps.LoginSteps;
-import com.integrivideo.steps.SignUpSteps;
+import com.integrivideo.steps.*;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
@@ -19,17 +16,14 @@ import org.junit.runner.RunWith;
 public class AnanichTest extends BaseTest {
 
     @Steps
-    CommonSteps commonSteps;
-    @Steps
-    LandingPageSteps landingPageSteps;
-    @Steps
-    LoginSteps loginSteps;
-    @Steps
-    SignUpSteps signUpSteps;
+    ChatSteps chatSteps;
 
     @Test
-    public void newUserCanBeRegistered() {
-
+    public void sendMessageWithUrl() {
+        chatSteps.openDemoChat();
+        chatSteps.sendWithEnter(Data.MSG_WITH_URL);
+        chatSteps.messageTextShouldBeLike(1, Data.MSG_WITH_URL_FORMATTED);
+        chatSteps.clickAttachment(1);
+        chatSteps.verifyTabLink(2, Data.URL_BBC_SITE);
     }
-
 }
