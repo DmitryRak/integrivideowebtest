@@ -2,7 +2,6 @@ package com.integrivideo.stories;
 
 import com.integrivideo.Data;
 import com.integrivideo.Project;
-import com.integrivideo.steps.LoginSteps;
 import com.integrivideo.steps.ProjectSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
@@ -17,8 +16,6 @@ import org.junit.runner.RunWith;
 @RunWith(SerenityRunner.class)
 public class ManageProjectStoryTest extends BaseTest {
 
-    @Steps
-    LoginSteps loginSteps;
     @Steps
     ProjectSteps projectSteps;
 
@@ -38,7 +35,6 @@ public class ManageProjectStoryTest extends BaseTest {
     public void projectCanBeEdited() {
         projectSteps.createProject();
         long projectCount = projectSteps.getProjectCount();
-        projectSteps.openProjectPage(projectCount - 2);
         Project project = new Project(Data.RANDOM_PROJECT_NAME, Data.RANDOM_PROJECT_DESCRIPTION, Data.RANDOM_PROJECT_DOMAIN);
         projectSteps.editProject(project.getName(), project.getDescription(), project.getDomains().get(0));
         projectSteps.openProjectPage(projectCount - 2);

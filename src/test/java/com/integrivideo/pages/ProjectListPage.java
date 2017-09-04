@@ -29,6 +29,7 @@ public class ProjectListPage extends PageObject {
     }
 
     public void openProjectPage(long projectNumberInList) {
+        waitFor((WebElementFacade) find(SINGLE_PROJECT_BY));
         List<WebElementFacade> projects = findAll(SINGLE_PROJECT_BY);
         LOGGER.log(Level.INFO, "Total project count: {0}", projects.size());
         int projectIndex = (int) projectNumberInList;
