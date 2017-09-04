@@ -10,8 +10,7 @@ import net.thucydides.core.annotations.Story;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Story(ManagePaymentMethodsStoryTest.class)
 @RunWith(SerenityRunner.class)
@@ -30,7 +29,7 @@ public class ManagePaymentMethodsStoryTest extends BaseTest {
         int cardCount = billingSteps.getCardCount();
         billingSteps.addNewCard(Data.CARD_NUMBER, Data.EXPIRATION_MONTH, Data.EXPIRATION_YEAR, Data.CARDHOLDER_NAME);
         commonSteps.currentPageShouldBe(Data.BILLING_PAGE);
-        assertEquals(cardCount + 1, billingSteps.getCardCount());
+        assertThat(billingSteps.getCardCount()).isEqualTo(cardCount + 1);
     }
 
     //TODO at least 2 payment methods should exist

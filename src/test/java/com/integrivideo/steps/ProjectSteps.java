@@ -9,9 +9,7 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
  * Created by Dmitry Rak on 7/13/2017.
@@ -55,8 +53,8 @@ public class ProjectSteps extends ScenarioSteps {
     }
 
     @Step
-    public void numberOfProjectShouldBeEqualTo(long number) {
-        assertTrue(number == projectListPage.getProjectCount());
+    public void numberOfProjectShouldBeEqualTo(final long number) {
+        assertThat(projectListPage.getProjectCount()).isEqualTo(number);
     }
 
     public long getProjectCount() {
@@ -69,24 +67,22 @@ public class ProjectSteps extends ScenarioSteps {
     }
 
     @Step
-    public void projectDetailsShouldBeLike(String name, String description) {
+    public void projectDetailsShouldBeLike(final String name, final String description) {
         Project project = projectDetailsPage.getProjectDetails();
-        assertTrue(name.equals(project.getName()));
-        assertTrue(description.equals(project.getDescription()));
+        assertThat(project.getName()).isEqualTo(name);
+        assertThat(project.getDescription()).isEqualTo(description);
     }
 
     @Step
     public void projectDetailsShouldBeLike(Project expectedProject) {
         Project actualProject = createProjectPage.getProjectDetails();
-        assertTrue(expectedProject.getName().equals(actualProject.getName()));
-        assertTrue(expectedProject.getDescription().equals(actualProject.getDescription()));
-        assertTrue(expectedProject.getDomains().equals(actualProject.getDomains()));
+        assertThat(actualProject).isEqualTo(expectedProject);
     }
 
     @Step
     public void projectPricesShouldBeLike(int base, int usage, int total) {
-        assertThat(projectDetailsPage.getProjectPrices(),
-                equalTo(String.format("BASE - $%s | USAGE - $%s | TOTAL - $%s", base, usage, total)));
+        assertThat(projectDetailsPage.getProjectPrices()).
+                isEqualTo(String.format("BASE - $%s | USAGE - $%s | TOTAL - $%s", base, usage, total));
     }
 
     @Step
