@@ -48,8 +48,7 @@ public class ComponentSteps extends ScenarioSteps {
     public void componentDetailsShouldBeLike(final ComponentTypeEnum componentTypeEnum, final String name) {
         Component component = createComponentPage.getComponentDetails();
         assertThat(component.getName()).isEqualToIgnoringCase(name);
-        //TODO uncomment after update of locators
-        //assertTrue(componentTypeEnum.equals(component.getComponentTypeEnum()));
+        assertThat(component.getComponentType()).isEqualTo(componentTypeEnum);
     }
 
     public void editComponent(String name) {
