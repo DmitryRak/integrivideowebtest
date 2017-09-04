@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import static com.integrivideo.pages.ComponentTypeEnum.*;
+
 /**
  * Created by asus on 7/13/2017.
  */
@@ -19,9 +21,10 @@ public class CreateComponentPage extends PageObject {
     private final static By UPDATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     private final static By HIDDEN_PROJECT_ID_BY = By.xpath("//input[contains(@name,'project')]");
     private final static By BACK_TO_PROJECT_BUTTON_BY = By.xpath("//nav[@class='nav']/a[3]");
+    private final static By JS_CODE_BY = By.xpath("//code[contains(@class,'component-code')]");
     @FindBy(xpath = "//input[contains(@name,'name')]")
     private WebElement componentNameField;
-    @FindBy(xpath = "//select[contains(@name,'type')]")
+    @FindBy(xpath = "//*[contains(@name,'type')]")
     private WebElement componentTypeField;
 
     public void fillInForm(ComponentTypeEnum componentTypeEnum, String name) {
@@ -29,13 +32,13 @@ public class CreateComponentPage extends PageObject {
             Select select = new Select(componentTypeField);
             switch (componentTypeEnum) {
                 case VIDEO_CHAT:
-                    select.selectByVisibleText("Video Chat");
+                    select.selectByVisibleText(VIDEO_CHAT.toString());
                     break;
                 case CLOUD_VIDEO_RECORDER:
-                    select.selectByVisibleText("Cloud video recorder");
+                    select.selectByVisibleText(CLOUD_VIDEO_RECORDER.toString());
                     break;
                 case MULTI_DEVICE_VIDEO_PLAYER:
-                    select.selectByVisibleText("Multi-device Video Player");
+                    select.selectByVisibleText(MULTI_DEVICE_VIDEO_PLAYER.toString());
                     break;
                 default:
                     break;
@@ -55,18 +58,22 @@ public class CreateComponentPage extends PageObject {
 
     public void returnToProject() { find(BACK_TO_PROJECT_BUTTON_BY).click(); }
 
+    public void copyJsCode() { find(JS_CODE_BY).click(); }
+
+    public String getJsCode() { return find(JS_CODE_BY).getText().replaceAll("\\r\\n|\\r|\\n", ""); }
+
     public Component getComponentDetails() {
         Component component = new Component();
         component.setName(componentNameField.getAttribute("value"));
-        //TODO uncomment after adding of locator
-        /*Select select = new Select(componentTypeField);
-        String selectedComponent = select.getFirstSelectedOption().getText();
-        LOGGER.info(selectedComponent);
-        if(selectedComponent.equals(VIDEO_CHAT.toString())){
+        String componentTypeText = componentTypeField.getAttribute("value");
+        LOGGER.info(componentTypeText);
+        if(componentTypeText.equals(VIDEO_CHAT.toString())){
             component.setComponentTypeEnum(VIDEO_CHAT);
-        }else if(selectedComponent.equals(CLOUD_VIDEO_RECORDER.toString())){
+        }else if(componentTypeText.equals(CLOUD_VIDEO_RECORDER.toString())){
             component.setComponentTypeEnum(CLOUD_VIDEO_RECORDER);
-        }*/
+        }else{
+            component.setComponentTypeEnum(MULTI_DEVICE_VIDEO_PLAYER);
+        }
         return component;
     }
 }

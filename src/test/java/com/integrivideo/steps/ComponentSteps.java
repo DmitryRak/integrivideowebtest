@@ -8,6 +8,10 @@ import com.integrivideo.pages.ProjectDetailsPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
@@ -45,16 +49,24 @@ public class ComponentSteps extends ScenarioSteps {
         componentListPage.openComponentPage(componentNumberInList);
     }
 
+    public void copyJsCode() { createComponentPage.copyJsCode(); }
+
     public void componentDetailsShouldBeLike(final ComponentTypeEnum componentTypeEnum, final String name) {
         Component component = createComponentPage.getComponentDetails();
         assertThat(component.getName()).isEqualToIgnoringCase(name);
-        //TODO uncomment after update of locators
-        //assertTrue(componentTypeEnum.equals(component.getComponentTypeEnum()));
+        assertThat(component.getComponentType()).isEqualTo(componentTypeEnum);
     }
 
     public void editComponent(String name) {
         createComponentPage.fillInForm(null, name);
         createComponentPage.clickUpdateButton();
+    }
+
+    public void validateJsCode() throws Exception {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        String jsFromClipboard = (String) clipboard.getData(DataFlavor.stringFlavor);
+        assertThat(jsFromClipboard).isEqualTo(createComponentPage.getJsCode());
     }
 
     public void returnToProject() {
