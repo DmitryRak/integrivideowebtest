@@ -25,7 +25,7 @@ public class ProjectSteps extends ScenarioSteps {
     private CommonSteps commonSteps;
 
     @Step
-    public void isOnProjectListPage(){
+    public void isOnProjectListPage() {
         loginSteps.opensUrlAndLogin(Data.PROJECTS_LIST_URL, Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
     }
 

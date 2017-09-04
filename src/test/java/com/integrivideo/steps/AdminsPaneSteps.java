@@ -10,7 +10,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 
-public class AdminsPaneSteps  extends ScenarioSteps {
+public class AdminsPaneSteps extends ScenarioSteps {
 
     private AdminsPanePage adminsPanePage;
 
@@ -21,7 +21,7 @@ public class AdminsPaneSteps  extends ScenarioSteps {
     private CommonSteps commonSteps;
 
     @Step
-    public void isOnAdminsPanePage(){
+    public void isOnAdminsPanePage() {
         //TODO Ask Yury to validate redirects for admins
         //loginSteps.opensUrlAndLogin(Data.ADMIN_PROJECTS_PAGE_URL, Data.ADMIN_1_EMAIL, Data.ADMIN_1_PASSWORD);
         loginSteps.enterCredentialsAndLogin(Data.ADMIN_1_EMAIL, Data.ADMIN_1_PASSWORD);
@@ -29,13 +29,13 @@ public class AdminsPaneSteps  extends ScenarioSteps {
     }
 
     @Step
-    public void AdminTableShouldBeVisible(AdminTabEnum adminTabEnum){
+    public void AdminTableShouldBeVisible(AdminTabEnum adminTabEnum) {
         adminsPanePage.openTab(adminTabEnum);
         assertThat(adminsPanePage.isAdminTableVisible(adminTabEnum));
     }
 
     @Step
-    public void goToService(){
+    public void goToService() {
         adminsPanePage.clickOnServiceLink();
     }
 }

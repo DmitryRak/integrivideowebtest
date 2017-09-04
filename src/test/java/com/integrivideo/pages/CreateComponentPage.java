@@ -1,13 +1,13 @@
 package com.integrivideo.pages;
 
-import java.util.logging.Logger;
-
 import com.integrivideo.Component;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.logging.Logger;
 
 import static com.integrivideo.pages.ComponentTypeEnum.*;
 
@@ -56,22 +56,28 @@ public class CreateComponentPage extends PageObject {
         find(UPDATE_COMPONENT_BUTTON_BY).submit();
     }
 
-    public void returnToProject() { find(BACK_TO_PROJECT_BUTTON_BY).click(); }
+    public void returnToProject() {
+        find(BACK_TO_PROJECT_BUTTON_BY).click();
+    }
 
-    public void copyJsCode() { find(JS_CODE_BY).click(); }
+    public void copyJsCode() {
+        find(JS_CODE_BY).click();
+    }
 
-    public String getJsCode() { return find(JS_CODE_BY).getText().replaceAll("\\r\\n|\\r|\\n", ""); }
+    public String getJsCode() {
+        return find(JS_CODE_BY).getText().replaceAll("\\r\\n|\\r|\\n", "");
+    }
 
     public Component getComponentDetails() {
         Component component = new Component();
         component.setName(componentNameField.getAttribute("value"));
         String componentTypeText = componentTypeField.getAttribute("value");
         LOGGER.info(componentTypeText);
-        if(componentTypeText.equals(VIDEO_CHAT.toString())){
+        if (componentTypeText.equals(VIDEO_CHAT.toString())) {
             component.setComponentTypeEnum(VIDEO_CHAT);
-        }else if(componentTypeText.equals(CLOUD_VIDEO_RECORDER.toString())){
+        } else if (componentTypeText.equals(CLOUD_VIDEO_RECORDER.toString())) {
             component.setComponentTypeEnum(CLOUD_VIDEO_RECORDER);
-        }else{
+        } else {
             component.setComponentTypeEnum(MULTI_DEVICE_VIDEO_PLAYER);
         }
         return component;

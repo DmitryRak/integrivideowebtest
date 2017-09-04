@@ -1,13 +1,13 @@
 package com.integrivideo.pages;
 
-import java.util.List;
-
 import com.integrivideo.Project;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 /**
  * Created by asus on 7/13/2017.

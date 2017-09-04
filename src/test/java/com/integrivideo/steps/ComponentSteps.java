@@ -54,7 +54,9 @@ public class ComponentSteps extends ScenarioSteps {
         componentListPage.openComponentPage(componentNumberInList);
     }
 
-    public void copyJsCode() { createComponentPage.copyJsCode(); }
+    public void copyJsCode() {
+        createComponentPage.copyJsCode();
+    }
 
     public void componentDetailsShouldBeLike(final ComponentTypeEnum componentTypeEnum, final String name) {
         Component component = createComponentPage.getComponentDetails();

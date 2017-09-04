@@ -29,7 +29,7 @@ public class CommonSteps extends ScenarioSteps {
     }
 
     @Step
-    public void openUrl(String url){
+    public void openUrl(String url) {
         getDriver().get(url);
     }
 }

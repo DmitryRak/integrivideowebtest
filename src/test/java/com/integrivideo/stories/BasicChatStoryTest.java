@@ -116,9 +116,9 @@ public class BasicChatStoryTest extends BaseTest {
     }
 
     @Test
-    public void demoComponentShouldHaveRestriction(){
+    public void demoComponentShouldHaveRestriction() {
         chatSteps.openDemoChat();
-        for(int i = 0; i <= Data.MAX_DEMO_MESSAGE_COUNT; i++){
+        for (int i = 0; i <= Data.MAX_DEMO_MESSAGE_COUNT; i++) {
             chatSteps.sendWithEnter("text");
         }
         chatSteps.isThisIsTrialVersionModalShown();

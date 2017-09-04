@@ -1,12 +1,5 @@
 package com.integrivideo.pages;
 
-import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.integrivideo.Message;
 import com.integrivideo.User;
 import com.integrivideo.elements.WebElementHelper;
@@ -17,6 +10,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Dmitry Rak on 4/15/2017.
  */
@@ -25,7 +25,7 @@ public class ChatPage extends PageObject {
     private final static By OWN_MESSAGES_BY = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
     private final static By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
     private final static By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
-    private final static By DEMO_DISCLAIMER_BY =    By.xpath("//div[contains(@class, 'integri-demo-version')]");
+    private final static By DEMO_DISCLAIMER_BY = By.xpath("//div[contains(@class, 'integri-demo-version')]");
     @FindBy(xpath = "//button[contains(@class,'integri-chat-upload-file')]")
     private WebElement fileUploadButton;
     @FindBy(id = "invite-users-to-chat")
@@ -147,7 +147,7 @@ public class ChatPage extends PageObject {
         clickOn(userSettingsButton);
     }
 
-    public boolean isThisIsTrialVersionModalShown(){
+    public boolean isThisIsTrialVersionModalShown() {
         return find(DEMO_DISCLAIMER_BY).isDisplayed();
     }
 }
