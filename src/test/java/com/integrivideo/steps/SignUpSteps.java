@@ -3,6 +3,7 @@ package com.integrivideo.steps;
 import com.integrivideo.Data;
 import com.integrivideo.pages.SignUpPage;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
 /**
@@ -12,6 +13,9 @@ public class SignUpSteps extends ScenarioSteps {
 
     private SignUpPage signUpPage;
 
+    @Steps
+    private CommonSteps commonSteps;
+
     @Step
     public void enterCredentialsAndSignUp(String email, String password) {
         signUpPage.enterCredentials(email, password);
@@ -20,6 +24,6 @@ public class SignUpSteps extends ScenarioSteps {
 
     @Step
     public void isOnSignUpPage() {
-        getDriver().get(Data.SIGNUP_PAGE_URL);
+        commonSteps.openUrl(Data.SIGNUP_PAGE_URL);
     }
 }

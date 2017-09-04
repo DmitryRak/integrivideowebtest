@@ -1,6 +1,5 @@
 package com.integrivideo.stories;
 
-import com.integrivideo.Data;
 import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.steps.ComponentSteps;
 import com.integrivideo.steps.ProjectSteps;

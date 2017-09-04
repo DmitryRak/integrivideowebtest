@@ -8,7 +8,7 @@ import com.integrivideo.pages.ProjectDetailsPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
  * Created by Dmitry Rak on 7/13/2017.
@@ -34,21 +34,21 @@ public class ComponentSteps extends ScenarioSteps {
 
     @Step
     public void numberOfComponentsShouldBeEqualTo(long number) {
-        assertTrue(number == componentListPage.getComponentCount());
+        assertThat(number == componentListPage.getComponentCount());
     }
 
     public long getComponentCount() {
         return componentListPage.getComponentCount();
     }
 
-    public void openComponentPage(long componentNumberInList) {
+    public void openComponentPage(final long componentNumberInList) {
         componentListPage.openComponentPage(componentNumberInList);
     }
 
-    public void componentDetailsShouldBeLike(ComponentTypeEnum componentTypeEnum, String name) {
+    public void componentDetailsShouldBeLike(final ComponentTypeEnum componentTypeEnum, final String name) {
         Component component = createComponentPage.getComponentDetails();
-        assertTrue(name.equals(component.getName()));
-        //TODO uncomment after updat eof locators
+        assertThat(component.getName()).isEqualToIgnoringCase(name);
+        //TODO uncomment after update of locators
         //assertTrue(componentTypeEnum.equals(component.getComponentTypeEnum()));
     }
 

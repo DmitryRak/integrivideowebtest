@@ -2,18 +2,16 @@ package com.integrivideo.steps;
 
 import com.integrivideo.Data;
 import com.integrivideo.Message;
+import com.integrivideo.User;
 import com.integrivideo.modals.FileUploadModal;
 import com.integrivideo.modals.UserSettings;
 import com.integrivideo.modals.UserSettingsModal;
 import com.integrivideo.pages.ChatPage;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
  * Created by Dmitry Rak on 4/15/2017.
@@ -23,6 +21,9 @@ public class ChatSteps extends ScenarioSteps {
     private ChatPage chatPage;
     private FileUploadModal fileUpload;
     private UserSettingsModal userSettingsModal;
+
+    @Steps
+    private CommonSteps commonSteps;
 
     @Step
     public void sendWithButton(String text) {
@@ -50,18 +51,19 @@ public class ChatSteps extends ScenarioSteps {
 
     @Step
     public void messageShouldBeShownAsEdited(final int messageNumber) {
-        assertThat("Message should be edited", chatPage.getOwnMessages().get(messageNumber - 1).isEdited());
+        assertThat(chatPage.getOwnMessages().get(messageNumber - 1).isEdited()).
+                as("Message should be shows as edited");
     }
 
     @Step
     public void messageShouldBeShownAsRemoved(final int messageNumber) {
-        assertThat("Message should be removed", chatPage.getOwnMessages().get(messageNumber - 1).isRemoved());
+        assertThat(chatPage.getOwnMessages().get(messageNumber - 1).isRemoved()).
+                as("Message should be shows as removed");
     }
 
     /**
      * @param messageNumber
      * @param finalText     - provide null to edit action -> enter
-     * @throws InterruptedException
      */
     @Step
     public void editMessage(final int messageNumber, String finalText) {
@@ -70,7 +72,6 @@ public class ChatSteps extends ScenarioSteps {
 
     @Step
     public void removeMessage(final int messageNumber) {
-        //String id = chatPage.getOwnMessages().stream().filter(mess -> mess.getText().equals(text)).findFirst().get().getId();
         chatPage.removeMessage(messageNumber);
     }
 
@@ -88,24 +89,25 @@ public class ChatSteps extends ScenarioSteps {
 
     @Step
     public void inviteLinkShouldBeLike(String pattern) {
-        assertThat(getInviteLink(), equalToIgnoringCase(pattern));
+        assertThat(getInviteLink()).isEqualToIgnoringCase(pattern);
     }
 
     @Step
     public void userInfoShouldBeLike(int numberInList, String name, boolean isOnline) {
-        assertThat(chatPage.getListOfUsers().get(numberInList).getUserName(), containsString(name));
-        assertThat(chatPage.getListOfUsers().get(numberInList).isOnline(), equalTo(isOnline));
+        User user = chatPage.getListOfUsers().get(numberInList);
+        assertThat(user.getUserName()).contains(name);
+        assertThat(user.isOnline()).isEqualTo(isOnline);
     }
 
     @Step
     public void messageShouldContainFileInfo(final int messageNumber, String fileName) {
         Message message = chatPage.getOwnMessages().get(messageNumber - 1);
-        assertThat(message.getFileName(), equalTo(fileName));
+        assertThat(message.getFileName()).isEqualTo(fileName);
     }
 
     @Step
     public void messageTextShouldBeLike(final int messageNumber, String text) {
-        assertThat(chatPage.getMessageText(messageNumber - 1), equalTo(text));
+        assertThat(chatPage.getMessageText(messageNumber - 1)).isEqualTo(text);
     }
 
     @Step
@@ -113,17 +115,11 @@ public class ChatSteps extends ScenarioSteps {
         getDriver().get(Data.TEST_CHAT_URL);
     }
 
-    /**
-     *
-     */
     @Step
     public void openSettingsModal() {
         chatPage.openUserSettingsModal();
     }
 
-    /**
-     *
-     */
     @Step
     public void closeSettingModal() {
         userSettingsModal.closeSettingsWindow();
@@ -137,9 +133,9 @@ public class ChatSteps extends ScenarioSteps {
     @Step
     public void validateUserSettings(String name, String email, String imageUrl) {
         UserSettings userSettings = userSettingsModal.getUserSettings();
-        assertThat(userSettings.getName(), equalTo(name));
-        assertThat(userSettings.getEmail(), equalTo(email));
-        assertThat(userSettings.getUserPicUrl(), equalTo(imageUrl));
+        assertThat(userSettings.getName()).isEqualTo(name);
+        assertThat(userSettings.getEmail()).isEqualTo(email);
+        assertThat(userSettings.getUserPicUrl()).isEqualTo(imageUrl);
     }
 
     /**
@@ -155,7 +151,7 @@ public class ChatSteps extends ScenarioSteps {
 
     @Step
     public void isThisIsTrialVersionModalShown(){
-        assertTrue(chatPage.isThisIsTrialVersionModalShown());
+        assertThat(chatPage.isThisIsTrialVersionModalShown());
     }
 
     @Step
@@ -166,6 +162,6 @@ public class ChatSteps extends ScenarioSteps {
     @Step
     public void verifyTabLink(final int tabNumber, final String url) {
         getDriver().switchTo().window(getDriver().getWindowHandles().toArray()[tabNumber - 1].toString());
-        assertThat(getDriver().getCurrentUrl(), equalTo(url));
+        commonSteps.currentPageShouldBe(url);
     }
 }

@@ -7,7 +7,8 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
 
 public class AdminsPaneSteps  extends ScenarioSteps {
 
@@ -30,7 +31,7 @@ public class AdminsPaneSteps  extends ScenarioSteps {
     @Step
     public void AdminTableShouldBeVisible(AdminTabEnum adminTabEnum){
         adminsPanePage.openTab(adminTabEnum);
-        assertTrue(adminsPanePage.isAdminTableVisible(adminTabEnum));
+        assertThat(adminsPanePage.isAdminTableVisible(adminTabEnum));
     }
 
     @Step
