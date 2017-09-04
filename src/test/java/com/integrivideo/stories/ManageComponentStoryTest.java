@@ -1,5 +1,6 @@
 package com.integrivideo.stories;
 
+import com.integrivideo.Data;
 import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.steps.CommonSteps;
 import com.integrivideo.steps.ComponentSteps;
@@ -30,8 +31,8 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
-        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.VIDEO_CHAT, "name");
+        componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
     }
 
     @Test
@@ -39,8 +40,8 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
-        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
+        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
     }
 
     @Test
@@ -48,7 +49,7 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
+        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
         componentSteps.editComponent("edited");
         componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "edited");
     }
@@ -58,7 +59,7 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, "name");
+        componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(15, 0, 15);
     }
@@ -68,7 +69,7 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "name");
+        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(10, 0, 10);
     }
@@ -78,7 +79,7 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, "name");
+        componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(10, 0, 10);
     }

@@ -29,6 +29,7 @@ public class Data {
     public final static String RANDOM_PROJECT_DESCRIPTION = "PROJECT_DESCRIPTION" + System.currentTimeMillis();
     public final static String RANDOM_PROJECT_DOMAIN = System.currentTimeMillis() + "easyhire.me";
     public final static String RANDOM_PROJECT_NAME = "PROJECT_NAME" + System.currentTimeMillis();
+    public final static String RANDOM_COMPONENT_NAME = "COMPONENT_NAME" + System.currentTimeMillis();
     public final static String SECOND_LINE = "String on second line";
     public final static String SIGNUP_PAGE_URL = BASE_URL + "signup";
     public final static String SPECIAL_CHARS = Character.toString((char) 0x0601) + Character.toString((char) 0x0600) + Character.toString((char) 0x0602);
