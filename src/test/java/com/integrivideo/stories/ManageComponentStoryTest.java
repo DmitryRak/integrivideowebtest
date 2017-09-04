@@ -1,6 +1,7 @@
 package com.integrivideo.stories;
 
 import com.integrivideo.pages.ComponentTypeEnum;
+import com.integrivideo.steps.CommonSteps;
 import com.integrivideo.steps.ComponentSteps;
 import com.integrivideo.steps.ProjectSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -21,6 +22,8 @@ public class ManageComponentStoryTest extends BaseTest {
     ComponentSteps componentSteps;
     @Steps
     ProjectSteps projectSteps;
+    @Steps
+    CommonSteps commonSteps;
 
     @Test
     public void videoChatComponentCanBeCreated() {
@@ -78,5 +81,19 @@ public class ManageComponentStoryTest extends BaseTest {
         componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, "name");
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(10, 0, 10);
+    }
+
+    @Test
+    public void componentJsCodeCanBeCopied() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, "name");
+        componentSteps.copyJsCode();
+        commonSteps.notificationMessageShouldBeLike("Code was copied");
+        try {
+            componentSteps.validateJsCode();
+        } catch (Exception e){
+        }
     }
 }
