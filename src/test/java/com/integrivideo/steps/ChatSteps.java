@@ -150,7 +150,7 @@ public class ChatSteps extends ScenarioSteps {
     }
 
     @Step
-    public void isThisIsTrialVersionModalShown(){
+    public void isThisIsTrialVersionModalShown() {
         assertThat(chatPage.isThisIsTrialVersionModalShown());
     }
 

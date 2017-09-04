@@ -6,6 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.integrivideo.TimeOut.LONG_TIMEOUT;
+import static com.integrivideo.TimeOut.MEDIUM_TIMEOUT;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
 public class BillingPage extends PageObject {
 
     private static final By ADD_CARD_BY = By.xpath("//button[contains(text(), 'Add')]");
@@ -29,12 +33,12 @@ public class BillingPage extends PageObject {
         find(CARDHOLDER_BY).clear();
         find(CARDHOLDER_BY).sendKeys(cardholder);
         clickOn(find(ADD_CARD_BY));
-        waitABit(3000);
+        withTimeoutOf(MEDIUM_TIMEOUT, MILLISECONDS).waitFor(REMOVE_BY);
     }
 
     public void clickAddPayment() {
         clickOn(addPaymentMethod);
-        waitFor(ExpectedConditions.elementToBeClickable(ADD_CARD_BY));
+        withTimeoutOf(LONG_TIMEOUT, MILLISECONDS).waitFor(ExpectedConditions.elementToBeClickable(ADD_CARD_BY));
     }
 
     public int getCardCount() {

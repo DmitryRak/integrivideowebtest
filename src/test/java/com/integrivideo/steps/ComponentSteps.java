@@ -11,6 +11,9 @@ import net.thucydides.core.steps.ScenarioSteps;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import java.util.logging.Logger;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -18,6 +21,8 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
  * Created by Dmitry Rak on 7/13/2017.
  */
 public class ComponentSteps extends ScenarioSteps {
+
+    private static final Logger LOGGER = Logger.getLogger(ComponentSteps.class.getName());
 
     private ComponentListPage componentListPage;
 
@@ -49,7 +54,9 @@ public class ComponentSteps extends ScenarioSteps {
         componentListPage.openComponentPage(componentNumberInList);
     }
 
-    public void copyJsCode() { createComponentPage.copyJsCode(); }
+    public void copyJsCode() {
+        createComponentPage.copyJsCode();
+    }
 
     public void componentDetailsShouldBeLike(final ComponentTypeEnum componentTypeEnum, final String name) {
         Component component = createComponentPage.getComponentDetails();
@@ -62,10 +69,18 @@ public class ComponentSteps extends ScenarioSteps {
         createComponentPage.clickUpdateButton();
     }
 
-    public void validateJsCode() throws Exception {
+    public void validateJsCode() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
-        String jsFromClipboard = (String) clipboard.getData(DataFlavor.stringFlavor);
+        String jsFromClipboard = null;
+        try {
+            jsFromClipboard = (String) clipboard.getData(DataFlavor.stringFlavor);
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        LOGGER.info("Content of clipboard: " + jsFromClipboard);
         assertThat(jsFromClipboard).isEqualTo(createComponentPage.getJsCode());
     }
 

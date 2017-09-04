@@ -13,6 +13,9 @@ public class BillingSteps extends ScenarioSteps {
     @Steps
     private LoginSteps loginSteps;
 
+    @Steps
+    private CommonSteps commonSteps;
+
     @Step
     public void isOnBillingPage() {
         loginSteps.opensUrlAndLogin(Data.BILLING_PAGE, Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
@@ -20,7 +23,7 @@ public class BillingSteps extends ScenarioSteps {
 
     @Step
     public void addNewCard(String number, String month, String year, String cardholder) {
-        getDriver().get(Data.BILLING_PAGE);
+        commonSteps.openUrl(Data.BILLING_PAGE);
         billingPage.clickAddPayment();
         billingPage.typeCardInfo(number, month, year, cardholder);
     }

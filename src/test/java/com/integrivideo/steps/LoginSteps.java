@@ -1,7 +1,5 @@
 package com.integrivideo.steps;
 
-import java.util.concurrent.TimeUnit;
-
 import com.integrivideo.Data;
 import com.integrivideo.pages.LoginPage;
 import net.thucydides.core.annotations.Step;
@@ -9,6 +7,8 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Dmitry Rak on 7/12/2017.

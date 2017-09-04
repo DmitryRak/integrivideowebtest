@@ -89,12 +89,9 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, "name");
+        componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, Data.RANDOM_COMPONENT_NAME);
         componentSteps.copyJsCode();
         commonSteps.notificationMessageShouldBeLike("Code was copied");
-        try {
-            componentSteps.validateJsCode();
-        } catch (Exception e){
-        }
+        componentSteps.validateJsCode();
     }
 }

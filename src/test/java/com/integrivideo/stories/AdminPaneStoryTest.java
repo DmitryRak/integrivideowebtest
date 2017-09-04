@@ -25,44 +25,44 @@ public class AdminPaneStoryTest extends BaseTest {
     AdminsPaneSteps adminsPaneSteps;
 
     @Test
-    public void adminsPaneIsNotAccessibleForNonAdmins(){
+    public void adminsPaneIsNotAccessibleForNonAdmins() {
         projectSteps.isOnProjectListPage();
         commonSteps.openUrl(Data.ADMIN_HOME_PAGE);
         commonSteps.currentPageShouldBe(Data.PROJECTS_LIST_URL);
     }
 
     @Test
-    public void adminsPaneContainsUsersPage(){
+    public void adminsPaneContainsUsersPage() {
         adminsPaneSteps.isOnAdminsPanePage();
         adminsPaneSteps.AdminTableShouldBeVisible(AdminTabEnum.USERS);
     }
 
     @Test
-    public void adminsPaneContainsProjectsPage(){
+    public void adminsPaneContainsProjectsPage() {
         adminsPaneSteps.isOnAdminsPanePage();
         adminsPaneSteps.AdminTableShouldBeVisible(AdminTabEnum.PROJECTS);
     }
 
     @Test
-    public void adminsPaneContainsComponentsPage(){
+    public void adminsPaneContainsComponentsPage() {
         adminsPaneSteps.isOnAdminsPanePage();
         adminsPaneSteps.AdminTableShouldBeVisible(AdminTabEnum.COMPONENTS);
     }
 
     @Test
-    public void adminsPaneContainsSessionsPage(){
+    public void adminsPaneContainsSessionsPage() {
         adminsPaneSteps.isOnAdminsPanePage();
         adminsPaneSteps.AdminTableShouldBeVisible(AdminTabEnum.SESSIONS);
     }
 
     @Test
-    public void adminsPaneContainsLogsPage(){
+    public void adminsPaneContainsLogsPage() {
         adminsPaneSteps.isOnAdminsPanePage();
         adminsPaneSteps.AdminTableShouldBeVisible(AdminTabEnum.LOGS);
     }
 
     @Test
-    public void adminCanOpenServicePage(){
+    public void adminCanOpenServicePage() {
         adminsPaneSteps.isOnAdminsPanePage();
         adminsPaneSteps.goToService();
         commonSteps.currentPageShouldBe(Data.PROJECTS_LIST_URL);

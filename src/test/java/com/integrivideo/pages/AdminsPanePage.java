@@ -6,35 +6,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class AdminsPanePage extends PageObject {
-    @FindBy(xpath = "//a[contains(text(),'Users')]")
-    private WebElement usersButton;
-
-    @FindBy(xpath = "//a[contains(text(),'Projects')]")
-    private WebElement projectsButton;
-
-    @FindBy(xpath = "//a[contains(text(),'Components')]")
-    private WebElement componentsButton;
-
-    @FindBy(xpath = "//a[contains(text(),'Sessions')]")
-    private WebElement sessionsButton;
-
-    @FindBy(xpath = "//a[contains(text(),'Logs')]")
-    private WebElement logsButton;
-
-    @FindBy(xpath = "//a[contains(text(), 'Logout')]")
-    private WebElement logoutLink;
-
-    @FindBy(xpath = "//a[contains(text(), 'Service')]")
-    private WebElement serviceLink;
-
     private static final By USERS_TABLE_BY = By.id("users_report");
     private static final By PROJECTS_TABLE_BY = By.id("projects_report");
     private static final By COMPONENTS_TABLE_BY = By.id("components_report");
     private static final By SESSIONS_TABLE_BY = By.id("sessions_report");
     private static final By LOGS_TABLE_BY = By.id("transactions_report");
+    @FindBy(xpath = "//a[contains(text(),'Users')]")
+    private WebElement usersButton;
+    @FindBy(xpath = "//a[contains(text(),'Projects')]")
+    private WebElement projectsButton;
+    @FindBy(xpath = "//a[contains(text(),'Components')]")
+    private WebElement componentsButton;
+    @FindBy(xpath = "//a[contains(text(),'Sessions')]")
+    private WebElement sessionsButton;
+    @FindBy(xpath = "//a[contains(text(),'Logs')]")
+    private WebElement logsButton;
+    @FindBy(xpath = "//a[contains(text(), 'Logout')]")
+    private WebElement logoutLink;
+    @FindBy(xpath = "//a[contains(text(), 'Service')]")
+    private WebElement serviceLink;
 
-    public void openTab(AdminTabEnum adminTabEnum){
-        switch (adminTabEnum){
+    public void openTab(AdminTabEnum adminTabEnum) {
+        switch (adminTabEnum) {
             case LOGS:
                 clickOn(logsButton);
                 break;
@@ -54,9 +47,9 @@ public class AdminsPanePage extends PageObject {
 
     }
 
-    public boolean isAdminTableVisible(AdminTabEnum adminTabEnum){
+    public boolean isAdminTableVisible(AdminTabEnum adminTabEnum) {
         int numOfElementsOnPage = 0;
-        switch (adminTabEnum){
+        switch (adminTabEnum) {
             case LOGS:
                 numOfElementsOnPage = findAll(LOGS_TABLE_BY).size();
                 break;
@@ -76,7 +69,7 @@ public class AdminsPanePage extends PageObject {
         return numOfElementsOnPage > 0;
     }
 
-    public void clickOnServiceLink(){
+    public void clickOnServiceLink() {
         clickOn(serviceLink);
     }
 }
