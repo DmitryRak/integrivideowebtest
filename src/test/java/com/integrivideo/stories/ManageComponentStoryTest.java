@@ -92,9 +92,6 @@ public class ManageComponentStoryTest extends BaseTest {
         componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, "name");
         componentSteps.copyJsCode();
         commonSteps.notificationMessageShouldBeLike("Code was copied");
-        try {
-            componentSteps.validateJsCode();
-        } catch (Exception e){
-        }
+        componentSteps.validateJsCode();
     }
 }
