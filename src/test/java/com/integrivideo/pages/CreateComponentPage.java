@@ -19,6 +19,7 @@ public class CreateComponentPage extends PageObject {
     private final static By UPDATE_COMPONENT_BUTTON_BY = By.xpath("//button[contains(text(), 'Update')]");
     private final static By HIDDEN_PROJECT_ID_BY = By.xpath("//input[contains(@name,'project')]");
     private final static By BACK_TO_PROJECT_BUTTON_BY = By.xpath("//nav[@class='nav']/a[3]");
+    private final static By JS_CODE_BY = By.xpath("//code[contains(@class,'component-code')]");
     @FindBy(xpath = "//input[contains(@name,'name')]")
     private WebElement componentNameField;
     @FindBy(xpath = "//select[contains(@name,'type')]")
@@ -54,6 +55,10 @@ public class CreateComponentPage extends PageObject {
     }
 
     public void returnToProject() { find(BACK_TO_PROJECT_BUTTON_BY).click(); }
+
+    public void copyJsCode() { find(JS_CODE_BY).click(); }
+
+    public String getJsCode() { return find(JS_CODE_BY).getText().replaceAll("\\r\\n|\\r|\\n", ""); }
 
     public Component getComponentDetails() {
         Component component = new Component();
