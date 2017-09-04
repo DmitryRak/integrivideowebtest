@@ -44,7 +44,7 @@ public class ChatPage extends PageObject {
     }
 
     public void clickSendButton() {
-        sendButton.click();
+        clickOn(sendButton);
     }
 
     public void pressShiftEnter() {
@@ -95,7 +95,7 @@ public class ChatPage extends PageObject {
     public void editMessage(final int messageNumber, final String finalText) {
         WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber - 1);
         WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-edit-message')]"));
-        button.click();
+        clickOn(button);
         WebElement messageText = messageContainer.findElement(By.tagName("textarea"));
         if (null != finalText) {
             messageText.clear();
@@ -108,17 +108,17 @@ public class ChatPage extends PageObject {
     public void removeMessage(final int messageNumber) {
         WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber - 1);
         WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-remove-message')]"));
-        button.click();
+        clickOn(button);
         getAlert().accept();
         waitABit(1000);
     }
 
     public void openFileUploadModal() {
-        fileUploadButton.click();
+        clickOn(fileUploadButton);
     }
 
     public String getInviteLink() {
-        inviteButton.click();
+        clickOn(inviteButton);
         String result = "";
         try {
             result = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);

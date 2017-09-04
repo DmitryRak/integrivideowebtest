@@ -16,6 +16,6 @@ public class FileUploadModal extends PageObject {
     }
 
     public void startUpload() {
-        find(START_UPLOAD_BY).click();
+        clickOn(find(START_UPLOAD_BY));
     }
 }

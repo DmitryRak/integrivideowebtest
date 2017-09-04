@@ -18,12 +18,12 @@ public class UserSettingsModal extends PageObject {
 
     public void closeSettingsWindow() {
         waitForRenderedElements(CANCEL_BUTTON_BY);
-        find(CANCEL_BUTTON_BY).click();
+        clickOn(find(CANCEL_BUTTON_BY));
     }
 
     public void saveSettings() {
         waitForRenderedElements(SAVE_BUTTON_BY);
-        find(SAVE_BUTTON_BY).click();
+        clickOn(find(SAVE_BUTTON_BY));
     }
 
     public void insertSettings(String name, String email, String userPicUrl) {

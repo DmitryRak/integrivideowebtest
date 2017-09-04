@@ -21,7 +21,7 @@ public class ProjectListPage extends PageObject {
     private WebElement addProjectButton;
 
     public void clickAddProject() {
-        addProjectButton.click();
+        clickOn(addProjectButton);
     }
 
     public long getProjectCount() {

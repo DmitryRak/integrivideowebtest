@@ -21,7 +21,7 @@ public class ComponentListPage extends PageObject {
     private WebElement addComponentButton;
 
     public void clickAddComponent() {
-        addComponentButton.click();
+        clickOn(addComponentButton);
     }
 
     public long getComponentCount() {

@@ -17,11 +17,11 @@ public class LandingPage extends PageObject {
 
     public void clickSignUpOnFirstBlock() {
         getDriver().get(Data.BASE_URL);
-        signUpLink.click();
+        clickOn(signUpLink);
     }
 
     public void clickLoginLinkFromTopMenu() {
         getDriver().get(Data.BASE_URL);
-        loginLink.click();
+        clickOn(loginLink);
     }
 }

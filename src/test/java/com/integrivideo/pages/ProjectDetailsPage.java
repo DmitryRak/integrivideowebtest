@@ -32,6 +32,6 @@ public class ProjectDetailsPage extends PageObject {
     }
 
     public void clickEditProjectLink() {
-        editLink.click();
+        clickOn(editLink);
     }
 }
