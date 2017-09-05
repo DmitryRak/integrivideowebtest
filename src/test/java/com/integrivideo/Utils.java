@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class Utils {
 
-    private static final Logger LOGGER = Logger.getLogger(ComponentSteps.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Utils.class.getName());
 
     public static String getCurrentTime() {
         LocalDateTime now = LocalDateTime.now();
