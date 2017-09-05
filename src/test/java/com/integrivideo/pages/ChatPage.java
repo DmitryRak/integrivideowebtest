@@ -47,6 +47,8 @@ public class ChatPage extends PageObject {
         clickOn(sendButton);
     }
 
+    public void inviteUsers() { inviteButton.click(); }
+
     public void pressShiftEnter() {
         String keysPressed = Keys.chord(Keys.SHIFT, Keys.ENTER);
         find(TEXT_INPUT).sendKeys(keysPressed);

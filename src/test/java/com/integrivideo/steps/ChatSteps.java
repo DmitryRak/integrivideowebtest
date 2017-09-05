@@ -164,4 +164,16 @@ public class ChatSteps extends ScenarioSteps {
         getDriver().switchTo().window(getDriver().getWindowHandles().toArray()[tabNumber - 1].toString());
         commonSteps.currentPageShouldBe(url);
     }
+
+    @Step
+    public void clickInviteUsers() {
+        chatPage.inviteUsers();
+        commonSteps.notificationMessageShouldBeLike("Link was copied");
+    }
+
+    @Step
+    public void validateInviteLink() {
+        String currentUrl = getDriver().getCurrentUrl();
+        commonSteps.textFromClipBoardShouldBeLike(currentUrl);
+    }
 }

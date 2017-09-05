@@ -133,5 +133,12 @@ public class BasicChatStoryTest extends BaseTest {
         chatSteps.verifyTabLink(2, Data.URL_BBC_SITE);
     }
 
+    @Test
+    public void inviteUsersLinkIsCopied() {
+        chatSteps.openDemoChat();
+        chatSteps.clickInviteUsers();
+        chatSteps.validateInviteLink();
+    }
+
     //TODO add test to validate message with url (different types of URL) + click
 }
