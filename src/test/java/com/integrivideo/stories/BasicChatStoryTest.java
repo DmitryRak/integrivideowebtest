@@ -98,6 +98,7 @@ public class BasicChatStoryTest extends BaseTest {
         chatSteps.openDemoChat();
         chatSteps.inviteLinkShouldBeLike(driver.getCurrentUrl());
         commonSteps.notificationMessageShouldBeLike("Link was copied");
+        chatSteps.validateInviteLink();
     }
 
     @Test
@@ -131,13 +132,6 @@ public class BasicChatStoryTest extends BaseTest {
         chatSteps.messageTextShouldBeLike(1, Data.URL_BBC_SITE);
         chatSteps.clickAttachment(1);
         chatSteps.verifyTabLink(2, Data.URL_BBC_SITE);
-    }
-
-    @Test
-    public void inviteUsersLinkIsCopied() {
-        chatSteps.openDemoChat();
-        chatSteps.clickInviteUsers();
-        chatSteps.validateInviteLink();
     }
 
     //TODO add test to validate message with url (different types of URL) + click

@@ -166,12 +166,6 @@ public class ChatSteps extends ScenarioSteps {
     }
 
     @Step
-    public void clickInviteUsers() {
-        chatPage.inviteUsers();
-        commonSteps.notificationMessageShouldBeLike("Link was copied");
-    }
-
-    @Step
     public void validateInviteLink() {
         String currentUrl = getDriver().getCurrentUrl();
         commonSteps.textFromClipBoardShouldBeLike(currentUrl);
