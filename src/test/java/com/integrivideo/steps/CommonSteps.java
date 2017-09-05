@@ -1,5 +1,6 @@
 package com.integrivideo.steps;
 
+import com.integrivideo.Utils;
 import com.integrivideo.pages.CommonPage;
 import com.integrivideo.popups.NotificationMessagePopup;
 import net.thucydides.core.annotations.Step;
@@ -31,5 +32,10 @@ public class CommonSteps extends ScenarioSteps {
     @Step
     public void openUrl(String url) {
         getDriver().get(url);
+    }
+
+    @Step
+    public void textFromClipBoardShouldBeLike(String expectedText) {
+        assertThat(Utils.getTextFromClipboard()).isEqualTo(expectedText);
     }
 }
