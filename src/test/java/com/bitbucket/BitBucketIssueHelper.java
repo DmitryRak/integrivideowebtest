@@ -15,12 +15,12 @@ public abstract class BitBucketIssueHelper {
         return given().
                 log().all().
                 header("Authorization", "Basic " + encoding).
-                when().
+        when().
                 get("http://api.bitbucket.org/1.0/repositories/integrivideo/integrivideo-service/issues/" + issueNumber).
-                then().
+        then().
                 statusCode(200).
                 log().all().
-                extract().
+        extract().
                 path("status");
     }
 
