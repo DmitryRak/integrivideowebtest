@@ -36,12 +36,21 @@ public class ManageComponentStoryTest extends BaseTest {
     }
 
     @Test
-    public void cloudVideoRecorderComponentCanBeCreated() {
+    public void singleVideoComponentCanBeCreated() {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
-        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.createComponent(ComponentTypeEnum.SINGLE_VIDEO, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.SINGLE_VIDEO, Data.RANDOM_COMPONENT_NAME);
+    }
+
+    @Test
+    public void multiPartyVideoComponentCanBeCreated() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.MULTIPARTY_VIDEO, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.MULTIPARTY_VIDEO, Data.RANDOM_COMPONENT_NAME);
     }
 
     @Test
@@ -49,9 +58,9 @@ public class ManageComponentStoryTest extends BaseTest {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
         componentSteps.editComponent("edited");
-        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, "edited");
+        componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.VIDEO_CHAT, "edited");
     }
 
     @Test
@@ -65,11 +74,21 @@ public class ManageComponentStoryTest extends BaseTest {
     }
 
     @Test
-    public void componentCloudVideoRecorderPriceIsCorrect() {
+    public void componentSingleVideoPriceIsCorrect() {
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
-        componentSteps.createComponent(ComponentTypeEnum.CLOUD_VIDEO_RECORDER, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.createComponent(ComponentTypeEnum.SINGLE_VIDEO, Data.RANDOM_COMPONENT_NAME);
+        componentSteps.returnToProject();
+        projectSteps.projectPricesShouldBeLike(10, 0, 10);
+    }
+
+    @Test
+    public void componentMultiPartyVideoPriceIsCorrect() {
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
+        componentSteps.openCreateComponentPage();
+        componentSteps.createComponent(ComponentTypeEnum.MULTIPARTY_VIDEO, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(10, 0, 10);
     }
