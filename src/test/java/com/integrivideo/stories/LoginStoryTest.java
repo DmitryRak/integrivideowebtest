@@ -40,4 +40,16 @@ public class LoginStoryTest extends BaseTest {
         commonSteps.doLogout();
         commonSteps.currentPageShouldBe(Data.BASE_URL);
     }
+
+    @Test
+    public void nonExistingUserCanNotLogin() {
+        loginSteps.enterCredentialsAndLogin("incorrect.login@gmail.com", Data.USER_2_PASSWORD);
+        commonSteps.notificationMessageShouldBeLike("Error: User is not found");
+    }
+
+    @Test
+    public void userWithIncorrectPasswordCanNotLogin() {
+        loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, "IncorrectPassword");
+        commonSteps.notificationMessageShouldBeLike("Error: Password is incorrect");
+    }
 }
