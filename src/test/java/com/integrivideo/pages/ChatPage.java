@@ -2,6 +2,7 @@ package com.integrivideo.pages;
 
 import com.integrivideo.Message;
 import com.integrivideo.User;
+import com.integrivideo.Utils;
 import com.integrivideo.elements.WebElementHelper;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -121,17 +122,7 @@ public class ChatPage extends PageObject {
 
     public String getInviteLink() {
         clickOn(inviteButton);
-        String result = "";
-        try {
-            result = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-        } catch (UnsupportedFlavorException e) {
-            e.printStackTrace();
-            return result;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return result;
-        }
-        return result;
+        return Utils.getTextFromClipboard();
     }
 
     public String getMessageText(final int messageNumber) {

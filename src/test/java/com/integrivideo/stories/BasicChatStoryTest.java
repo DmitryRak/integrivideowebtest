@@ -98,7 +98,6 @@ public class BasicChatStoryTest extends BaseTest {
         chatSteps.openDemoChat();
         chatSteps.inviteLinkShouldBeLike(driver.getCurrentUrl());
         commonSteps.notificationMessageShouldBeLike("Link was copied");
-        chatSteps.validateInviteLink();
     }
 
     @Test
