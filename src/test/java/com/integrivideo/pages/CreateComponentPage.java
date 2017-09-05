@@ -34,11 +34,14 @@ public class CreateComponentPage extends PageObject {
                 case VIDEO_CHAT:
                     select.selectByVisibleText(VIDEO_CHAT.toString());
                     break;
-                case CLOUD_VIDEO_RECORDER:
-                    select.selectByVisibleText(CLOUD_VIDEO_RECORDER.toString());
+                case SINGLE_VIDEO:
+                    select.selectByVisibleText(SINGLE_VIDEO.toString());
                     break;
                 case MULTI_DEVICE_VIDEO_PLAYER:
                     select.selectByVisibleText(MULTI_DEVICE_VIDEO_PLAYER.toString());
+                    break;
+                case MULTIPARTY_VIDEO:
+                    select.selectByVisibleText(MULTIPARTY_VIDEO.toString());
                     break;
                 default:
                     break;
@@ -75,10 +78,12 @@ public class CreateComponentPage extends PageObject {
         LOGGER.info(componentTypeText);
         if (componentTypeText.equals(VIDEO_CHAT.toString())) {
             component.setComponentTypeEnum(VIDEO_CHAT);
-        } else if (componentTypeText.equals(CLOUD_VIDEO_RECORDER.toString())) {
-            component.setComponentTypeEnum(CLOUD_VIDEO_RECORDER);
-        } else {
+        } else if (componentTypeText.equals(SINGLE_VIDEO.toString())) {
+            component.setComponentTypeEnum(SINGLE_VIDEO);
+        } else if (componentTypeText.equals(MULTI_DEVICE_VIDEO_PLAYER.toString())) {
             component.setComponentTypeEnum(MULTI_DEVICE_VIDEO_PLAYER);
+        } else{
+            component.setComponentTypeEnum(MULTIPARTY_VIDEO);
         }
         return component;
     }
