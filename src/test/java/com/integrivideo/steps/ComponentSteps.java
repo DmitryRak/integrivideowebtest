@@ -6,6 +6,7 @@ import com.integrivideo.pages.ComponentTypeEnum;
 import com.integrivideo.pages.CreateComponentPage;
 import com.integrivideo.pages.ProjectDetailsPage;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
 import java.awt.*;
@@ -29,6 +30,9 @@ public class ComponentSteps extends ScenarioSteps {
     private CreateComponentPage createComponentPage;
 
     private ProjectDetailsPage projectDetailsPage;
+
+    @Steps
+    CommonSteps commonSteps;
 
     @Step
     public void openCreateComponentPage() {
@@ -70,18 +74,7 @@ public class ComponentSteps extends ScenarioSteps {
     }
 
     public void validateJsCode() {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard clipboard = toolkit.getSystemClipboard();
-        String jsFromClipboard = null;
-        try {
-            jsFromClipboard = (String) clipboard.getData(DataFlavor.stringFlavor);
-        } catch (UnsupportedFlavorException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        LOGGER.info("Content of clipboard: " + jsFromClipboard);
-        assertThat(jsFromClipboard).isEqualTo(createComponentPage.getJsCode());
+        commonSteps.textFromClipBoardShouldBeLike(createComponentPage.getJsCode());
     }
 
     public void returnToProject() {
