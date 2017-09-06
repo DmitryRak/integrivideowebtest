@@ -5,7 +5,7 @@ package com.integrivideo.pages;
  */
 public enum ComponentTypeEnum {
     VIDEO_CHAT("Video Chat"),
-    SINGLE_VIDEO("Single video"),
+    SINGLE_VIDEO("Single Video"),
     MULTI_DEVICE_VIDEO_PLAYER("Multi-device Video Player"),
     MULTIPARTY_VIDEO("Multiparty Video");
 
