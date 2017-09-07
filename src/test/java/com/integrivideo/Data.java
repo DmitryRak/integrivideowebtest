@@ -41,6 +41,8 @@ public class Data {
     //TODO this user should be added directly into DB
     public final static String USER_2_EMAIL = "integriuser2@mailinator.com";
     public final static String USER_2_PASSWORD = "integripassword";
+    public final static String USER_3_EMAIL = "integriuser3@mailinator.com";
+    public final static String USER_3_PASSWORD = "integripassword";
     public final static String ADMIN_1_EMAIL = "integriadmin1@mailinator.com";
     public final static String ADMIN_1_PASSWORD = "integripassword";
     public final static String XSS_TEXT = "<script>alert('TEXT');</script>";
