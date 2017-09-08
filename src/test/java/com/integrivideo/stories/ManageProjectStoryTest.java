@@ -2,6 +2,7 @@ package com.integrivideo.stories;
 
 import com.integrivideo.Data;
 import com.integrivideo.Project;
+import com.integrivideo.steps.CommonSteps;
 import com.integrivideo.steps.ProjectSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
@@ -18,6 +19,9 @@ public class ManageProjectStoryTest extends BaseTest {
 
     @Steps
     ProjectSteps projectSteps;
+
+    @Steps
+    CommonSteps commonSteps;
 
     @Test
     public void projectCanBeCreated() {
@@ -62,5 +66,23 @@ public class ManageProjectStoryTest extends BaseTest {
         projectSteps.clickOnCreateButton();
         projectSteps.shouldBeOnProjectsPage();
         projectSteps.numberOfProjectShouldBeEqualTo(projectCount + 1);
+    }
+
+    @Test
+    public void userOpensNonExistingProjectWithError() {
+        projectSteps.openProjectUrlByUser("doesNotExist", Data.USER_2_EMAIL, Data.USER_2_PASSWORD);
+        projectSteps.validatePageNotFoundError("doesNotExist");
+    }
+
+    @Test
+    public void userCannotOpenProjectOfAnotherUser() {
+        projectSteps.isOnProjectListPage();
+        long projectCount = projectSteps.getProjectCount();
+        projectSteps.createProject();
+        projectSteps.openProjectPage(projectCount - 1);
+        String projectId = projectSteps.getCurrentProjectId();
+        commonSteps.doLogout();
+        projectSteps.openProjectUrlByUser(projectId, Data.USER_3_EMAIL, Data.USER_3_PASSWORD);
+        projectSteps.validatePageNotFoundError(projectId);
     }
 }

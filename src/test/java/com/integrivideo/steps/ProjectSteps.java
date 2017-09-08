@@ -5,6 +5,7 @@ import com.integrivideo.Project;
 import com.integrivideo.pages.CreateProjectPage;
 import com.integrivideo.pages.ProjectDetailsPage;
 import com.integrivideo.pages.ProjectListPage;
+import com.integrivideo.pages.ProjectNotFoundPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -19,6 +20,8 @@ public class ProjectSteps extends ScenarioSteps {
     private CreateProjectPage createProjectPage;
     private ProjectDetailsPage projectDetailsPage;
     private ProjectListPage projectListPage;
+    private ProjectNotFoundPage projectNotFoundPage;
+
     @Steps
     private LoginSteps loginSteps;
     @Steps
@@ -108,5 +111,23 @@ public class ProjectSteps extends ScenarioSteps {
     @Step
     public void clickOnCreateButton() {
         createProjectPage.clickCreateButton();
+    }
+
+    @Step
+    public void openProjectUrlByUser(String projectId, String userEmail, String userPassword) {
+        loginSteps.opensUrlAndLogin(Data.PROJECTS_LIST_URL.concat("/").concat(projectId), userEmail, userPassword);
+    }
+
+    @Step
+    public void validatePageNotFoundError(String projectId) {
+        assertThat(projectNotFoundPage.getErrorDescription()).isEqualTo("Page /app/projects/".concat(projectId).concat(" not found"));
+    }
+
+    @Step
+    public String getCurrentProjectId() {
+        String projectUrl = getDriver().getCurrentUrl();
+        int positionSlash = projectUrl.lastIndexOf("/");
+        String projectId = projectUrl.substring(positionSlash + 1);
+        return projectId;
     }
 }

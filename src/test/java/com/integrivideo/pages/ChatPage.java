@@ -23,6 +23,10 @@ import java.util.List;
  */
 public class ChatPage extends PageObject {
 
+    private final static String MESSAGE_TEXT_LOCATOR = "//div[contains(@class,'integri-chat-message-text')]";
+    private final static String ATTACHMENT_FILE_NAME_LOCATOR = "//span[contains(@class,'integri-chat-message-attachment-file-name')]";
+    private final static String MESSAGE_CONTAINER_LOCATOR = "//div[contains(@class,'integri-chat-message-container')]";
+
     private final static By OWN_MESSAGES_BY = By.xpath("//div[contains(@class, 'integri-chat-message-own')]");
     private final static By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
     private final static By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
@@ -73,7 +77,7 @@ public class ChatPage extends PageObject {
         for (WebElementFacade mess : ownMessagesElements) {
             Message message = new Message();
             message.setId(mess.getAttribute("data-message-id"));
-            message.setText(mess.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText());
+            message.setText(mess.findElement(By.xpath(MESSAGE_TEXT_LOCATOR)).getText());
             if (message.getText().equals("removed...")) {
                 message.setRemoved(true);
             } else {
@@ -83,9 +87,9 @@ public class ChatPage extends PageObject {
                 //                message.setOnline(WebElementHelper.elementHasClass(mess.findElement(By.xpath("//div[contains(@class,'integri-user-pic')]")),"integri-session-is-online"));
                 if (mess.findElements(By.xpath("//div[contains(@class,'integri-chat-message-type-file')]")).size() > 0) {
                     message.setFile(true);
-                    message.setFileName(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-attachment-file-name')]")).getText());
+                    message.setFileName(mess.findElement(By.xpath(ATTACHMENT_FILE_NAME_LOCATOR)).getText());
                     message.setFileLink(mess.findElement(By.xpath("//a[contains(@class,'integri-chat-message-attachment-file-link')]")).getAttribute("href"));
-                    message.setSize(mess.findElement(By.xpath("//span[contains(@class,'integri-chat-message-attachment-file-name')]/small")).getText());
+                    message.setSize(mess.findElement(By.xpath(ATTACHMENT_FILE_NAME_LOCATOR.concat("/small"))).getText());
                 }
             }
             ownMessages.add(message);
@@ -94,7 +98,7 @@ public class ChatPage extends PageObject {
     }
 
     public void editMessage(final int messageNumber, final String finalText) {
-        WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber - 1);
+        WebElement messageContainer = findAll(By.xpath(MESSAGE_CONTAINER_LOCATOR)).get(messageNumber - 1);
         WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-edit-message')]"));
         clickOn(button);
         WebElement messageText = messageContainer.findElement(By.tagName("textarea"));
@@ -107,7 +111,7 @@ public class ChatPage extends PageObject {
     }
 
     public void removeMessage(final int messageNumber) {
-        WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber - 1);
+        WebElement messageContainer = findAll(By.xpath(MESSAGE_CONTAINER_LOCATOR)).get(messageNumber - 1);
         WebElement button = messageContainer.findElement(By.xpath("//span[contains(@class,'integri-chat-remove-message')]"));
         clickOn(button);
         getAlert().accept();
@@ -124,12 +128,12 @@ public class ChatPage extends PageObject {
     }
 
     public String getMessageText(final int messageNumber) {
-        WebElement messageContainer = findAll(By.xpath("//div[contains(@class,'integri-chat-message-container')]")).get(messageNumber);
-        return messageContainer.findElement(By.xpath("//div[contains(@class,'integri-chat-message-text')]")).getText();
+        WebElement messageContainer = findAll(By.xpath(MESSAGE_CONTAINER_LOCATOR)).get(messageNumber);
+        return messageContainer.findElement(By.xpath(MESSAGE_TEXT_LOCATOR)).getText();
     }
 
     public WebElement getAttachment(final int messageNumber) {
-        String attachmentXpath = String.format("//div[contains(@class,'integri-chat-message-container')][%s]/div[contains(@class,'integri-chat-message')]/div[contains(@class,'integri-chat-message-attachment')]/a", messageNumber);
+        String attachmentXpath = String.format(MESSAGE_CONTAINER_LOCATOR.concat("[%s]/div[contains(@class,'integri-chat-message')]/div[contains(@class,'integri-chat-message-attachment')]/a[2]"), messageNumber);
         WebElement attachment = waitFor(findAll(By.xpath(attachmentXpath)).get(0));
         return attachment;
     }
