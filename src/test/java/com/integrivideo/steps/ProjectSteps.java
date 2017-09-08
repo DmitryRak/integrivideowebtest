@@ -9,7 +9,6 @@ import com.integrivideo.pages.ProjectNotFoundPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
-import org.openqa.selenium.WebElement;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -121,7 +120,7 @@ public class ProjectSteps extends ScenarioSteps {
 
     @Step
     public void validatePageNotFoundError(String projectId) {
-        assertThat("Page /app/projects/".concat(projectId).concat(" not found")).isEqualTo(projectNotFoundPage.getErrorDescription());
+        assertThat(projectNotFoundPage.getErrorDescription()).isEqualTo("Page /app/projects/".concat(projectId).concat(" not found"));
     }
 
     @Step

@@ -78,16 +78,11 @@ public class ManageProjectStoryTest extends BaseTest {
     public void userCannotOpenProjectOfAnotherUser() {
         projectSteps.isOnProjectListPage();
         long projectCount = projectSteps.getProjectCount();
-        projectSteps.openCreateProjectPage();
-        projectSteps.createProject(Data.PROJECT_NAME, Data.PROJECT_DESCRIPTION, Data.PROJECT_DOMAIN1);
-        projectSteps.shouldBeOnProjectsPage();
-        projectSteps.numberOfProjectShouldBeEqualTo(projectCount + 1);
+        projectSteps.createProject();
         projectSteps.openProjectPage(projectCount - 1);
         String projectId = projectSteps.getCurrentProjectId();
         commonSteps.doLogout();
         projectSteps.openProjectUrlByUser(projectId, Data.USER_3_EMAIL, Data.USER_3_PASSWORD);
         projectSteps.validatePageNotFoundError(projectId);
     }
-
-
 }
