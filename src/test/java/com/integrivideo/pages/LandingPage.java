@@ -14,6 +14,10 @@ public class LandingPage extends PageObject {
     private WebElement loginLink;
     @FindBy(xpath = "//span[contains(text(), 'Free Sign up')]")
     private WebElement signUpLink;
+    @FindBy (xpath = "//button[contains(text(),'White paper')]")
+    private WebElement whitePaperButton;
+    @FindBy (xpath = "//button[contains(text(),'Brochure')]")
+    private WebElement brochureButton;
 
     public void clickSignUpOnFirstBlock() {
         getDriver().get(Data.BASE_URL);
@@ -23,5 +27,10 @@ public class LandingPage extends PageObject {
     public void clickLoginLinkFromTopMenu() {
         getDriver().get(Data.BASE_URL);
         clickOn(loginLink);
+    }
+
+    public void clickDownloadWhitePaper() {
+        getDriver().get(Data.BASE_URL);
+        whitePaperButton.click();
     }
 }

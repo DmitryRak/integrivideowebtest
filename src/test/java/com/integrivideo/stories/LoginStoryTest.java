@@ -30,12 +30,6 @@ public class LoginStoryTest extends BaseTest {
     @Steps
     ProjectSteps projectSteps;
 
-    @BeforeClass
-    public static void setup()
-    {
-        getDriver().manage().window().maximize();
-    }
-
     @Test
     public void userCanLoginFromLanding() {
         landingPageSteps.goToLoginPage();
