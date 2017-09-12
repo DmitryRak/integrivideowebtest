@@ -1,15 +1,20 @@
 package com.integrivideo;
 
-import com.integrivideo.steps.ComponentSteps;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
+
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 /**
  * Created by Dmitry Rak on 4/15/2017.
@@ -41,5 +46,18 @@ public class Utils {
         }
         LOGGER.info("Content of clipboard: " + jsFromClipboard);
         return  jsFromClipboard;
+    }
+
+    public static void scrollToElement (WebElement element) {
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static void clearDownloadFolder() {
+        File downloadFolder = new File(Data.DOWNLOAD_FOLDER);
+        try {
+            FileUtils.cleanDirectory(downloadFolder);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

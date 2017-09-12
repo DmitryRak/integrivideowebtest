@@ -1,5 +1,7 @@
 package com.integrivideo.stories;
 
+import com.integrivideo.Utils;
+import com.integrivideo.steps.CommonSteps;
 import com.integrivideo.steps.LandingPageSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
@@ -18,8 +20,22 @@ public class LandingStoryTest extends BaseTest {
     @Steps
     LandingPageSteps landingPageSteps;
 
+    @Steps
+    CommonSteps commonSteps;
+
     @Test
     public void userCanDownloadWhitePaper() {
-        landingPageSteps.downloadWhitePaper();
+        Utils.clearDownloadFolder();
+        landingPageSteps.downloadWhitePaper("white-paper.pdf");
+        commonSteps.validateDownloadedFile("white-paper.pdf");
+        Utils.clearDownloadFolder();
+    }
+
+    @Test
+    public void userCanDownloadBrochure() {
+        Utils.clearDownloadFolder();
+        landingPageSteps.downloadBrochure("brochure.pdf");
+        commonSteps.validateDownloadedFile("brochure.pdf");
+        Utils.clearDownloadFolder();
     }
 }

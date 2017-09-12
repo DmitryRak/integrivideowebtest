@@ -11,10 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,6 +135,7 @@ public class ChatPage extends PageObject {
     }
 
     public void openUserSettingsModal() {
+        waitABit(500);
         clickOn(userSettingsButton);
     }
 

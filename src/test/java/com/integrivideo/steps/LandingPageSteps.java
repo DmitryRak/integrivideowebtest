@@ -2,8 +2,10 @@ package com.integrivideo.steps;
 
 import com.integrivideo.Data;
 import com.integrivideo.pages.LandingPage;
+import com.integrivideo.popups.DownloadBrochurePopup;
 import com.integrivideo.popups.DownloadWhitePaperPopup;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
 /**
@@ -13,6 +15,10 @@ public class LandingPageSteps extends ScenarioSteps {
 
     private LandingPage landingPage;
     private DownloadWhitePaperPopup downloadWhitePaperPopup;
+    private DownloadBrochurePopup downloadBrochurePopup;
+
+    @Steps
+    CommonSteps commonSteps;
 
     @Step
     public void goToSignUpLinkFromFirstBlock() {
@@ -25,15 +31,18 @@ public class LandingPageSteps extends ScenarioSteps {
     }
 
     @Step
-    public void downloadWhitePaper() {
+    public void downloadWhitePaper(String filename) {
         landingPage.clickDownloadWhitePaper();
         downloadWhitePaperPopup.enterEmail(Data.USER_2_EMAIL);
         downloadWhitePaperPopup.submitDownload();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
+        commonSteps.waitForFileToDownload(filename);
+    }
 
-        }
-
+    @Step
+    public void downloadBrochure(String filename) {
+        landingPage.clickDownloadBrochure();
+        downloadBrochurePopup.enterEmail(Data.USER_2_EMAIL);
+        downloadBrochurePopup.submitDownload();
+        commonSteps.waitForFileToDownload(filename);
     }
 }

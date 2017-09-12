@@ -1,10 +1,13 @@
 package com.integrivideo.steps;
 
+import com.integrivideo.Data;
 import com.integrivideo.Utils;
 import com.integrivideo.pages.CommonPage;
 import com.integrivideo.popups.NotificationMessagePopup;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
+
+import java.io.File;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -37,5 +40,32 @@ public class CommonSteps extends ScenarioSteps {
     @Step
     public void textFromClipBoardShouldBeLike(String expectedText) {
         assertThat(Utils.getTextFromClipboard()).isEqualTo(expectedText);
+    }
+
+    @Step
+    public void waitForFileToDownload(String filename) {
+        File file = new File(Data.DOWNLOAD_FOLDER.concat(filename));
+        int waiting = 0;
+        while (!file.exists() && waiting < 20) {
+            waitABit(500);
+            waiting++;
+        }
+    }
+
+    @Step
+    public static void validateDownloadedFile(String filename) {
+        File file = new File(Data.DOWNLOAD_FOLDER);
+        File[] files = file.listFiles();
+
+        //Only single document should be downloaded
+        assertThat(files.length == 1);
+
+        File downloadedFile = files[0];
+
+        //File should not be empty
+        assertThat(downloadedFile.length()>0);
+
+        //File with a correct name is downloaded
+        assertThat(downloadedFile.getName()).isEqualTo(filename);
     }
 }

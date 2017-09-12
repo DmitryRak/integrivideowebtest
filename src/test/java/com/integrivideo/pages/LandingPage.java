@@ -1,6 +1,7 @@
 package com.integrivideo.pages;
 
 import com.integrivideo.Data;
+import com.integrivideo.Utils;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,13 @@ public class LandingPage extends PageObject {
 
     public void clickDownloadWhitePaper() {
         getDriver().get(Data.BASE_URL);
+        Utils.scrollToElement(whitePaperButton);
         whitePaperButton.click();
+    }
+
+    public void clickDownloadBrochure() {
+        getDriver().get(Data.BASE_URL);
+        Utils.scrollToElement(brochureButton);
+        brochureButton.click();
     }
 }

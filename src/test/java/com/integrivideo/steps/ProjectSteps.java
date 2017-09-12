@@ -34,6 +34,7 @@ public class ProjectSteps extends ScenarioSteps {
 
     @Step
     public void shouldBeOnProjectsPage() {
+        projectListPage.waitForAddProjectButton();
         commonSteps.currentPageShouldBe(Data.PROJECTS_LIST_URL);
     }
 
