@@ -13,7 +13,7 @@ public class Data {
     public final static String CARDHOLDER_NAME = "Integri User";
     public final static String CARD_NUMBER = "378282246310005";
     public final static String CREATE_PROJECT_URL = BASE_URL + "app/projects/new";
-    public final static String DOWNLOAD_FOLDER = "C:\\Downloads\\";
+    public final static String DOWNLOAD_FOLDER = System.getProperty("user.dir").concat("\\target\\DownloadsIntegriVideo\\");
     public final static String EDITED_MSG = "editText";
     public final static String EXPIRATION_MONTH = "12";
     public final static String EXPIRATION_YEAR = "2021";

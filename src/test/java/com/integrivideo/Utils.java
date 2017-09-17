@@ -52,8 +52,19 @@ public class Utils {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public static void clearDownloadFolder() {
+    public static void prepareDownloadFolder() {
         File downloadFolder = new File(Data.DOWNLOAD_FOLDER);
+
+        //Create folder if does not exist
+        if (!downloadFolder.exists()){
+            try {
+                downloadFolder.mkdir();
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //Delete files and directories in the folder
         try {
             FileUtils.cleanDirectory(downloadFolder);
         } catch (IOException e) {

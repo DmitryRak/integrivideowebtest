@@ -38,6 +38,7 @@ public class ComponentSteps extends ScenarioSteps {
     public void createComponent(ComponentTypeEnum componentType, String name) {
         createComponentPage.fillInForm(componentType, name);
         createComponentPage.clickCreateButton();
+        waitABit(1000);
     }
 
     @Step
@@ -74,5 +75,10 @@ public class ComponentSteps extends ScenarioSteps {
 
     public void returnToProject() {
         createComponentPage.returnToProject();
+    }
+
+    @Step
+    public void shouldBeOnComponentsPage() {
+        componentListPage.waitForAddComponentButton();
     }
 }

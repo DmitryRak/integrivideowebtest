@@ -28,6 +28,10 @@ public class ComponentListPage extends PageObject {
         return findAll(SINGLE_COMPONENT_BY).size();
     }
 
+    public void waitForAddComponentButton() {
+        waitFor(addComponentButton);
+    }
+
     public void openComponentPage(long componentNumberInList) {
         List<WebElementFacade> components = findAll(SINGLE_COMPONENT_BY);
         LOGGER.log(Level.INFO, "Total component count: {0}", components.size());

@@ -25,17 +25,15 @@ public class LandingStoryTest extends BaseTest {
 
     @Test
     public void userCanDownloadWhitePaper() {
-        Utils.clearDownloadFolder();
+        Utils.prepareDownloadFolder();
         landingPageSteps.downloadWhitePaper("white-paper.pdf");
         commonSteps.validateDownloadedFile("white-paper.pdf");
-        Utils.clearDownloadFolder();
     }
 
     @Test
     public void userCanDownloadBrochure() {
-        Utils.clearDownloadFolder();
+        Utils.prepareDownloadFolder();
         landingPageSteps.downloadBrochure("brochure.pdf");
         commonSteps.validateDownloadedFile("brochure.pdf");
-        Utils.clearDownloadFolder();
     }
 }
