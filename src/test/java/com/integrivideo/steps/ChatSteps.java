@@ -37,6 +37,7 @@ public class ChatSteps extends ScenarioSteps {
         chatPage.inputText(text);
         waitABit(1000);
         chatPage.pressEnter();
+        waitABit(200);
     }
 
     @Step
