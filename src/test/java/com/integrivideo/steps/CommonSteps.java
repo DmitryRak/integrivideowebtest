@@ -9,6 +9,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 
 import java.io.File;
 
+import static com.integrivideo.TimeOut.DOUBLE_LONG_TIMEOUT;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
@@ -46,9 +47,9 @@ public class CommonSteps extends ScenarioSteps {
     public void waitForFileToDownload(String filename) {
         File file = new File(Data.DOWNLOAD_FOLDER.concat(filename));
         int waiting = 0;
-        while (!file.exists() && waiting < 20) {
+        while (!file.exists() && waiting < DOUBLE_LONG_TIMEOUT) {
             waitABit(500);
-            waiting++;
+            waiting += 500;
         }
     }
 
