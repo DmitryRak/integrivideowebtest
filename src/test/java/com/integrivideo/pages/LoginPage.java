@@ -17,6 +17,8 @@ public class LoginPage extends PageObject {
     private WebElement passwordField;
     @FindBy(xpath = "//button[contains(text(),'Sign up')]")
     private WebElement signUpLink;
+    @FindBy(xpath = "//a[contains(text(),'Forgot?')]")
+    private WebElement forgotLink;
 
     public void enterCredentials(String email, String password) {
         emailField.sendKeys(email);
@@ -26,5 +28,7 @@ public class LoginPage extends PageObject {
     public void submitLoginForm() {
         loginButton.submit();
     }
+
+    public void clickForgotLink() { forgotLink.click(); }
 
 }

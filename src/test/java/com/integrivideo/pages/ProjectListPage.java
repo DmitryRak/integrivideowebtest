@@ -1,5 +1,6 @@
 package com.integrivideo.pages;
 
+import com.integrivideo.Utils;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
@@ -21,7 +22,12 @@ public class ProjectListPage extends PageObject {
     private WebElement addProjectButton;
 
     public void clickAddProject() {
+        Utils.scrollToElement(addProjectButton);
         clickOn(addProjectButton);
+    }
+
+    public void waitForAddProjectButton() {
+        waitFor(addProjectButton);
     }
 
     public long getProjectCount() {
@@ -34,6 +40,7 @@ public class ProjectListPage extends PageObject {
         LOGGER.log(Level.INFO, "Total project count: {0}", projects.size());
         int projectIndex = (int) projectNumberInList;
         LOGGER.log(Level.INFO, "Getting project by index: {0}", projectIndex);
+        Utils.scrollToElement(projects.get(projectIndex));
         clickOn(projects.get(projectIndex));
     }
 }

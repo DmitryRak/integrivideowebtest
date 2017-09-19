@@ -25,7 +25,7 @@ public class ManageComponentStoryTest extends BaseTest {
     ProjectSteps projectSteps;
     @Steps
     CommonSteps commonSteps;
-
+    
     @Test
     public void videoChatComponentCanBeCreated() {
         projectSteps.createProject();
@@ -60,6 +60,8 @@ public class ManageComponentStoryTest extends BaseTest {
         componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
         componentSteps.editComponent("edited");
+        componentSteps.shouldBeOnComponentsPage();
+        componentSteps.openComponentPage(componentSteps.getComponentCount() - 2);
         componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.VIDEO_CHAT, "edited");
     }
 

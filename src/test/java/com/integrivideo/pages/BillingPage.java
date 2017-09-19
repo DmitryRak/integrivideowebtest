@@ -1,5 +1,6 @@
 package com.integrivideo.pages;
 
+import com.integrivideo.Utils;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
@@ -37,6 +38,7 @@ public class BillingPage extends PageObject {
     }
 
     public void clickAddPayment() {
+        Utils.scrollToElement(addPaymentMethod);
         clickOn(addPaymentMethod);
         withTimeoutOf(LONG_TIMEOUT, MILLISECONDS).waitFor(ExpectedConditions.elementToBeClickable(ADD_CARD_BY));
     }

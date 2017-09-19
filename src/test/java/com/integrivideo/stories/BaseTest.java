@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class BaseTest {
 
-    @Managed(driver = "chrome", uniqueSession = true)
+    @Managed(uniqueSession = true)
     WebDriver driver;
+
 }

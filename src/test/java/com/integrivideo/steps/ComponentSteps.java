@@ -9,11 +9,6 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -43,6 +38,7 @@ public class ComponentSteps extends ScenarioSteps {
     public void createComponent(ComponentTypeEnum componentType, String name) {
         createComponentPage.fillInForm(componentType, name);
         createComponentPage.clickCreateButton();
+        waitABit(1000);
     }
 
     @Step
@@ -79,5 +75,10 @@ public class ComponentSteps extends ScenarioSteps {
 
     public void returnToProject() {
         createComponentPage.returnToProject();
+    }
+
+    @Step
+    public void shouldBeOnComponentsPage() {
+        componentListPage.waitForAddComponentButton();
     }
 }

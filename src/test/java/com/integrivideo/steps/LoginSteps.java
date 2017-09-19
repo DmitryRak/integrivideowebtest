@@ -2,6 +2,7 @@ package com.integrivideo.steps;
 
 import com.integrivideo.Data;
 import com.integrivideo.pages.LoginPage;
+import com.integrivideo.pages.RecoveryPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -19,6 +20,8 @@ public class LoginSteps extends ScenarioSteps {
     private CommonSteps commonSteps;
 
     private LoginPage loginPage;
+
+    private RecoveryPage recoveryPage;
 
     @Step
     public void shouldBeOnLoginPage() {
@@ -44,5 +47,17 @@ public class LoginSteps extends ScenarioSteps {
 
         new WebDriverWait(getDriver(), 10).pollingEvery(3, TimeUnit.SECONDS).
                 until(ExpectedConditions.urlToBe(url));
+    }
+
+    @Step
+    public void goToRecoveryPage() {
+        loginPage.clickForgotLink();
+    }
+
+    @Step
+    public void recoverPassword(String email){
+        recoveryPage.enterEmail(email);
+        recoveryPage.submitRecovery();
+        commonSteps.notificationMessageShouldBeLike("Message with instructions was sent");
     }
 }

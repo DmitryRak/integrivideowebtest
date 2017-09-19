@@ -8,8 +8,11 @@ import com.integrivideo.steps.ProjectSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 /**
  * Created by asus on 7/13/2017.
@@ -51,5 +54,12 @@ public class LoginStoryTest extends BaseTest {
     public void userWithIncorrectPasswordCanNotLogin() {
         loginSteps.enterCredentialsAndLogin(Data.USER_2_EMAIL, "IncorrectPassword");
         commonSteps.notificationMessageShouldBeLike("Error: Password is incorrect");
+    }
+
+    @Test
+    public void userCanRecoverPassword() {
+        landingPageSteps.goToLoginPage();
+        loginSteps.goToRecoveryPage();
+        loginSteps.recoverPassword(Data.USER_2_EMAIL);
     }
 }

@@ -1,6 +1,7 @@
 package com.integrivideo.pages;
 
 import com.integrivideo.Component;
+import com.integrivideo.Utils;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
@@ -60,6 +61,7 @@ public class CreateComponentPage extends PageObject {
     }
 
     public void returnToProject() {
+        waitABit(500); //without this sleep a click is executed on a wrong element, more sophisticated implementation is required - 12/09/2017
         find(BACK_TO_PROJECT_BUTTON_BY).click();
     }
 
@@ -74,6 +76,8 @@ public class CreateComponentPage extends PageObject {
     public Component getComponentDetails() {
         Component component = new Component();
         component.setName(componentNameField.getAttribute("value"));
+
+        waitABit(500); //without this sleep MULTI_DEVICE_VIDEO_PLAYER is received in all cases - 12/09/2017
         String componentTypeText = componentTypeField.getAttribute("value");
         LOGGER.info(componentTypeText);
         if (componentTypeText.equals(VIDEO_CHAT.toString())) {
