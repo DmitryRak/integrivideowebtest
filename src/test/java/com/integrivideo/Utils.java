@@ -45,10 +45,10 @@ public class Utils {
             e.printStackTrace();
         }
         LOGGER.info("Content of clipboard: " + jsFromClipboard);
-        return  jsFromClipboard;
+        return jsFromClipboard;
     }
 
-    public static void scrollToElement (WebElement element) {
+    public static void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
@@ -56,7 +56,7 @@ public class Utils {
         File downloadFolder = new File(Data.DOWNLOAD_FOLDER);
 
         //Create folder if does not exist
-        if (!downloadFolder.exists()){
+        if (!downloadFolder.exists()) {
             try {
                 downloadFolder.mkdir();
             } catch (SecurityException e) {

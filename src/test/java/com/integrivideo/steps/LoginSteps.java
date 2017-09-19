@@ -55,7 +55,7 @@ public class LoginSteps extends ScenarioSteps {
     }
 
     @Step
-    public void recoverPassword(String email){
+    public void recoverPassword(String email) {
         recoveryPage.enterEmail(email);
         recoveryPage.submitRecovery();
         commonSteps.notificationMessageShouldBeLike("Message with instructions was sent");

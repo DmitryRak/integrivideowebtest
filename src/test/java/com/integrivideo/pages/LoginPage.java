@@ -29,6 +29,8 @@ public class LoginPage extends PageObject {
         loginButton.submit();
     }
 
-    public void clickForgotLink() { forgotLink.click(); }
+    public void clickForgotLink() {
+        forgotLink.click();
+    }
 
 }

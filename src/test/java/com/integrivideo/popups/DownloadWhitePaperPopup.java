@@ -1,9 +1,7 @@
 package com.integrivideo.popups;
 
-import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by Dmitry Rak on 7/13/2017.

@@ -1,6 +1,5 @@
 package com.integrivideo.pages;
 
-import com.integrivideo.Project;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.WebElement;

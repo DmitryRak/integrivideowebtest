@@ -6,8 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import java.util.Map;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class MyChromeDriver implements DriverSource {
 
@@ -16,7 +17,7 @@ public class MyChromeDriver implements DriverSource {
         try {
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
-            Map<String, Object> chromePrefs = new HashMap<String, Object>();
+            Map<String, Object> chromePrefs = new HashMap<>();
             chromePrefs.put("download.default_directory", Data.DOWNLOAD_FOLDER);
             chromePrefs.put("plugins.always_open_pdf_externally", true);
 
@@ -27,8 +28,7 @@ public class MyChromeDriver implements DriverSource {
             desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
             return new ChromeDriver(desiredCapabilities);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new Error(e);
         }
     }

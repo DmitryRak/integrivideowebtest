@@ -1,7 +1,6 @@
 package com.integrivideo.pages;
 
 import com.integrivideo.Component;
-import com.integrivideo.Utils;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
@@ -86,7 +85,7 @@ public class CreateComponentPage extends PageObject {
             component.setComponentTypeEnum(SINGLE_VIDEO);
         } else if (componentTypeText.equals(MULTI_DEVICE_VIDEO_PLAYER.toString())) {
             component.setComponentTypeEnum(MULTI_DEVICE_VIDEO_PLAYER);
-        } else{
+        } else {
             component.setComponentTypeEnum(MULTIPARTY_VIDEO);
         }
         return component;

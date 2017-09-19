@@ -19,15 +19,11 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class ComponentSteps extends ScenarioSteps {
 
     private static final Logger LOGGER = Logger.getLogger(ComponentSteps.class.getName());
-
-    private ComponentListPage componentListPage;
-
-    private CreateComponentPage createComponentPage;
-
-    private ProjectDetailsPage projectDetailsPage;
-
     @Steps
     CommonSteps commonSteps;
+    private ComponentListPage componentListPage;
+    private CreateComponentPage createComponentPage;
+    private ProjectDetailsPage projectDetailsPage;
 
     @Step
     public void openCreateComponentPage() {

@@ -15,9 +15,9 @@ public class LandingPage extends PageObject {
     private WebElement loginLink;
     @FindBy(xpath = "//span[contains(text(), 'Free Sign up')]")
     private WebElement signUpLink;
-    @FindBy (xpath = "//button[contains(text(),'White paper')]")
+    @FindBy(xpath = "//button[contains(text(),'White paper')]")
     private WebElement whitePaperButton;
-    @FindBy (xpath = "//button[contains(text(),'Brochure')]")
+    @FindBy(xpath = "//button[contains(text(),'Brochure')]")
     private WebElement brochureButton;
 
     public void clickSignUpOnFirstBlock() {

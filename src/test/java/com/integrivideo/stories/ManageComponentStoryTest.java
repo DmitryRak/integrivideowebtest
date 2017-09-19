@@ -8,6 +8,7 @@ import com.integrivideo.steps.ProjectSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -25,39 +26,35 @@ public class ManageComponentStoryTest extends BaseTest {
     ProjectSteps projectSteps;
     @Steps
     CommonSteps commonSteps;
-    
-    @Test
-    public void videoChatComponentCanBeCreated() {
+
+
+    @Before
+    public void openCreateComponentPage(){
         projectSteps.createProject();
         projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
         componentSteps.openCreateComponentPage();
+    }
+
+    @Test
+    public void videoChatComponentCanBeCreated() {
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
         componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
     }
 
     @Test
     public void singleVideoComponentCanBeCreated() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.SINGLE_VIDEO, Data.RANDOM_COMPONENT_NAME);
         componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.SINGLE_VIDEO, Data.RANDOM_COMPONENT_NAME);
     }
 
     @Test
     public void multiPartyVideoComponentCanBeCreated() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.MULTIPARTY_VIDEO, Data.RANDOM_COMPONENT_NAME);
         componentSteps.componentDetailsShouldBeLike(ComponentTypeEnum.MULTIPARTY_VIDEO, Data.RANDOM_COMPONENT_NAME);
     }
 
     @Test
     public void componentCanBeUpdated() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
         componentSteps.editComponent("edited");
         componentSteps.shouldBeOnComponentsPage();
@@ -67,9 +64,6 @@ public class ManageComponentStoryTest extends BaseTest {
 
     @Test
     public void componentVideoChatPriceIsCorrect() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.VIDEO_CHAT, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(15, 0, 15);
@@ -77,9 +71,6 @@ public class ManageComponentStoryTest extends BaseTest {
 
     @Test
     public void componentSingleVideoPriceIsCorrect() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.SINGLE_VIDEO, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(10, 0, 10);
@@ -87,9 +78,6 @@ public class ManageComponentStoryTest extends BaseTest {
 
     @Test
     public void componentMultiPartyVideoPriceIsCorrect() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.MULTIPARTY_VIDEO, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(10, 0, 10);
@@ -97,9 +85,6 @@ public class ManageComponentStoryTest extends BaseTest {
 
     @Test
     public void componentMultiDeviceVideoPlayerPriceIsCorrect() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, Data.RANDOM_COMPONENT_NAME);
         componentSteps.returnToProject();
         projectSteps.projectPricesShouldBeLike(10, 0, 10);
@@ -107,9 +92,6 @@ public class ManageComponentStoryTest extends BaseTest {
 
     @Test
     public void componentJsCodeCanBeCopied() {
-        projectSteps.createProject();
-        projectSteps.openProjectPage(projectSteps.getProjectCount() - 2);
-        componentSteps.openCreateComponentPage();
         componentSteps.createComponent(ComponentTypeEnum.MULTI_DEVICE_VIDEO_PLAYER, Data.RANDOM_COMPONENT_NAME);
         componentSteps.copyJsCode();
         commonSteps.notificationMessageShouldBeLike("Code was copied");

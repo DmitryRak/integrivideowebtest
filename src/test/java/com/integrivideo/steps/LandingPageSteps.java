@@ -13,12 +13,11 @@ import net.thucydides.core.steps.ScenarioSteps;
  */
 public class LandingPageSteps extends ScenarioSteps {
 
+    @Steps
+    CommonSteps commonSteps;
     private LandingPage landingPage;
     private DownloadWhitePaperPopup downloadWhitePaperPopup;
     private DownloadBrochurePopup downloadBrochurePopup;
-
-    @Steps
-    CommonSteps commonSteps;
 
     @Step
     public void goToSignUpLinkFromFirstBlock() {

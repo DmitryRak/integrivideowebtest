@@ -20,6 +20,23 @@ public class CommonSteps extends ScenarioSteps {
     private CommonPage commonPage;
     private NotificationMessagePopup notificationMessagePopup;
 
+    @Step
+    public static void validateDownloadedFile(String filename) {
+        File file = new File(Data.DOWNLOAD_FOLDER);
+        File[] files = file.listFiles();
+
+        //Only single document should be downloaded
+        assertThat(files.length).isEqualTo(1);
+
+        File downloadedFile = files[0];
+
+        //File should not be empty
+        assertThat(downloadedFile.length()).isGreaterThan(0);
+
+        //File with a correct name is downloaded
+        assertThat(downloadedFile.getName()).isEqualTo(filename);
+    }
+
     public void currentPageShouldBe(String url) {
         assertThat(getDriver().getCurrentUrl()).isEqualToIgnoringCase(url);
     }
@@ -51,22 +68,5 @@ public class CommonSteps extends ScenarioSteps {
             waitABit(500);
             waiting += 500;
         }
-    }
-
-    @Step
-    public static void validateDownloadedFile(String filename) {
-        File file = new File(Data.DOWNLOAD_FOLDER);
-        File[] files = file.listFiles();
-
-        //Only single document should be downloaded
-        assertThat(files.length == 1);
-
-        File downloadedFile = files[0];
-
-        //File should not be empty
-        assertThat(downloadedFile.length()>0);
-
-        //File with a correct name is downloaded
-        assertThat(downloadedFile.getName()).isEqualTo(filename);
     }
 }
