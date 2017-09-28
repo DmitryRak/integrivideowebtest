@@ -27,13 +27,13 @@ public class ChatPage extends PageObject {
     private final static By TEXT_INPUT = By.xpath("//div[contains(@class, 'integri-chat-input')]//textarea");
     private final static By USER_PICS_BY = By.xpath("//div[contains(@class, 'integri-chat-session')]");
     private final static By DEMO_DISCLAIMER_BY = By.xpath("//div[contains(@class, 'integri-demo-version')]");
-    @FindBy(xpath = "//button[contains(@class,'integri-chat-upload-file')]")
+    @FindBy(xpath = "//span[contains(@class,'integri-chat-manual-upload')]")
     private WebElement fileUploadButton;
     @FindBy(id = "invite-users-to-chat")
     private WebElement inviteButton;
     @FindBy(xpath = "//button[contains(@class,'integri-chat-send-message')]")
     private WebElement sendButton;
-    @FindBy(xpath = "//button[contains(@class,'integri-show-user-settings')]")
+    @FindBy(xpath = "//span[contains(@class,'integri-chat-settings')]")
     private WebElement userSettingsButton;
 
     public void inputText(String text) {
