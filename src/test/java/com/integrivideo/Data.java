@@ -11,7 +11,7 @@ public class Data {
     public final static String BASE_URL = "https://dev.integrivideo.com/";
     public final static String BILLING_PAGE = BASE_URL + "app/billing";
     public final static String CARDHOLDER_NAME = "Integri User";
-    public final static String CARD_NUMBER = "378282246310005";
+    public final static String CARD_NUMBER = "5555555555554444";
     public final static String CREATE_PROJECT_URL = BASE_URL + "app/projects/new";
     public final static String DOWNLOAD_FOLDER = System.getProperty("user.dir").concat("\\target\\DownloadsIntegriVideo\\");
     public final static String EDITED_MSG = "editText";
@@ -44,7 +44,7 @@ public class Data {
     public final static String USER_2_PASSWORD = "integripassword";
     public final static String USER_3_EMAIL = "integriuser3@mailinator.com";
     public final static String USER_3_PASSWORD = "integripassword";
-    public final static String ADMIN_1_EMAIL = "integriadmin1@mailinator.com";
+    public final static String ADMIN_1_EMAIL = "integriuser4@mailinator.com";
     public final static String ADMIN_1_PASSWORD = "integripassword";
     public final static String XSS_TEXT = "<script>alert('TEXT');</script>";
     public final static int MAX_DEMO_MESSAGE_COUNT = 10;
